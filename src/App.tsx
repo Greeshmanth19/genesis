@@ -39,12 +39,6 @@ function App() {
             <RevenuePage />
           </section>
 
-          <section id="tokenomics" className="min-h-screen">
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-50">
-              <h1 className="text-6xl font-bold">Tokenomics</h1>
-            </div>
-          </section>
-
           <section id="contact" className="min-h-screen">
             <TouchPage />
           </section>
