@@ -59,11 +59,10 @@ const StatisticsPage = () => {
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-screen"
       style={{
         background: 'linear-gradient(135deg, #F9FEF1 0%, #E8F5E8 50%, #D8F3D8 100%)',
         borderRadius: '30px',
-        position: 'relative',
       }}
     >
       {/* statShade.png Image - Positioned at top left */}
@@ -221,7 +220,7 @@ const StatisticsPage = () => {
           {/* Header Section - Aligned with black section */}
           <div
             className="flex items-center justify-between mb-8"
-            style={{ marginTop: '30px', marginBottom: '70px' }}
+            style={{ marginTop: '10px', marginBottom: '90px' }}
           >
             <h2
               className="text-black"
