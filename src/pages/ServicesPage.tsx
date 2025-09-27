@@ -88,14 +88,17 @@ const ServicesPage: React.FC = () => {
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <div className="relative pt-20 pb-16 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-4 text-green-400 text-sm font-medium">
-            Your Launchpad to Success in Blockchain & DeFi
+        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
+          <div>
+            <div className="mb-4 text-green-400 text-sm font-medium">
+              Your Launchpad to Success in Blockchain & DeFi
+            </div>
+            <h1 style={isMobile ? mobileTitleStyle : titleStyle}>Our Services</h1>
           </div>
-          <h1 style={isMobile ? mobileTitleStyle : titleStyle}>Our Services</h1>
           <p className="text-gray-400 max-w-3xl text-base leading-relaxed mt-8">
-            Genesis Incubations, together with SparkStarter.com, ensures secure, transparent, and
-            community-driven token launches — from audits to marketing and funding support.
+            Genesis Incubations, together with <br></br> SparkStarter.com, ensures secure,
+            transparent, <br></br> and community-driven token launches — from <br></br> audits to
+            marketing and funding support.
           </p>
         </div>
       </div>
