@@ -1,6 +1,5 @@
 // ServicesPage.tsx
 import React from 'react';
-// Import all icon components
 import { SecureIcon } from '../assets/icons/SecureIcon';
 import { WhitelistIcon } from '../assets/icons/WhitelistIcon';
 import { NetworkIcon } from '../assets/icons/NetworkIcon';
@@ -88,17 +87,18 @@ const ServicesPage: React.FC = () => {
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <div className="relative pt-20 pb-16 px-6 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between">
           <div>
             <div className="mb-4 text-green-400 text-sm font-medium">
               Your Launchpad to Success in Blockchain & DeFi
             </div>
             <h1 style={isMobile ? mobileTitleStyle : titleStyle}>Our Services</h1>
           </div>
-          <p className="text-gray-400 max-w-3xl text-base leading-relaxed mt-8">
-            Genesis Incubations, together with <br></br> SparkStarter.com, ensures secure,
-            transparent, <br></br> and community-driven token launches — from <br></br> audits to
-            marketing and funding support.
+          <p className="text-gray-400 max-w-3xl text-base leading-relaxed mt-8 md:mt-8">
+            Genesis Incubations, together with <br className="hidden md:block" /> SparkStarter.com,
+            ensures secure, transparent, <br className="hidden md:block" /> and community-driven
+            token launches — from <br className="hidden md:block" /> audits to marketing and funding
+            support.
           </p>
         </div>
       </div>
@@ -110,14 +110,15 @@ const ServicesPage: React.FC = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group relative rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 min-h-[280px] flex flex-col"
+                className={`group relative rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 flex 
+                  ${isMobile ? 'min-h-[140px] items-center' : 'min-h-[280px] flex-col'}`}
                 style={{
                   background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
                   border: '1px solid rgba(255, 255, 255, 0.05)',
                 }}
               >
-                {/* Icon box at top-left */}
-                <div className="absolute top-5 left-5">
+                {/* Icon box - position changes based on mobile/desktop */}
+                <div className={isMobile ? 'flex-shrink-0 mr-4' : 'absolute top-5 left-5'}>
                   <div
                     className="w-12 h-12 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300"
                     style={{
@@ -130,8 +131,8 @@ const ServicesPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Text content at bottom */}
-                <div className="mt-auto">
+                {/* Text content - position changes based on mobile/desktop */}
+                <div className={isMobile ? 'flex-1' : 'mt-auto'}>
                   <h3 className="text-lg font-semibold mb-1.5 text-white group-hover:text-green-400 transition-colors">
                     {service.title}
                   </h3>

@@ -3,15 +3,15 @@ import React from 'react';
 const HomePage = () => {
   return (
     <div
-      className="relative min-h-screen flex items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-8 lg:px-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-8 lg:px-16 overflow-hidden"
       style={{ borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px' }}
     >
       {/* Left Side - Content */}
-      <div className="flex-1 max-w-lg flex flex-col justify-center" style={{ marginTop: '120px' }}>
+      <div className="flex-1 max-w-lg flex flex-col justify-center lg:mt-[120px] mt-20 order-1 lg:order-1">
         <div>
-          <div className="mb-6">
+          <div className="mb-2 lg:mb-6">
             <p
-              className="mb-2"
+              className="mb-1 lg:mb-2"
               style={{
                 color: '#000',
                 fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
@@ -26,19 +26,19 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Main Heading */}
-          <div className="mb-6">
+          {/* Main Heading - Reduced font size for mobile */}
+          <div className="mb-2 lg:mb-6">
             <h1>
               <span
+                className="block lg:inline"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: '62px',
+                  fontSize: window.innerWidth < 1024 ? '42px' : '62px', // Reduced from 62px to 42px on mobile
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-2.16px',
-                  display: 'inline',
                 }}
               >
                 From Idea <br></br>to Successful <br></br> Token in{' '}
@@ -46,7 +46,7 @@ const HomePage = () => {
               <span
                 style={{
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: '55px',
+                  fontSize: window.innerWidth < 1024 ? '38px' : '55px', // Reduced from 55px to 38px on mobile
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
@@ -63,13 +63,13 @@ const HomePage = () => {
           </div>
 
           {/* Description */}
-          <div className="mb-8">
+          <div className="mb-2 lg:mb-8">
             <p
               style={{
                 fontSize: '18px',
                 fontStyle: 'normal',
                 lineHeight: '110%',
-                color: '#10B981', // Using green-500 equivalent
+                color: '#10B981',
               }}
               className="text-gray-700 text-base leading-relaxed"
             >
@@ -78,8 +78,8 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* CTA Button */}
-          <div>
+          {/* CTA Button - Hidden on mobile, shown on desktop */}
+          <div className="hidden lg:block">
             <button
               className="text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105"
               style={{
@@ -97,38 +97,59 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="flex-1 flex items-center justify-center relative">
+      {/* Right Side - Image Section */}
+      <div className="flex-1 flex items-center justify-center relative order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0">
         <div className="relative">
           <div className="relative">
             <div className="relative">
-              {/* Background Image */}
+              {/* Background Image - Enhanced fade for mobile */}
               <div
-                className="absolute -inset-20 flex items-center justify-center"
+                className="absolute -inset-20 lg:-inset-20 -inset-10 flex items-center justify-center"
                 style={{ zIndex: 1 }}
               >
                 <img
                   src={require('../assets/Images/bgMainShade.png')}
                   alt="Background Shade"
-                  className="w-auto h-auto scale-125 opacity-50 object-contain"
+                  className="w-auto h-auto scale-125 lg:scale-125 scale-100 object-contain"
+                  style={{
+                    maskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                  }}
                 />
               </div>
 
-              {/* Genesis Main Image */}
+              {/* Genesis Main Image - responsive sizing */}
               <img
                 src={require('../assets/Images/genesisMain.png')}
                 alt="Genesis Logo"
-                className="relative w-80 h-80 lg:w-96 lg:h-96 object-contain"
+                className="relative object-contain w-full h-auto lg:w-[810px] lg:h-[810px]"
                 style={{
-                  width: '810px',
-                  height: '810px',
                   maxWidth: '100%',
-                  maxHeight: '100vh',
+                  maxHeight: '100vh', // Reduced from 100vh on mobile
                   zIndex: 2,
                 }}
               />
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile CTA Button - Full width on mobile */}
+      <div className="lg:hidden block order-3 w-full -mt-8 mb-4 px-2">
+        <button
+          className="text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 w-full"
+          style={{
+            borderRadius: '90px',
+            border: '1px solid #DAE339',
+            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+            boxShadow:
+              '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+          }}
+        >
+          Learn More
+        </button>
       </div>
     </div>
   );

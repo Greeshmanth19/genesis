@@ -67,7 +67,7 @@ const StatisticsPage = () => {
     >
       {/* statShade.png Image - Positioned at top left */}
       <div
-        className="absolute top-0 left-0"
+        className="absolute top-0 left-0 hidden md:block"
         style={{
           zIndex: 5,
           width: '820px',
@@ -84,70 +84,91 @@ const StatisticsPage = () => {
           }}
         />
       </div>
-      {/* Black Corner Section with Slanted Edge and Rounded Bottom-Right */}a
-      <div
-        className="absolute top-0 left-0"
-        style={{
-          width: '550px',
-          height: '100px',
-          overflow: 'hidden',
-          zIndex: 10,
-        }}
-      >
-        {/* SVG for custom angled shape */}
-        <svg
-          width="550"
-          height="100"
-          viewBox="0 0 550 100"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-          }}
-        >
-          <path
-            d="M 0 0 L 530 0 L 460 82 L 464 74 C 460 90 435 100 420 100 L 0 100 Z"
-            fill="#000000"
-          />
-        </svg>
 
-        {/* "Get in Touch" text */}
-        <div
-          className="absolute top-0 left-0 text-white flex items-center"
-          style={{
-            width: '100%',
-            height: '100%',
-            paddingLeft: '100px',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: '62px',
-              fontFamily: '"TT Firs Neue", sans-serif',
-              fontWeight: 500,
-              letterSpacing: '-0.02em',
-            }}
+      {/* Black Corner Section with Slanted Edge and Rounded Bottom-Right - Fixed Responsive */}
+      <div className="absolute top-0 left-0" style={{ zIndex: 10 }}>
+        {/* Desktop version */}
+        <div className="hidden md:block">
+          <svg width="550" height="100" viewBox="0 0 550 100">
+            <path
+              d="M 0 0 L 530 0 L 460 82 L 464 74 C 460 90 435 100 420 100 L 0 100 Z"
+              fill="#000000"
+            />
+          </svg>
+        </div>
+
+        {/* Mobile version */}
+        <div className="block md:hidden" style={{ width: '90%', overflow: 'hidden' }}>
+          <svg
+            width="400"
+            height="100"
+            viewBox="0 0 400 100"
+            style={{ position: 'absolute', top: '-10px', left: '-10px' }}
           >
-            Statistics
-          </h2>
+            <path
+              d="M 0 0 L 380 0 L 320 82 L 324 74 C 320 90 300 100 285 100 L 0 100 Z"
+              fill="#000000"
+            />
+          </svg>
+        </div>
+
+        {/* "Statistics" text - properly positioned for all screen sizes */}
+        <div className="absolute top-0 left-0 w-full h-full flex items-center">
+          {/* Mobile positioning - precisely centered in the black surface */}
+          <div className="block md:hidden w-full h-full flex items-center">
+            <div
+              style={{
+                position: 'absolute',
+                left: '50px',
+                top: '20px',
+                width: '180px',
+                textAlign: 'center',
+              }}
+            >
+              <h2
+                className="text-white text-lg sm:text-xl font-medium tracking-tight"
+                style={{
+                  fontFamily: '"TT Firs Neue", sans-serif',
+                  fontWeight: 500,
+                  fontSize: '35px',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                Statistics
+              </h2>
+            </div>
+          </div>
+          {/* Desktop positioning */}
+          <div className="hidden md:block pl-20 lg:pl-28">
+            <h2
+              className="text-white text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight"
+              style={{
+                fontFamily: '"TT Firs Neue", sans-serif',
+                fontWeight: 500,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Statistics
+            </h2>
+          </div>
         </div>
       </div>
-      {/* Main Content Container */}
-      <div className="flex items-start justify-between px-8 lg:px-20 min-h-screen">
-        {/* Left Side - Statistics */}
-        <div className="flex-1 max-w-md pt-48">
-          {/* Stats */}
-          <div className="space-y-10">
+
+      {/* Main Content Container - Responsive */}
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between px-4 md:px-8 lg:px-20 min-h-screen pb-2 md:pb-0">
+        {/* Left Side - Statistics - Move to bottom on mobile */}
+        <div className="flex-1 max-w-md pt-8 md:pt-48 order-2 md:order-1">
+          {/* Stats - Row layout on mobile, column on desktop */}
+          <div className="flex flex-row md:flex-col space-x-6 md:space-x-0 md:space-y-10 justify-between md:justify-start">
             {/* Total Projects */}
-            <div>
+            <div className="flex-1 md:flex-none text-center md:text-left">
               <div
-                className="text-7xl font-medium mb-2"
+                className="font-medium mb-2 text-3xl md:text-7xl"
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   fontFamily: '"TT Firs Neue", sans-serif',
-                  fontSize: '72px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
@@ -156,7 +177,7 @@ const StatisticsPage = () => {
               >
                 {projectsCount}
               </div>
-              <div className="text-[#000] text-md font-medium">
+              <div className="text-[#000] font-medium text-xs md:text-base">
                 Total Projects
                 <br />
                 Incubated
@@ -164,15 +185,14 @@ const StatisticsPage = () => {
             </div>
 
             {/* Total Volume */}
-            <div>
+            <div className="flex-1 md:flex-none text-center md:text-left">
               <div
-                className="text-6xl font-medium mb-2"
+                className="font-medium mb-2 text-3xl md:text-7xl"
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   fontFamily: '"TT Firs Neue", sans-serif',
-                  fontSize: '72px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
@@ -181,7 +201,7 @@ const StatisticsPage = () => {
               >
                 ${volumeCount.toFixed(1)} mil
               </div>
-              <div className="text-[#000] text-md font-medium">
+              <div className="text-[#000] font-medium text-xs md:text-base">
                 Total Volume
                 <br />
                 Generated
@@ -189,15 +209,14 @@ const StatisticsPage = () => {
             </div>
 
             {/* Total Revenue */}
-            <div>
+            <div className="flex-1 md:flex-none text-center md:text-left">
               <div
-                className="text-6xl font-medium mb-2"
+                className="font-medium mb-2 text-3xl md:text-7xl"
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   fontFamily: '"TT Firs Neue", sans-serif',
-                  fontSize: '72px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
@@ -206,7 +225,7 @@ const StatisticsPage = () => {
               >
                 ${revenueCount} k
               </div>
-              <div className="text-[#000] text-md font-medium">
+              <div className="text-[#000] font-medium text-xs md:text-base">
                 Total Revenue
                 <br />
                 Generated
@@ -215,30 +234,27 @@ const StatisticsPage = () => {
           </div>
         </div>
 
-        {/* Right Side - Projects Table */}
-        <div className="flex-1 max-w-2xl">
+        {/* Right Side - Projects Table - Move to top on mobile */}
+        <div className="flex-1 max-w-full md:max-w-2xl order-1 md:order-2 mt-24 md:mt-10">
           {/* Header Section - Aligned with black section */}
           <div
-            className="flex items-center justify-between mb-8"
-            style={{ marginTop: '10px', marginBottom: '90px' }}
+            className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8"
+            style={{ marginTop: '10px', marginBottom: '60px' }}
           >
             <h2
-              className="text-black"
+              className="text-black text-2xl md:text-5xl font-medium leading-tight tracking-tight"
               style={{
-                fontSize: '45px',
                 fontFamily: '"TT Firs Neue", sans-serif',
-                fontWeight: 500,
-                lineHeight: '1.1',
-                letterSpacing: '-0.02em',
               }}
             >
               Projects Incubated
               <br />& statistics
             </h2>
 
-            <div>
+            {/* Hide button on mobile - will be moved to bottom */}
+            <div className="hidden md:block">
               <button
-                className="text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105"
+                className="text-white font-semibold px-6 md:px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm md:text-base w-full md:w-auto"
                 style={{
                   borderRadius: '90px',
                   border: '1px solid #DAE339',
@@ -256,18 +272,15 @@ const StatisticsPage = () => {
           {/* Table Card */}
           <div className="backdrop-blur-sm rounded-2xl">
             {/* Table Header - Adjusted grid layout */}
-            <div className="flex justify-between items-center mb-6 pb-4">
+            <div className="flex justify-between items-center mb-4 pb-4 px-2 md:px-0">
               {/* Project column */}
               <div
-                className="flex-shrink-0"
+                className="flex-shrink-0 w-20 md:w-30 text-base md:text-2xl font-medium"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: '24px',
-                  fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
-                  width: '120px',
                 }}
               >
                 Project
@@ -275,15 +288,12 @@ const StatisticsPage = () => {
 
               {/* Revenue column */}
               <div
-                className="flex-shrink-0"
+                className="flex-shrink-0 w-20 md:w-30 text-base md:text-2xl font-medium"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: '24px',
-                  fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
-                  width: '120px',
                 }}
               >
                 Revenue
@@ -291,16 +301,12 @@ const StatisticsPage = () => {
 
               {/* Volume column - aligned with other headers */}
               <div
-                className="flex-shrink-0"
+                className="flex-shrink-0 w-25 md:w-35 text-base md:text-2xl font-medium text-right"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: '24px',
-                  fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
-                  width: '140px',
-                  textAlign: 'right',
                 }}
               >
                 Volume
@@ -308,27 +314,24 @@ const StatisticsPage = () => {
             </div>
 
             {/* Table Rows - Adjusted layout */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {projectsData.map((project, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center py-3"
+                  className="flex justify-between items-center py-2 md:py-3 px-2 md:px-0 border-b border-[#CDCDCD]"
                   style={{
                     animation: hasAnimated ? `fadeInUp 0.5s ease-out ${index * 0.1}s both` : 'none',
-                    borderBottom: '1px solid #CDCDCD',
                   }}
                 >
                   {/* Project name */}
                   <div
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 w-20 md:w-30 text-xs md:text-lg"
                     style={{
                       color: '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                      fontSize: '18px',
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
-                      width: '120px',
                     }}
                   >
                     {project.name}
@@ -336,15 +339,13 @@ const StatisticsPage = () => {
 
                   {/* Revenue */}
                   <div
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 w-20 md:w-30 text-xs md:text-lg"
                     style={{
                       color: '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                      fontSize: '18px',
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
-                      width: '120px',
                     }}
                   >
                     {project.revenue}
@@ -352,16 +353,13 @@ const StatisticsPage = () => {
 
                   {/* Volume - positioned to the far right with more space */}
                   <div
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 w-25 md:w-35 text-xs md:text-lg text-right"
                     style={{
                       color: '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                      fontSize: '18px',
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
-                      width: '140px',
-                      textAlign: 'right',
                     }}
                   >
                     {project.volume}
@@ -372,9 +370,29 @@ const StatisticsPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Learn More Button - Bottom of page for mobile */}
+      <div className="block md:hidden px-4 pb-4 -mt-[40px]">
+        <div className="flex justify-center">
+          <button
+            className="text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm w-full max-w-xs"
+            style={{
+              borderRadius: '90px',
+              border: '1px solid #DAE339',
+              background:
+                'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+              boxShadow:
+                '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+            }}
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+
       {/* statEndShade.png Image - Positioned at bottom end */}
       <div
-        className="absolute bottom-0 right-0"
+        className="absolute bottom-0 right-0 hidden md:block"
         style={{
           zIndex: 5,
           width: '300px',
@@ -391,6 +409,7 @@ const StatisticsPage = () => {
           }}
         />
       </div>
+
       {/* Add keyframe animation */}
       <style
         dangerouslySetInnerHTML={{
