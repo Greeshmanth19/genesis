@@ -47,19 +47,18 @@ const Navigation: React.FC = () => {
       className="absolute z-50"
       style={{
         backgroundColor: '#F9FEF1',
-        top: '10px',
-        left: '10px',
-        right: '10px',
         borderTopLeftRadius: '30px',
         borderTopRightRadius: '30px',
-        overflow: 'hidden', // This ensures the border radius is visible
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }}
     >
       <div
         className="relative mx-auto px-6"
         style={{
           backgroundColor: '#F9FEF1',
-          maxWidth: '1400px',
           borderTopLeftRadius: '30px',
           borderTopRightRadius: '30px',
         }}
@@ -134,19 +133,19 @@ const Navigation: React.FC = () => {
             </a>
 
             {/* Contact Button */}
-            <button
-              onClick={() => handleNavClick('contact')}
-              className="relative text-white font-medium px-8 py-2.5 transition-all hover:scale-105 rounded-full"
-              style={{
-                background: 'linear-gradient(135deg, #8FD14F 0%, #5FBF3F 100%)',
-                fontSize: '15px',
-              }}
-            >
-              Contact Us
-            </button>
           </div>
         </div>
       </div>
+      <button
+        onClick={() => handleNavClick('contact')}
+        className="text-white font-medium px-8 py-2"
+        style={{
+          background: 'linear-gradient(135deg, #8FD14F 0%, #5FBF3F 100%)',
+          fontSize: '15px',
+        }}
+      >
+        Contact Us
+      </button>
     </nav>
   );
 };
