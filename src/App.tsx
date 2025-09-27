@@ -39,7 +39,7 @@ function App() {
             <RevenuePage />
           </section>
 
-          <section id="contact" className="min-h-screen">
+          <section id="touch">
             <TouchPage />
           </section>
         </Layout>
