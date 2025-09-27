@@ -85,22 +85,21 @@ const StatisticsPage = () => {
           }}
         />
       </div>
-
-      {/* Black Corner Section with Slanted Edge and Rounded Bottom-Right */}
+      {/* Black Corner Section with Slanted Edge and Rounded Bottom-Right */}a
       <div
         className="absolute top-0 left-0"
         style={{
           width: '550px',
-          height: '120px',
+          height: '100px',
           overflow: 'hidden',
           zIndex: 10,
         }}
       >
-        {/* SVG for custom shape with rounded bottom-right corner */}
+        {/* SVG for custom angled shape */}
         <svg
           width="550"
-          height="120"
-          viewBox="0 0 550 120"
+          height="100"
+          viewBox="0 0 550 100"
           style={{
             position: 'absolute',
             top: 0,
@@ -108,25 +107,23 @@ const StatisticsPage = () => {
           }}
         >
           <path
-            d="M 0 0 L 550 0 L 525 90 L 525 90 C 520 107 507 120 490 120 L 0 120 Z"
+            d="M 0 0 L 530 0 L 460 82 L 464 74 C 460 90 435 100 420 100 L 0 100 Z"
             fill="#000000"
           />
         </svg>
 
-        {/* Text content positioned over the SVG */}
+        {/* "Get in Touch" text */}
         <div
-          className="absolute top-0 left-0 text-white"
+          className="absolute top-0 left-0 text-white flex items-center"
           style={{
             width: '100%',
             height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            paddingLeft: '60px',
+            paddingLeft: '100px',
           }}
         >
           <h2
             style={{
-              fontSize: '52px',
+              fontSize: '62px',
               fontFamily: '"TT Firs Neue", sans-serif',
               fontWeight: 500,
               letterSpacing: '-0.02em',
@@ -136,7 +133,6 @@ const StatisticsPage = () => {
           </h2>
         </div>
       </div>
-
       {/* Main Content Container */}
       <div className="flex items-start justify-between px-8 lg:px-20 min-h-screen">
         {/* Left Side - Statistics */}
@@ -377,7 +373,6 @@ const StatisticsPage = () => {
           </div>
         </div>
       </div>
-
       {/* statEndShade.png Image - Positioned at bottom end */}
       <div
         className="absolute bottom-0 right-0"
@@ -397,7 +392,6 @@ const StatisticsPage = () => {
           }}
         />
       </div>
-
       {/* Add keyframe animation */}
       <style
         dangerouslySetInnerHTML={{
