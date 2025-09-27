@@ -264,7 +264,7 @@ const TouchPage: React.FC = () => {
         </svg>
       </div>
 
-      {/* Black Corner Section at Bottom Right with Contact Us - Reduced Height */}
+      {/* Black Corner Section at Bottom Right with Layered Contact Us Button */}
       <div
         className="absolute -bottom-2 -right-1"
         style={{
@@ -274,7 +274,7 @@ const TouchPage: React.FC = () => {
           zIndex: 10,
         }}
       >
-        {/* SVG for custom angled shape - mirrored */}
+        {/* Outer SVG for black background shape */}
         <svg
           width="550"
           height="110"
@@ -291,7 +291,54 @@ const TouchPage: React.FC = () => {
           />
         </svg>
 
-        {/* Contact Us Section inside the black corner - Centered and Bigger */}
+        {/* Inner SVG for gradient shape with padding */}
+        <svg
+          width="530"
+          height="100"
+          viewBox="0 0 520 90"
+          style={{
+            position: 'absolute',
+            bottom: '2px',
+            right: '5px',
+          }}
+        >
+          <defs>
+            <linearGradient
+              id="bottomContactGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+              gradientTransform="rotate(101)"
+            >
+              <stop offset="-3.32%" stopColor="#DAE339" />
+              <stop offset="51.06%" stopColor="#00B935" />
+              <stop offset="105.44%" stopColor="#DAE339" />
+            </linearGradient>
+            <filter id="bottomContactShadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="0" floodColor="rgba(103, 178, 51, 0.60)" />
+              <feDropShadow dx="0" dy="0" stdDeviation="0" floodColor="rgba(0, 235, 0, 0.20)" />
+              <feDropShadow
+                dx="0"
+                dy="16"
+                stdDeviation="15"
+                floodColor="rgba(113, 173, 77, 0.40)"
+              />
+            </filter>
+          </defs>
+          <path
+            d="M 520 90 L 5 90 L 95 12 L 95 12 C 100 8 110 0 125 0 L 520 0 Z"
+            fill="url(#bottomContactGradient)"
+            stroke="#DAE339"
+            strokeWidth="1"
+            filter="url(#bottomContactShadow)"
+            style={{
+              boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+            }}
+          />
+        </svg>
+
+        {/* Contact Us text - Positioned in the center */}
         <div
           className="absolute inset-0 text-white flex flex-col items-center justify-center"
           style={{
@@ -299,15 +346,16 @@ const TouchPage: React.FC = () => {
             height: '100%',
           }}
         >
-          {/* Contact Us Title */}
           <h3
+            className="relative z-10"
             style={{
-              color: '#8FD14F',
+              color: '#FFFFFF',
               fontSize: '36px',
               fontFamily: '"TT Firs Neue", sans-serif',
               fontWeight: 500,
               lineHeight: '90%',
               letterSpacing: '-0.72px',
+              textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
             }}
           >
             Contact Us
