@@ -43,109 +43,97 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <nav
-      className="absolute z-50"
-      style={{
-        backgroundColor: '#F9FEF1',
-        borderTopLeftRadius: '30px',
-        borderTopRightRadius: '30px',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <div
-        className="relative mx-auto px-6"
-        style={{
-          backgroundColor: '#F9FEF1',
-          borderTopLeftRadius: '30px',
-          borderTopRightRadius: '30px',
-        }}
-      >
-        <div className="flex items-center justify-between py-3">
-          <div className="flex items-center gap-[50px]">
-            <div className="flex items-center gap-3">
-              <img
-                src={require('../../assets/Images/genesisLogo.png')}
-                alt="Genesis"
-                className="h-8 w-8"
-                style={{ height: '42px', width: '32px' }}
-              />
-              <img
-                src={require('../../assets/Images/genesisText.png')}
-                alt="Genesis"
-                className="h-6"
-                style={{ height: '24px' }}
-              />
-            </div>
-            <div className="flex items-center gap-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className="text-gray-800 hover:text-gray-900 font-medium text-sm transition-colors relative"
-                  style={{
-                    fontSize: '15px',
-                    letterSpacing: '0.01em',
-                  }}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+    <nav className="absolute z-50 w-full">
+      <div className="flex items-center justify-between px-6 py-3">
+        {/* Left Section - Logo and Nav Items */}
+        <div className="flex items-center gap-[50px]">
+          <div className="flex items-center gap-3">
+            <img
+              src={require('../../assets/Images/genesisLogo.png')}
+              alt="Genesis"
+              className="h-8 w-8"
+              style={{ height: '42px', width: '32px' }}
+            />
+            <img
+              src={require('../../assets/Images/genesisText.png')}
+              alt="Genesis"
+              className="h-6"
+              style={{ height: '24px' }}
+            />
           </div>
+          <div className="flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className="text-gray-800 hover:text-gray-900 font-medium text-sm transition-colors relative"
+                style={{
+                  fontSize: '15px',
+                  letterSpacing: '0.01em',
+                }}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-          {/* Right Section */}
-          <div className="flex items-center gap-5">
-            {/* Social Icons */}
-            <a href="#" className="transition-transform hover:scale-110">
-              <img
-                src={require('../../assets/Images/icon1.png')}
-                alt="Icon 1"
-                className="h-5 w-5"
-                style={{ height: '20px', width: '20px' }}
-              />
-            </a>
-            <a href="#" className="transition-transform hover:scale-110">
-              <img
-                src={require('../../assets/Images/icon2.png')}
-                alt="Icon 2"
-                className="h-5 w-5"
-                style={{ height: '20px', width: '20px' }}
-              />
-            </a>
-            <a href="#" className="transition-transform hover:scale-110">
-              <img
-                src={require('../../assets/Images/icon3.png')}
-                alt="Icon 3"
-                className="h-5 w-5"
-                style={{ height: '20px', width: '20px' }}
-              />
-            </a>
-            <a href="#" className="transition-transform hover:scale-110">
-              <img
-                src={require('../../assets/Images/icon4.png')}
-                alt="Icon 4"
-                className="h-5 w-5"
-                style={{ height: '20px', width: '20px' }}
-              />
-            </a>
+        {/* Right Section - Social Icons and Contact Button */}
+        <div className="flex items-center gap-5">
+          {/* Social Icons */}
+          <a href="#" className="transition-transform hover:scale-110">
+            <img
+              src={require('../../assets/Images/icon1.png')}
+              alt="Icon 1"
+              className="h-5 w-5"
+              style={{ height: '20px', width: '20px' }}
+            />
+          </a>
+          <a href="#" className="transition-transform hover:scale-110">
+            <img
+              src={require('../../assets/Images/icon2.png')}
+              alt="Icon 2"
+              className="h-5 w-5"
+              style={{ height: '20px', width: '20px' }}
+            />
+          </a>
+          <a href="#" className="transition-transform hover:scale-110">
+            <img
+              src={require('../../assets/Images/icon3.png')}
+              alt="Icon 3"
+              className="h-5 w-5"
+              style={{ height: '20px', width: '20px' }}
+            />
+          </a>
+          <a href="#" className="transition-transform hover:scale-110">
+            <img
+              src={require('../../assets/Images/icon4.png')}
+              alt="Icon 4"
+              className="h-5 w-5"
+              style={{ height: '20px', width: '20px' }}
+            />
+          </a>
 
-            {/* Contact Button */}
+          {/* Contact Button with Angled Shape */}
+          <div>
+            <button
+              onClick={() => handleNavClick('contact')}
+              className="text-white font-medium px-8 py-2 relative overflow-hidden transition-all duration-300 hover:shadow-lg"
+              style={{
+                fontSize: '15px',
+                clipPath: 'polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%)',
+                background: 'linear-gradient(135deg, #8FD14F 0%, #5FBF3F 100%)',
+                border: '2px solid #000',
+                borderRadius: '8px',
+                minWidth: '120px',
+                height: '40px',
+              }}
+            >
+              <span className="relative z-10">Contact Us</span>
+            </button>
           </div>
         </div>
       </div>
-      <button
-        onClick={() => handleNavClick('contact')}
-        className="text-white font-medium px-8 py-2"
-        style={{
-          background: 'linear-gradient(135deg, #8FD14F 0%, #5FBF3F 100%)',
-          fontSize: '15px',
-        }}
-      >
-        Contact Us
-      </button>
     </nav>
   );
 };
