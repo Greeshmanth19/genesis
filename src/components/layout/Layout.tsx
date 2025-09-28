@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import Navigation from './Navigation';
-import ScrollProgress from './ScrollProgress';
+// import ScrollProgress from './ScrollProgress';
 import { useUIStore } from '../../store';
 
 interface LayoutProps {
