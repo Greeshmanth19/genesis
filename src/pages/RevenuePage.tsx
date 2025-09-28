@@ -873,7 +873,7 @@ const RevenuePage = () => {
             />
 
             <img
-              src="/sparkstarter.png"
+              src={require('../assets/Images/sparkstarter.png')}
               alt="Sparkstarter"
               className="relative z-10 max-w-full max-h-full object-contain"
             />
@@ -949,7 +949,7 @@ const RevenuePage = () => {
             />
 
             <img
-              src="/assure.png"
+              src={require('../assets/Images/assure.png')}
               alt="Assure DeFi"
               className="relative z-10 max-w-full max-h-full object-contain"
             />
