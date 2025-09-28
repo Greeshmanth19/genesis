@@ -35,10 +35,10 @@ const RevenuePage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
+    <div className="relative min-h-screen mobile-container flex flex-col items-center justify-start sm:justify-center bg-black text-white overflow-hidden pt-safe-top pb-safe-bottom">
       {/* Header */}
       <div>
-        <div className="text-center mb-8 lg:mb-16 px-4">
+        <div className="text-center mb-8 lg:mb-16 px-4 mobile-header-spacing">
           <p
             className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base lg:text-lg"
             style={gradientTextStyle}
@@ -84,7 +84,7 @@ const RevenuePage: React.FC = () => {
       </div>
 
       {/* Main content container */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-8">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-8 mobile-content-wrapper">
         {/* Desktop Layout - Hidden on mobile */}
         <div className="hidden lg:block">
           <div className="grid grid-cols-3 gap-[150px] items-start">
