@@ -26,33 +26,35 @@ const TouchPage: React.FC = () => {
           </svg>
         </div>
 
-        {/* Mobile version - FIXED */}
-        <div className="block md:hidden" style={{ paddingRight: '20px' }}>
+        {/* Mobile version - FIXED to stick to left edge */}
+        <div className="block md:hidden" style={{ width: '100vw', position: 'relative', left: 0 }}>
           <svg
-            width="calc(100vw - 50px)"
+            width="100%"
             height="70"
-            viewBox="0 0 400 80"
-            style={{ maxWidth: '380px' }}
+            viewBox="0 0 100 20"
+            preserveAspectRatio="none"
+            style={{
+              display: 'block',
+              minWidth: '100vw',
+            }}
           >
-            <path
-              d="M 0 0 L 380 0 L 320 65 L 324 60 C 320 72 300 80 285 80 L 0 80 Z"
-              fill="#000000"
-            />
+            <path d="M 0 0 L 70 0 L 62 17 L 63 15 C 62 18 59 20 57 20 L 0 20 Z" fill="#000000" />
           </svg>
         </div>
 
         {/* "Get in Touch" text - properly positioned for all screen sizes */}
         <div className="absolute top-0 left-0 w-full h-full flex items-center">
-          {/* Mobile positioning - FIXED */}
+          {/* Mobile positioning - FIXED to always stay at left */}
           <div className="block md:hidden w-full h-full flex items-center">
             <div
               style={{
                 position: 'absolute',
-                left: '20px',
+                left: '50px',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 width: '250px',
                 textAlign: 'left',
+                zIndex: 20,
               }}
             >
               <h2
@@ -60,7 +62,7 @@ const TouchPage: React.FC = () => {
                 style={{
                   fontFamily: '"TT Firs Neue", sans-serif',
                   fontWeight: 500,
-                  fontSize: '24px',
+                  fontSize: '34px',
                   letterSpacing: '-0.02em',
                 }}
               >
@@ -275,7 +277,7 @@ const TouchPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content Container - Responsive */}
+      {/* Main Content Container - Responsive with proper spacing from black shape */}
       <div className="flex flex-col px-4 md:px-8 lg:px-20 mt-24 md:mt-32">
         {/* Social Media Icons - Mobile only - below black section */}
         <div className="w-full flex justify-center mb-12 md:hidden">
@@ -371,8 +373,8 @@ const TouchPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Description Text - Now left aligned with responsive font sizes */}
-        <div className="mb-8 md:mb-12 max-w-2xl">
+        {/* Main Description Text - Now left aligned with responsive font sizes and proper spacing */}
+        <div className="mb-8 md:mb-12 max-w-2xl ml-0">
           <p
             className="leading-relaxed text-lg md:text-2xl"
             style={{

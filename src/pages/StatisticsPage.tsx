@@ -97,33 +97,35 @@ const StatisticsPage = () => {
           </svg>
         </div>
 
-        {/* Mobile version - FIXED */}
-        <div className="block md:hidden" style={{ paddingRight: '20px' }}>
+        {/* Mobile version - FIXED to stick to left edge */}
+        <div className="block md:hidden" style={{ width: '100vw', position: 'relative', left: 0 }}>
           <svg
-            width="calc(100vw - 50px)"
+            width="100%"
             height="70"
-            viewBox="0 0 400 80"
-            style={{ maxWidth: '380px' }}
+            viewBox="0 0 100 20"
+            preserveAspectRatio="none"
+            style={{
+              display: 'block',
+              minWidth: '100vw',
+            }}
           >
-            <path
-              d="M 0 0 L 380 0 L 320 65 L 324 60 C 320 72 300 80 285 80 L 0 80 Z"
-              fill="#000000"
-            />
+            <path d="M 0 0 L 70 0 L 62 17 L 63 15 C 62 18 59 20 57 20 L 0 20 Z" fill="#000000" />
           </svg>
         </div>
 
         {/* "Statistics" text - properly positioned for all screen sizes */}
         <div className="absolute top-0 left-0 w-full h-full flex items-center">
-          {/* Mobile positioning - FIXED */}
+          {/* Mobile positioning - FIXED to always stay at left */}
           <div className="block md:hidden w-full h-full flex items-center">
             <div
               style={{
                 position: 'absolute',
-                left: '20px',
+                left: '50px',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 width: '200px',
                 textAlign: 'left',
+                zIndex: 20,
               }}
             >
               <h2
@@ -131,7 +133,7 @@ const StatisticsPage = () => {
                 style={{
                   fontFamily: '"TT Firs Neue", sans-serif',
                   fontWeight: 500,
-                  fontSize: '28px',
+                  fontSize: '34px',
                   letterSpacing: '-0.02em',
                 }}
               >
@@ -235,12 +237,16 @@ const StatisticsPage = () => {
           </div>
         </div>
 
-        {/* Right Side - Projects Table - Move to top on mobile */}
-        <div className="flex-1 max-w-full md:max-w-2xl order-1 md:order-2 mt-24 md:mt-10">
-          {/* Header Section - Aligned with black section */}
+        {/* Right Side - Projects Table - Move to top on mobile with proper spacing */}
+        <div className="flex-1 max-w-full md:max-w-2xl order-1 md:order-2 mt-24 md:mt-10 ml-0 md:ml-0">
+          {/* Header Section - Properly spaced from black shape */}
           <div
             className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8"
-            style={{ marginTop: '10px', marginBottom: '60px' }}
+            style={{
+              marginTop: '10px',
+              marginBottom: '60px',
+              paddingLeft: '0px', // Remove any left padding that might cause overlap
+            }}
           >
             <h2
               className="text-black text-2xl md:text-5xl font-medium leading-tight tracking-tight"
