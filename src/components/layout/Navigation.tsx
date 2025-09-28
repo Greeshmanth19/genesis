@@ -512,7 +512,6 @@ const Navigation: React.FC = () => {
                       mixBlendMode: 'hard-light',
                       borderRadius: '9999px',
                       transform: 'translateY(1px)',
-                      animation: 'noiseFlow 8s linear infinite',
                     }}
                   />
                   <span className="relative z-10">Contact Us</span>
