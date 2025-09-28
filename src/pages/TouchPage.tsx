@@ -315,15 +315,15 @@ const TouchPage: React.FC = () => {
       </div>
 
       {/* Main Content Container - Responsive with proper spacing from black shape */}
-      <div className="flex flex-col px-4 md:px-8 lg:px-20 mt-20 md:mt-32">
-        {/* Social Media Icons - Mobile only - REDUCED SPACING */}
-        <div className="w-full flex justify-center mb-6 md:hidden">
-          {/* Mobile Layout - 2x2 grid with reduced gaps */}
-          <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+      <div className="flex flex-col px-4 md:px-8 lg:px-20 mt-16 md:mt-32">
+        {/* Social Media Icons - Mobile only - FULL WIDTH END TO END */}
+        <div className="w-full mb-6 md:hidden">
+          {/* Mobile Layout - 2x2 grid stretching end to end */}
+          <div className="grid grid-cols-2 gap-y-3">
             {/* SparkStarter Icon */}
             <button
               onClick={() => handleSocialClick('SparkStarter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -345,7 +345,7 @@ const TouchPage: React.FC = () => {
             {/* Unicrypt Icon */}
             <button
               onClick={() => handleSocialClick('Unicrypt')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -367,7 +367,7 @@ const TouchPage: React.FC = () => {
             {/* Twitter/X Icon */}
             <button
               onClick={() => handleSocialClick('Twitter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -389,7 +389,7 @@ const TouchPage: React.FC = () => {
             {/* Telegram Icon */}
             <button
               onClick={() => handleSocialClick('Telegram')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -436,10 +436,11 @@ const TouchPage: React.FC = () => {
           {/* Desktop/Tablet - Show both texts horizontally */}
           <div className="hidden md:flex justify-between items-center w-full">
             <p
-              className="text-lg font-bold"
+              className="text-lg"
               style={{
                 color: '#000',
                 fontStyle: 'normal',
+                fontWeight: 400,
                 lineHeight: '120%',
                 letterSpacing: '-0.45px',
               }}
@@ -447,10 +448,11 @@ const TouchPage: React.FC = () => {
               2025
             </p>
             <p
-              className="text-lg font-bold"
+              className="text-lg"
               style={{
                 color: '#000',
                 fontStyle: 'normal',
+                fontWeight: 400,
                 lineHeight: '120%',
                 letterSpacing: '-0.45px',
                 position: 'absolute',
@@ -465,10 +467,11 @@ const TouchPage: React.FC = () => {
           {/* Mobile - FIXED: Horizontal layout with space-between */}
           <div className="flex md:hidden justify-between items-center w-full px-2">
             <p
-              className="text-base font-bold"
+              className="text-base"
               style={{
                 color: '#000',
                 fontStyle: 'normal',
+                fontWeight: 400,
                 lineHeight: '120%',
                 letterSpacing: '-0.45px',
               }}
@@ -477,10 +480,11 @@ const TouchPage: React.FC = () => {
             </p>
             <div className="flex gap-2">
               <p
-                className="text-base font-bold"
+                className="text-base"
                 style={{
                   color: '#000',
                   fontStyle: 'normal',
+                  fontWeight: 400,
                   lineHeight: '120%',
                   letterSpacing: '-0.45px',
                 }}
@@ -488,10 +492,11 @@ const TouchPage: React.FC = () => {
                 Genesis
               </p>
               <p
-                className="text-base font-bold"
+                className="text-base"
                 style={{
                   color: '#000',
                   fontStyle: 'normal',
+                  fontWeight: 400,
                   lineHeight: '120%',
                   letterSpacing: '-0.45px',
                 }}

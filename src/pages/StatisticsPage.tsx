@@ -302,16 +302,15 @@ const StatisticsPage = () => {
 
         {/* Right Side - Projects Table - Compact spacing */}
         <div className="flex-1 max-w-full md:max-w-2xl order-1 md:order-2 mt-24 md:mt-10 ml-0 md:ml-0">
-          {/* Header Section - FIXED: Reduced spacing on mobile */}
+          {/* Header Section - FIXED: Different spacing for mobile and desktop */}
           <div
-            className="flex flex-col md:flex-row md:items-center md:justify-between"
+            className="flex flex-col md:flex-row md:items-center md:justify-between mb-5 md:mb-[60px]"
             style={{
               marginTop: '10px',
-              marginBottom: '20px', // Reduced from 60px to 20px for mobile
             }}
           >
             <h2
-              className="text-black text-2xl md:text-5xl font-medium leading-tight tracking-tight mb-4 md:mb-0"
+              className="text-black text-2xl md:text-5xl font-medium leading-tight tracking-tight"
               style={{
                 fontFamily: '"TT Firs Neue", sans-serif',
               }}
