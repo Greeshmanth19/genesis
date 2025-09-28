@@ -138,7 +138,7 @@ const ServicesPage: React.FC = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 flex overflow-hidden
+                className={`group relative rounded-2xl p-5 flex overflow-hidden
                   ${isMobile ? 'min-h-[140px] items-center' : 'min-h-[280px] flex-col'}`}
                 style={{
                   background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -154,7 +154,7 @@ const ServicesPage: React.FC = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'multiply',
                     opacity: 0.4,
-                    animation: 'noiseFlow 20s linear infinite',
+                    // animation: 'noiseFlow 20s linear infinite',
                   }}
                 />
 
@@ -167,7 +167,7 @@ const ServicesPage: React.FC = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'overlay',
                     opacity: 0.25,
-                    animation: 'noiseFlow 15s linear infinite reverse',
+                    // animation: 'noiseFlow 15s linear infinite reverse',`
                   }}
                 />
 
@@ -225,7 +225,7 @@ const ServicesPage: React.FC = () => {
                         WebkitMaskImage:
                           'radial-gradient(ellipse 70% 100% at center top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.03) 70%, rgba(0,0,0,0.01) 85%, rgba(0,0,0,0) 100%)',
                         borderRadius: '50%',
-                        animation: 'noiseFlow 10s linear infinite',
+                        // animation: 'noiseFlow 10s linear infinite',
                       }}
                     />
                   </div>
@@ -258,7 +258,7 @@ const ServicesPage: React.FC = () => {
                       'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
                     WebkitMaskImage:
                       'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
-                    animation: 'noiseFlow 12s linear infinite',
+                    // animation: 'noiseFlow 12s linear infinite',
                   }}
                 />
 
@@ -280,7 +280,7 @@ const ServicesPage: React.FC = () => {
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
                     WebkitMaskImage:
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    animation: 'noiseFlow 16s linear infinite reverse',
+                    // animation: 'noiseFlow 16s linear infinite reverse',
                   }}
                 />
 
@@ -301,7 +301,7 @@ const ServicesPage: React.FC = () => {
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
                     WebkitMaskImage:
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    animation: 'noiseFlow 16s linear infinite',
+                    // animation: 'noiseFlow 16s linear infinite',
                   }}
                 />
 
@@ -314,7 +314,7 @@ const ServicesPage: React.FC = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'soft-light',
                     filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
-                    animation: 'noiseFlow 8s linear infinite',
+                    // animation: 'noiseFlow 8s linear infinite',
                   }}
                 />
               </div>

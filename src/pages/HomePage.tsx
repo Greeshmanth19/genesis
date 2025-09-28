@@ -194,7 +194,7 @@ const HomePage = () => {
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: '62px',
+                  fontSize: '42px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
@@ -202,22 +202,25 @@ const HomePage = () => {
                 }}
               >
                 From Idea <br />
-                to Successful <br /> Token in{' '}
-                <span
-                  style={{
-                    fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                    fontSize: '55px',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    lineHeight: '90%',
-                    letterSpacing: '-2.16px',
-                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
-                  30 Days
+                to Successful <br />
+                <span style={{ whiteSpace: 'nowrap' }}>
+                  Token in{' '}
+                  <span
+                    style={{
+                      fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
+                      fontSize: '35px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: '90%',
+                      letterSpacing: '-2.16px',
+                      background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}
+                  >
+                    30 Days
+                  </span>
                 </span>
               </span>
 
@@ -321,15 +324,32 @@ const HomePage = () => {
           </div>
 
           {/* Description */}
+          {/* Description */}
           <div className="mb-2 lg:mb-8">
+            {/* Mobile Description */}
             <p
+              className="block lg:hidden text-black leading-relaxed"
+              style={{
+                fontSize: '15px',
+                fontStyle: 'normal',
+                lineHeight: '110%',
+                color: '#000',
+              }}
+            >
+              We launch token projects with transparency, <br />
+              security, and trusted support, turning bold <br />
+              ideas into thriving businesses.
+            </p>
+
+            {/* Desktop Description */}
+            <p
+              className="hidden lg:block text-black text-base leading-relaxed"
               style={{
                 fontSize: '18px',
                 fontStyle: 'normal',
                 lineHeight: '110%',
                 color: '#000',
               }}
-              className="text-black text-base leading-relaxed"
             >
               We launch token projects with transparency, <br /> security, and trusted support,
               turning bold <br /> ideas into thriving businesses.

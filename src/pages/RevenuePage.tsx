@@ -807,7 +807,7 @@ const RevenuePage: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-7xl mx-auto px-4 sm:px-8">
           {/* Sparkstarter Card */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -823,7 +823,7 @@ const RevenuePage: React.FC = () => {
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'multiply',
                 opacity: 0.4,
-                animation: 'noiseFlow 20s linear infinite',
+                //animation: 'noiseFlow 20s linear infinite',
               }}
             />
 
@@ -836,7 +836,7 @@ const RevenuePage: React.FC = () => {
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'overlay',
                 opacity: 0.25,
-                animation: 'noiseFlow 15s linear infinite reverse',
+                //animation: 'noiseFlow 15s linear infinite reverse',
               }}
             />
 
@@ -871,7 +871,7 @@ const RevenuePage: React.FC = () => {
                 mixBlendMode: 'soft-light',
                 opacity: 0.3,
                 filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
-                animation: 'noiseFlow 8s linear infinite',
+                //animation: 'noiseFlow 8s linear infinite',
               }}
             />
 
@@ -884,7 +884,7 @@ const RevenuePage: React.FC = () => {
 
           {/* Assure DeFi Card */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -900,7 +900,7 @@ const RevenuePage: React.FC = () => {
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'multiply',
                 opacity: 0.4,
-                animation: 'noiseFlow 20s linear infinite',
+                //animation: 'noiseFlow 20s linear infinite',
               }}
             />
 
@@ -961,7 +961,7 @@ const RevenuePage: React.FC = () => {
 
           {/* Coming Soon Card 1 */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -1036,7 +1036,7 @@ const RevenuePage: React.FC = () => {
 
           {/* Coming Soon Card 2 */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
