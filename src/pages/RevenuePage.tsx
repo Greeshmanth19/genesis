@@ -297,7 +297,6 @@ const RevenuePage: React.FC = () => {
                         backgroundSize: '40px 40px',
                         backgroundRepeat: 'repeat',
                         mixBlendMode: 'hard-light',
-                        filter: 'contrast(220%) brightness(120%) hue-rotate(10deg)',
                         animation: 'noiseFlow 8s linear infinite',
                       }}
                     />
