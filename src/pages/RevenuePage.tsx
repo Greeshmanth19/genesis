@@ -1,6 +1,26 @@
 import React from 'react';
 
 const RevenuePage: React.FC = () => {
+  // Create the same seamless chunky pixelated mesh noise effect
+  const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
+    <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
+      <filter id='noiseFilter'>
+        <feTurbulence 
+          type='fractalNoise' 
+          baseFrequency='0.45' 
+          numOctaves='3' 
+          stitchTiles='stitch'
+          seed='5'/>
+        <feColorMatrix type="matrix" values="
+          0.2 0.8 0.2 0 0.1
+          0.3 0.9 0.3 0 0.1
+          0.1 0.6 0.1 0 0.1
+          0   0   0   1 0"/>
+      </filter>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.7'/>
+    </svg>
+  `)}`;
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
       {/* Background grid pattern */}
@@ -203,7 +223,7 @@ const RevenuePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Center - Main Image */}
+            {/* Center - Main Image with Noise Background */}
             <div className="flex justify-center items-center">
               <div className="relative">
                 {/* SVG Background Shade */}
@@ -256,7 +276,35 @@ const RevenuePage: React.FC = () => {
                   </svg>
                 </div>
 
-                {/* Main logo container - Increased size from w-96 h-96 to w-[32rem] h-[32rem] (512px) */}
+                {/* Pixelated Noise Background behind main image - smaller with better fade */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div
+                    className="w-[35rem] h-[30rem]"
+                    style={{
+                      background:
+                        'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                      maskImage:
+                        'radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)',
+                      WebkitMaskImage:
+                        'radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)',
+                    }}
+                  >
+                    {/* Chunky mesh overlay */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `url("${pixelatedNoiseDataUrl}")`,
+                        backgroundSize: '40px 40px',
+                        backgroundRepeat: 'repeat',
+                        mixBlendMode: 'hard-light',
+                        filter: 'contrast(220%) brightness(120%) hue-rotate(10deg)',
+                        animation: 'noiseFlow 8s linear infinite',
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Main logo container */}
                 <div className="relative w-[45rem] h-[39rem] flex items-center justify-center z-10">
                   <img
                     src={require('../assets/Images/revenueMain.png')}
@@ -458,7 +506,35 @@ const RevenuePage: React.FC = () => {
                 </svg>
               </div>
 
-              {/* Main logo container - Mobile responsive - Made bigger */}
+              {/* Mobile Pixelated Noise Background behind main image - smaller with better fade */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div
+                  className="w-[25rem] h-[22rem] sm:w-[28rem] sm:h-[25rem] md:w-[30rem] md:h-[28rem]"
+                  style={{
+                    background:
+                      'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                    maskImage:
+                      'radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage:
+                      'radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 100%)',
+                  }}
+                >
+                  {/* Mobile chunky mesh overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '30px 30px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'hard-light',
+                      filter: 'contrast(200%) brightness(110%) hue-rotate(10deg)',
+                      animation: 'noiseFlow 8s linear infinite',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Main logo container - Mobile responsive */}
               <div className="relative w-[32rem] h-[28rem] sm:w-[36rem] sm:h-[32rem] md:w-[40rem] md:h-[36rem] flex items-center justify-center z-10">
                 <img
                   src={require('../assets/Images/revenueMain.png')}
@@ -654,6 +730,22 @@ const RevenuePage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* CSS Animation for noise flow */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes noiseFlow {
+            0% {
+              background-position: 0px 0px;
+            }
+            100% {
+              background-position: 0px 45px;
+            }
+          }
+        `,
+        }}
+      />
     </div>
   );
 };

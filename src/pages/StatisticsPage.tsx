@@ -1,6 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
 const StatisticsPage = () => {
+  // Create the same seamless chunky, thick greenish pixelated mesh noise effect
+  const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
+    <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
+      <filter id='noiseFilter'>
+        <feTurbulence 
+          type='fractalNoise' 
+          baseFrequency='0.45' 
+          numOctaves='3' 
+          stitchTiles='stitch'
+          seed='5'/>
+        <feColorMatrix type="matrix" values="
+          0.2 0.8 0.2 0 0.1
+          0.3 0.9 0.3 0 0.1
+          0.1 0.6 0.1 0 0.1
+          0   0   0   1 0"/>
+      </filter>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.7'/>
+    </svg>
+  `)}`;
+
   // Mock intersection observer hook
   const [isVisible] = useState(true);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -65,22 +85,54 @@ const StatisticsPage = () => {
         borderRadius: '30px',
       }}
     >
-      {/* statShade.png Image - Positioned at top left */}
+      {/* Global Pixelated Mesh Noise Overlay */}
       <div
-        className="absolute top-0 left-0 hidden md:block"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `url("${pixelatedNoiseDataUrl}")`,
+          backgroundSize: '120px 120px',
+          backgroundRepeat: 'repeat',
+          mixBlendMode: 'multiply',
+          filter: 'contrast(280%) brightness(160%) hue-rotate(20deg)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* statShade replacement - Same chunky mesh effect as buttons with smooth edge fade */}
+      <div
+        className="absolute top-0 left-0 hidden md:block pointer-events-none"
         style={{
           zIndex: 5,
           width: '820px',
-          height: 'auto',
+          height: '500px',
         }}
       >
-        <img
-          src={require('../assets/Images/statShade.png')}
-          alt="Statistics decoration"
+        {/* Base gradient background similar to button */}
+        <div
+          className="absolute inset-0"
           style={{
-            width: '100%',
-            height: 'auto',
-            objectFit: 'contain',
+            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+            maskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
+          }}
+        />
+
+        {/* Same chunky mesh overlay as buttons with smooth fade */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `url("${pixelatedNoiseDataUrl}")`,
+            backgroundSize: '40px 40px',
+            backgroundRepeat: 'repeat',
+            mixBlendMode: 'hard-light',
+            filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+            animation: 'noiseFlow 8s linear infinite',
+            maskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
           }}
         />
       </div>
@@ -158,7 +210,10 @@ const StatisticsPage = () => {
       </div>
 
       {/* Main Content Container - Responsive */}
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between px-4 md:px-8 lg:px-20 min-h-screen pb-2 md:pb-0">
+      <div
+        className="relative flex flex-col md:flex-row md:items-start md:justify-between px-4 md:px-8 lg:px-20 min-h-screen pb-2 md:pb-0"
+        style={{ zIndex: 8 }}
+      >
         {/* Left Side - Statistics - Move to bottom on mobile */}
         <div className="flex-1 max-w-md pt-8 md:pt-48 order-2 md:order-1">
           {/* Stats - Row layout on mobile, column on desktop */}
@@ -245,7 +300,7 @@ const StatisticsPage = () => {
             style={{
               marginTop: '10px',
               marginBottom: '60px',
-              paddingLeft: '0px', // Remove any left padding that might cause overlap
+              paddingLeft: '0px',
             }}
           >
             <h2
@@ -258,10 +313,10 @@ const StatisticsPage = () => {
               <br />& statistics
             </h2>
 
-            {/* Hide button on mobile - will be moved to bottom */}
-            <div className="hidden md:block">
+            {/* Desktop Learn More Button with noise effect */}
+            <div className="hidden md:block relative">
               <button
-                className="text-white font-semibold px-6 md:px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm md:text-base w-full md:w-auto"
+                className="relative text-white font-semibold px-6 md:px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm md:text-base w-full md:w-auto overflow-hidden"
                 style={{
                   borderRadius: '90px',
                   border: '1px solid #DAE339',
@@ -271,8 +326,41 @@ const StatisticsPage = () => {
                     '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
                 }}
               >
-                Learn More
+                {/* Button Noise Overlay */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '40px 40px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'hard-light',
+                    filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+                    borderRadius: '90px',
+                    animation: 'noiseFlow 8s linear infinite',
+                  }}
+                />
+                <span className="relative z-10">Learn More</span>
               </button>
+
+              {/* Trailing noise effect below button */}
+              <div
+                className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+                style={{
+                  width: '120%',
+                  height: '60px',
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+                  maskImage:
+                    'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage:
+                    'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  animation: 'noiseFlow 8s linear infinite',
+                  borderRadius: '0 0 50% 50%',
+                }}
+              />
             </div>
           </div>
 
@@ -378,49 +466,100 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* Learn More Button - Bottom of page for mobile */}
-      <div className="block md:hidden px-4 pb-4 -mt-[40px]">
+      {/* Mobile Learn More Button with noise effect */}
+      <div className="relative block md:hidden px-4 pb-4 -mt-[40px]" style={{ zIndex: 10 }}>
         <div className="flex justify-center">
-          <button
-            className="text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm w-full max-w-xs"
-            style={{
-              borderRadius: '90px',
-              border: '1px solid #DAE339',
-              background:
-                'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-              boxShadow:
-                '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
-            }}
-          >
-            Learn More
-          </button>
+          <div className="relative">
+            <button
+              className="relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm w-full max-w-xs overflow-hidden"
+              style={{
+                borderRadius: '90px',
+                border: '1px solid #DAE339',
+                background:
+                  'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                boxShadow:
+                  '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+              }}
+            >
+              {/* Mobile Button Noise Overlay */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '35px 35px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'hard-light',
+                  filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+                  borderRadius: '90px',
+                  animation: 'noiseFlow 8s linear infinite',
+                }}
+              />
+              <span className="relative z-10">Learn More</span>
+            </button>
+
+            {/* Mobile Trailing noise effect below button */}
+            <div
+              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+              style={{
+                width: '80%',
+                height: '50px',
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '35px 35px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'multiply',
+                filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+                maskImage:
+                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage:
+                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                animation: 'noiseFlow 8s linear infinite',
+                borderRadius: '0 0 40% 40%',
+              }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* statEndShade.png Image - Positioned at bottom right with proper clipping */}
+      {/* statEndShade replacement - Same chunky mesh effect as buttons with smooth edge fade (smaller) */}
       <div
-        className="absolute bottom-0 right-0 hidden md:block"
+        className="absolute bottom-0 right-0 hidden md:block pointer-events-none"
         style={{
           zIndex: 5,
-          width: '300px',
-          height: 'auto',
-          maxWidth: '100%',
-          overflow: 'hidden',
+          width: '250px',
+          height: '200px',
         }}
       >
-        <img
-          src={require('../assets/Images/statEndShade.png')}
-          alt="Statistics bottom decoration"
+        {/* Base gradient background similar to button */}
+        <div
+          className="absolute inset-0"
           style={{
-            width: '100%',
-            height: 'auto',
-            objectFit: 'contain',
-            maxWidth: '100%',
+            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+            maskImage:
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
+          }}
+        />
+
+        {/* Same chunky mesh overlay as buttons with smooth fade */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `url("${pixelatedNoiseDataUrl}")`,
+            backgroundSize: '40px 40px',
+            backgroundRepeat: 'repeat',
+            mixBlendMode: 'hard-light',
+            filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+            animation: 'noiseFlow 8s linear infinite',
+            maskImage:
+              'radial-gradient(ellipse 40% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
           }}
         />
       </div>
 
-      {/* Add keyframe animation */}
+      {/* CSS Animations */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -432,6 +571,15 @@ const StatisticsPage = () => {
             to {
               opacity: 1;
               transform: translateY(0);
+            }
+          }
+          
+          @keyframes noiseFlow {
+            0% {
+              background-position: 0px 0px;
+            }
+            100% {
+              background-position: 0px 40px;
             }
           }
         `,
