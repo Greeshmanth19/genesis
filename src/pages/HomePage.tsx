@@ -24,7 +24,10 @@ const HomePage = () => {
   return (
     <div
       className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-8 lg:px-16 overflow-hidden"
-      style={{ borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px' }}
+      style={{
+        borderBottomLeftRadius: '30px',
+        borderBottomRightRadius: '30px',
+      }}
     >
       {/* Seamless Greenish Chunky Pixelated Mesh Noise Overlay - Spread more to the left */}
       <div

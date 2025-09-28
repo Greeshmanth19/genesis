@@ -7,6 +7,26 @@ const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Create seamless chunky, thick greenish pixelated mesh noise effect (same as HomePage)
+  const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
+    <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
+      <filter id='noiseFilter'>
+        <feTurbulence 
+          type='fractalNoise' 
+          baseFrequency='0.45' 
+          numOctaves='3' 
+          stitchTiles='stitch'
+          seed='5'/>
+        <feColorMatrix type="matrix" values="
+          0.2 0.8 0.2 0 0.1
+          0.3 0.9 0.3 0 0.1
+          0.1 0.6 0.1 0 0.1
+          0   0   0   1 0"/>
+      </filter>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.7'/>
+    </svg>
+  `)}`;
+
   const navItems = [
     { id: 'about', label: 'About Us' },
     { id: 'services', label: 'Services' },
@@ -50,6 +70,22 @@ const Navigation: React.FC = () => {
 
   return (
     <>
+      {/* CSS Animation for downward flowing noise effect */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes noiseFlow {
+            0% {
+              background-position: 0px 0px;
+            }
+            100% {
+              background-position: 0px 40px;
+            }
+          }
+        `,
+        }}
+      />
+
       <nav className="absolute z-50 w-full">
         {/* Desktop Navigation */}
         <div className="hidden lg:block">
@@ -132,9 +168,11 @@ const Navigation: React.FC = () => {
               height: '60px',
               overflow: 'hidden',
               zIndex: 60,
+              borderTopRightRadius: '15px',
+              borderBottomRightRadius: '15px',
             }}
           >
-            {/* Outer SVG for black background shape */}
+            {/* Outer SVG for black background shape with rounded corners */}
             <svg
               width="250"
               height="60"
@@ -145,13 +183,19 @@ const Navigation: React.FC = () => {
                 right: 0,
               }}
             >
+              <defs>
+                <clipPath id="roundedCorners">
+                  <rect x="0" y="0" width="250" height="60" rx="0" ry="0" />
+                  <rect x="235" y="0" width="15" height="60" rx="15" ry="15" />
+                </clipPath>
+              </defs>
               <path
-                d="M 250 0 L 0 0 L 45 54 L 43 45 C 40 54 50 60 60 60 L 250 60 Z"
+                d="M 250 0 L 0 0 L 45 54 L 43 45 C 40 54 50 60 60 60 L 235 60 Q 250 60 250 45 L 250 15 Q 250 0 235 0 L 250 0 Z"
                 fill="#000000"
               />
             </svg>
 
-            {/* Inner SVG for gradient shape with padding */}
+            {/* Inner SVG for gradient shape with padding and rounded corners */}
             <svg
               width="220"
               height="60"
@@ -190,24 +234,44 @@ const Navigation: React.FC = () => {
                     floodColor="rgba(113, 173, 77, 0.40)"
                   />
                 </filter>
+                <clipPath id="desktopNavButtonClip">
+                  <path d="M 240 0 L 5 0 L 45 44 L 43 38 C 40 44 50 50 60 50 L 225 50 Q 240 50 240 35 L 240 15 Q 240 0 225 0 L 240 0 Z" />
+                </clipPath>
               </defs>
               <path
-                d="M 240 0 L 5 0 L 45 44 L 43 38 C 40 44 50 50 60 50 L 240 50 Z"
+                d="M 240 0 L 5 0 L 45 44 L 43 38 C 40 44 50 50 60 50 L 225 50 Q 240 50 240 35 L 240 15 Q 240 0 225 0 L 240 0 Z"
                 fill="url(#contactGradient)"
-                stroke="#DAE339"
-                strokeWidth="1"
                 filter="url(#contactShadow)"
                 style={{
                   boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
                 }}
               />
+
+              {/* Desktop Nav Button Noise Overlay with downward flow effect */}
+              <g clipPath="url(#desktopNavButtonClip)">
+                <foreignObject x="0" y="0" width="240" height="50">
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '30px 30px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'hard-light',
+                      filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+                      transform: 'translateY(1px)',
+                      animation: 'noiseFlow 8s linear infinite',
+                    }}
+                  />
+                </foreignObject>
+              </g>
             </svg>
 
             {/* Contact Us text - Positioned in the center */}
             <div className="absolute inset-0 flex items-center justify-center">
               <button
                 onClick={() => handleNavClick('contact')}
-                className="text-white font-medium transition-all duration-300"
+                className="text-white font-medium transition-all duration-300 transform hover:scale-105"
                 style={{
                   fontSize: '13px',
                   textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
@@ -216,6 +280,26 @@ const Navigation: React.FC = () => {
                 <span className="relative z-10">Contact Us</span>
               </button>
             </div>
+
+            {/* Desktop Nav Trailing noise effect below button */}
+            <div
+              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+              style={{
+                width: '100%',
+                height: '40px',
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '30px 30px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'multiply',
+                filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+                maskImage:
+                  'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage:
+                  'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                animation: 'noiseFlow 8s linear infinite',
+                borderRadius: '0 0 40% 40%',
+              }}
+            />
           </div>
         </div>
 
@@ -378,20 +462,56 @@ const Navigation: React.FC = () => {
                 </a>
               </div>
 
-              {/* Contact Button */}
-              <button
-                onClick={() => handleNavClick('contact')}
-                className="w-full py-4 px-6 rounded-full font-medium text-white transition-all duration-300"
-                style={{
-                  background:
-                    'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-                  boxShadow: '0 4px 15px rgba(113, 173, 77, 0.4)',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                }}
-              >
-                Contact Us
-              </button>
+              {/* Mobile Contact Button with Noise Effect */}
+              <div className="relative">
+                <button
+                  onClick={() => handleNavClick('contact')}
+                  className="w-full py-4 px-6 rounded-full font-medium text-white transition-all duration-300 transform hover:scale-105 relative overflow-hidden"
+                  style={{
+                    background:
+                      'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                    boxShadow: '0 4px 15px rgba(113, 173, 77, 0.4)',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                  }}
+                >
+                  {/* Mobile Contact Button Noise Overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '25px 25px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'hard-light',
+                      filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+                      borderRadius: '9999px',
+                      transform: 'translateY(1px)',
+                      animation: 'noiseFlow 8s linear infinite',
+                    }}
+                  />
+                  <span className="relative z-10">Contact Us</span>
+                </button>
+
+                {/* Mobile Contact Trailing noise effect below button */}
+                <div
+                  className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+                  style={{
+                    width: '60%',
+                    height: '30px',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '25px 25px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'multiply',
+                    filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+                    maskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage:
+                      'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                    animation: 'noiseFlow 8s linear infinite',
+                    borderRadius: '0 0 30% 30%',
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
