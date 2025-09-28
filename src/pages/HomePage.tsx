@@ -26,7 +26,7 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Main Heading - Reduced font size for mobile */}
+          {/* Main Heading - Fixed font sizes */}
           <div className="mb-2 lg:mb-6">
             <h1>
               <span
@@ -34,7 +34,7 @@ const HomePage = () => {
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: window.innerWidth < 1024 ? '42px' : '62px', // Reduced from 62px to 42px on mobile
+                  fontSize: '62px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
@@ -46,7 +46,7 @@ const HomePage = () => {
               <span
                 style={{
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: window.innerWidth < 1024 ? '38px' : '55px', // Reduced from 55px to 38px on mobile
+                  fontSize: '55px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: '90%',
@@ -98,19 +98,20 @@ const HomePage = () => {
       </div>
 
       {/* Right Side - Image Section */}
-      <div className="flex-1 flex items-center justify-center relative order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0">
-        <div className="relative">
+      <div className="flex-1 flex items-center justify-center lg:justify-end relative order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0 lg:pl-16">
+        <div className="relative lg:transform lg:translate-x-20">
           <div className="relative">
             <div className="relative">
-              {/* Background Image - Enhanced fade for mobile */}
+              {/* Background Image - Responsive positioning and size */}
               <div
-                className="absolute -inset-20 lg:-inset-20 -inset-10 flex items-center justify-center"
-                style={{ zIndex: 1 }}
+                className="absolute flex items-center justify-center lg:-top-20 lg:-left-20 lg:-right-20 lg:-bottom-20 -top-10 -left-10 -right-10 -bottom-10"
+                style={{
+                  zIndex: 1,
+                }}
               >
                 <img
                   src={require('../assets/Images/bgMainShade.png')}
                   alt="Background Shade"
-                  className="w-auto h-auto scale-125 lg:scale-125 scale-100 object-contain"
                   style={{
                     maskImage:
                       'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
@@ -120,14 +121,12 @@ const HomePage = () => {
                 />
               </div>
 
-              {/* Genesis Main Image - responsive sizing */}
+              {/* Genesis Main Image - Responsive size */}
               <img
                 src={require('../assets/Images/genesisMain.png')}
                 alt="Genesis Logo"
-                className="relative object-contain w-full h-auto lg:w-[810px] lg:h-[810px]"
+                className="relative object-contain w-80 h-80 lg:w-[810px] lg:h-[810px] max-w-none max-h-none"
                 style={{
-                  maxWidth: '100%',
-                  maxHeight: '100vh', // Reduced from 100vh on mobile
                   zIndex: 2,
                 }}
               />
