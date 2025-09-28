@@ -23,7 +23,7 @@ const HomePage = () => {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-8 lg:px-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-4 lg:px-16 overflow-hidden"
       style={{ borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px' }}
     >
       {/* Full Background Mist Layer 1 - Base layer covering entire background */}
@@ -163,12 +163,12 @@ const HomePage = () => {
         }}
       />
 
-      {/* Left Side - Content */}
+      {/* Left Side - Content - FIXED: Complete left alignment on mobile */}
       <div
-        className="relative flex-1 max-w-lg flex flex-col justify-center lg:mt-[120px] mt-20 order-1 lg:order-1"
+        className="relative flex-1 max-w-lg flex flex-col justify-center lg:mt-[120px] mt-20 order-1 lg:order-1 w-full lg:w-auto pl-0 lg:pl-0"
         style={{ zIndex: 20 }}
       >
-        <div>
+        <div className="text-left">
           <div className="mb-2 lg:mb-6">
             <p
               className="mb-1 lg:mb-2"
@@ -469,9 +469,9 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Mobile CTA Button - Full width on mobile */}
+      {/* Mobile CTA Button - Full width on mobile - FIXED: Adjusted padding */}
       <div
-        className="relative lg:hidden block order-3 w-full -mt-8 mb-4 px-2"
+        className="relative lg:hidden block order-3 w-full -mt-8 mb-4 px-4"
         style={{ zIndex: 10 }}
       >
         <div className="relative">
