@@ -106,13 +106,17 @@ const StatisticsPage = () => {
           zIndex: 5,
           width: '820px',
           height: '500px',
+          transform: 'rotate(15deg)',
+          top: '-100px',
         }}
       >
-        {/* Base gradient background similar to button */}
+        {/* Base gradient background matching HomePage genesisMain */}
+        {/* Base gradient background matching HomePage genesisMain */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+            background:
+              'linear-gradient(96.56deg, color(display-p3 0.863 0.890 0.357) -10.21%, color(display-p3 0.271 0.714 0.286) 105.8%)',
             maskImage:
               'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
@@ -129,7 +133,7 @@ const StatisticsPage = () => {
             backgroundRepeat: 'repeat',
             mixBlendMode: 'hard-light',
             filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
-            animation: 'noiseFlow 8s linear infinite',
+            // animation: 'noiseFlow 8s linear infinite',
             maskImage:
               'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
@@ -339,7 +343,7 @@ const StatisticsPage = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
                     borderRadius: '90px',
-                    animation: 'noiseFlow 8s linear infinite',
+                    // animation: 'noiseFlow 8s linear infinite',
                   }}
                 />
                 <span className="relative z-10">Learn More</span>
@@ -360,7 +364,7 @@ const StatisticsPage = () => {
                     'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage:
                     'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
-                  animation: 'noiseFlow 8s linear infinite',
+                  // animation: 'noiseFlow 8s linear infinite',
                   borderRadius: '0 0 50% 50%',
                 }}
               />
@@ -498,8 +502,9 @@ const StatisticsPage = () => {
                   backgroundSize: '35px 35px',
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'hard-light',
+                  filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                   borderRadius: '90px',
-                  animation: 'noiseFlow 8s linear infinite',
+                  // animation: 'noiseFlow 8s linear infinite',
                 }}
               />
               <span className="relative z-10">Learn More</span>
@@ -529,14 +534,7 @@ const StatisticsPage = () => {
       </div>
 
       {/* statEndShade replacement - Same chunky mesh effect as buttons with smooth edge fade (smaller) */}
-      <div
-        className="absolute bottom-0 right-0 hidden md:block pointer-events-none"
-        style={{
-          zIndex: 5,
-          width: '250px',
-          height: '200px',
-        }}
-      >
+      <div className="absolute bottom-0 right-0 hidden md:block pointer-events-none" style={{}}>
         {/* Base gradient background similar to button */}
         <div
           className="absolute inset-0"
@@ -558,7 +556,7 @@ const StatisticsPage = () => {
             backgroundRepeat: 'repeat',
             mixBlendMode: 'hard-light',
             filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
-            animation: 'noiseFlow 8s linear infinite',
+            // animation: 'noiseFlow 8s linear infinite',
             maskImage:
               'radial-gradient(ellipse 40% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:

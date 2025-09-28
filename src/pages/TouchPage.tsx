@@ -28,7 +28,7 @@ const TouchPage: React.FC = () => {
 
   return (
     <div
-      className="relative py-12"
+      className="relative py-12 mt-4"
       style={{
         background: 'linear-gradient(135deg, #F9FEF1 0%, #E8F5E8 50%, #D8F3D8 100%)',
         borderRadius: '30px',
@@ -490,7 +490,7 @@ const TouchPage: React.FC = () => {
       </div>
 
       {/* Bottom Left Shade SVG with darker mist - Hide on mobile to save space */}
-      <div
+      {/* <div
         className="absolute left-0 hidden md:block"
         style={{
           bottom: '0px',
@@ -549,7 +549,7 @@ const TouchPage: React.FC = () => {
             </linearGradient>
           </defs>
         </svg>
-      </div>
+      </div> */}
 
       {/* Black Corner Section at Bottom Right with Contact Us Button - Now visible on all devices */}
       <div className="absolute -bottom-2 -right-1" style={{ zIndex: 10 }}>
@@ -643,7 +643,7 @@ const TouchPage: React.FC = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
                     transform: 'translateY(2px)',
-                    animation: 'noiseFlow 8s linear infinite',
+                    // animation: 'noiseFlow 8s linear infinite',
                   }}
                 />
               </foreignObject>
@@ -684,12 +684,11 @@ const TouchPage: React.FC = () => {
               backgroundSize: '40px 40px',
               backgroundRepeat: 'repeat',
               mixBlendMode: 'multiply',
-              filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
               maskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
-              animation: 'noiseFlow 8s linear infinite',
+              // animation: 'noiseFlow 8s linear infinite',
               borderRadius: '0 0 50% 50%',
             }}
           />
@@ -787,9 +786,8 @@ const TouchPage: React.FC = () => {
                     backgroundSize: '35px 35px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
-                    filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                     transform: 'translateY(1px)',
-                    animation: 'noiseFlow 8s linear infinite',
+                    // animation: 'noiseFlow 8s linear infinite',
                   }}
                 />
               </foreignObject>
@@ -830,12 +828,11 @@ const TouchPage: React.FC = () => {
               backgroundSize: '35px 35px',
               backgroundRepeat: 'repeat',
               mixBlendMode: 'multiply',
-              filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
               maskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
-              animation: 'noiseFlow 8s linear infinite',
+              // animation: 'noiseFlow 8s linear infinite',
               borderRadius: '0 0 40% 40%',
             }}
           />

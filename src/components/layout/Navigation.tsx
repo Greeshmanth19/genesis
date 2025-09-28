@@ -219,7 +219,7 @@ const Navigation: React.FC = () => {
                 </clipPath>
               </defs>
               <path
-                d="M 250 0 L 0 0 L 45 54 L 43 45 C 40 54 50 60 60 60 L 235 60 Q 250 60 250 45 L 250 15 Q 250 0 235 0 L 250 0 Z"
+                d="M 250 0 L 0 0 L 44.5 54 L 43 45 C 40 54 50 60 60 60 L 235 60 Q 250 60 250 45 L 250 15 Q 250 0 235 0 L 250 0 Z"
                 fill="#000000"
               />
             </svg>
@@ -264,13 +264,13 @@ const Navigation: React.FC = () => {
                   />
                 </filter>
                 <clipPath id="desktopNavButtonClip">
-                  <path d="M 240 0 L 5 0 L 45 44 L 43 38 C 40 44 50 50 60 50 L 225 50 Q 240 50 240 35 L 240 15 Q 240 0 225 0 L 240 0 Z" />
+                  <path d="M 240 0 L 5 0 L 44 44 L 43 38 C 40 44 50 50 60 50 L 225 50 Q 240 50 240 35 L 240 15 Q 240 0 225 0 L 240 0 Z" />
                 </clipPath>
               </defs>
               <path
-                d="M 240 0 L 5 0 L 45 44 L 43 38 C 40 44 50 50 60 50 L 225 50 Q 240 50 240 35 L 240 15 Q 240 0 225 0 L 240 0 Z"
+                d="M 240 0 L 5 0 L 45 45 L 44 38 C 40 44 50 50 60 50 L 225 50 Q 240 50 240 35 L 240 15 Q 240 0 225 0 L 240 0 Z"
                 fill="url(#contactGradient)"
-                filter="url(#contactShadow)"
+                // filter="url(#contactShadow)"
                 style={{
                   boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
                 }}
@@ -287,8 +287,8 @@ const Navigation: React.FC = () => {
                       backgroundSize: '30px 30px',
                       backgroundRepeat: 'repeat',
                       mixBlendMode: 'hard-light',
-                      transform: 'translateY(1px)',
-                      animation: 'noiseFlow 8s linear infinite',
+                      // transform: 'translateY(1px)',
+                      // animation: 'noiseFlow 8s linear infinite',
                     }}
                   />
                 </foreignObject>
@@ -319,7 +319,6 @@ const Navigation: React.FC = () => {
                 backgroundSize: '30px 30px',
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'multiply',
-                filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
                 maskImage:
                   'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage:
@@ -511,7 +510,6 @@ const Navigation: React.FC = () => {
                       backgroundSize: '25px 25px',
                       backgroundRepeat: 'repeat',
                       mixBlendMode: 'hard-light',
-                      filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                       borderRadius: '9999px',
                       transform: 'translateY(1px)',
                       animation: 'noiseFlow 8s linear infinite',
@@ -530,7 +528,6 @@ const Navigation: React.FC = () => {
                     backgroundSize: '25px 25px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'multiply',
-                    filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
                     maskImage:
                       'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:

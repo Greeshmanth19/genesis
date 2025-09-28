@@ -103,13 +103,21 @@ const ServicesPage: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const gradientTextStyle: React.CSSProperties = {
+    background: 'linear-gradient(100.72deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    display: 'inline-block',
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <div className="relative pt-20 pb-16 px-6 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between">
           <div>
-            <div className="mb-4 text-green-400 text-sm font-medium">
+            <div className="mb-4 text-sm font-medium" style={gradientTextStyle}>
               Your Launchpad to Success in Blockchain & DeFi
             </div>
             <h1 style={isMobile ? mobileTitleStyle : titleStyle}>Our Services</h1>
@@ -145,7 +153,6 @@ const ServicesPage: React.FC = () => {
                     backgroundSize: '40px 40px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'multiply',
-                    filter: 'contrast(120%) brightness(130%)',
                     opacity: 0.4,
                     animation: 'noiseFlow 20s linear infinite',
                   }}
@@ -159,7 +166,6 @@ const ServicesPage: React.FC = () => {
                     backgroundSize: '25px 25px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'overlay',
-                    filter: 'contrast(150%) brightness(110%) blur(0.3px)',
                     opacity: 0.25,
                     animation: 'noiseFlow 15s linear infinite reverse',
                   }}
@@ -189,7 +195,6 @@ const ServicesPage: React.FC = () => {
                           backgroundSize: '18px 18px',
                           backgroundRepeat: 'repeat',
                           mixBlendMode: 'screen',
-                          filter: 'contrast(180%) brightness(120%) hue-rotate(80deg) blur(2px)',
                           borderRadius: '50%',
                           opacity: 0.3,
                           maskImage:
@@ -214,7 +219,6 @@ const ServicesPage: React.FC = () => {
                         backgroundSize: '14px 14px',
                         backgroundRepeat: 'repeat',
                         mixBlendMode: 'screen',
-                        filter: 'contrast(180%) brightness(120%) hue-rotate(80deg) blur(2.5px)',
                         opacity: 0.25,
                         maskImage:
                           'radial-gradient(ellipse 70% 100% at center top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.03) 70%, rgba(0,0,0,0.01) 85%, rgba(0,0,0,0) 100%)',
@@ -249,7 +253,6 @@ const ServicesPage: React.FC = () => {
                     backgroundSize: '30px 30px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'screen',
-                    filter: 'contrast(140%) brightness(90%)',
                     opacity: 0.18,
                     maskImage:
                       'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
@@ -271,7 +274,6 @@ const ServicesPage: React.FC = () => {
                     backgroundSize: '20px 20px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'overlay',
-                    filter: 'contrast(130%) brightness(100%) blur(0.5px)',
                     opacity: 0.2,
                     borderRadius: '30%',
                     maskImage:
@@ -293,7 +295,6 @@ const ServicesPage: React.FC = () => {
                     backgroundSize: '20px 20px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'overlay',
-                    filter: 'contrast(130%) brightness(100%) blur(0.5px)',
                     opacity: 0.2,
                     borderRadius: '30%',
                     maskImage:

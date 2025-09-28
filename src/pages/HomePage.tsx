@@ -26,18 +26,140 @@ const HomePage = () => {
       className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-8 lg:px-16 overflow-hidden"
       style={{ borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px' }}
     >
-      {/* Seamless Greenish Chunky Pixelated Mesh Noise Overlay - Spread more to the left */}
+      {/* Full Background Mist Layer 1 - Base layer covering entire background */}
       <div
-        className="absolute pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          left: '-40%',
-          right: '10%',
-          top: '0%',
-          bottom: '0%',
           background: `url("${pixelatedNoiseDataUrl}")`,
+          backgroundSize: '150px 150px',
           mixBlendMode: 'multiply',
-          filter: 'contrast(260%) brightness(230%)',
+          filter: 'contrast(180%) brightness(150%)',
+          opacity: 0.3,
+          maskImage: `linear-gradient(90deg,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0.05) 20%,
+            rgba(0,0,0,0.15) 35%,
+            rgba(0,0,0,0.3) 50%,
+            rgba(0,0,0,0.5) 65%,
+            rgba(0,0,0,0.7) 80%,
+            rgba(0,0,0,1) 100%)`,
+          WebkitMaskImage: `linear-gradient(90deg,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0.05) 20%,
+            rgba(0,0,0,0.15) 35%,
+            rgba(0,0,0,0.3) 50%,
+            rgba(0,0,0,0.5) 65%,
+            rgba(0,0,0,0.7) 80%,
+            rgba(0,0,0,1) 100%)`,
           zIndex: 1,
+        }}
+      />
+
+      {/* Full Background Mist Layer 2 - Gradient overlay for smooth transition */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(90deg, 
+            rgba(249, 254, 241, 1) 0%, 
+            rgba(249, 254, 241, 0.98) 10%, 
+            rgba(249, 254, 241, 0.85) 25%, 
+            rgba(232, 245, 232, 0.6) 40%, 
+            rgba(232, 245, 232, 0.3) 55%, 
+            rgba(216, 243, 216, 0.15) 70%, 
+            rgba(216, 243, 216, 0.05) 85%, 
+            transparent 100%)`,
+          zIndex: 2,
+        }}
+      />
+
+      {/* Full Background Mist Layer 3 - Enhanced noise with natural fade */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `url("${pixelatedNoiseDataUrl}")`,
+          backgroundSize: '100px 100px',
+          mixBlendMode: 'hard-light',
+          filter: 'contrast(260%) brightness(180%) hue-rotate(10deg)',
+          maskImage: `linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(0,0,0,0.02) 10%, 
+            rgba(0,0,0,0.05) 20%, 
+            rgba(0,0,0,0.15) 30%, 
+            rgba(0,0,0,0.3) 40%, 
+            rgba(0,0,0,0.5) 50%, 
+            rgba(0,0,0,0.7) 65%, 
+            rgba(0,0,0,0.85) 75%, 
+            rgba(0,0,0,0.95) 85%, 
+            rgba(0,0,0,1) 95%)`,
+          WebkitMaskImage: `linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(0,0,0,0.02) 10%, 
+            rgba(0,0,0,0.05) 20%, 
+            rgba(0,0,0,0.15) 30%, 
+            rgba(0,0,0,0.3) 40%, 
+            rgba(0,0,0,0.5) 50%, 
+            rgba(0,0,0,0.7) 65%, 
+            rgba(0,0,0,0.85) 75%, 
+            rgba(0,0,0,0.95) 85%, 
+            rgba(0,0,0,1) 95%)`,
+          zIndex: 3,
+        }}
+      />
+
+      {/* Full Background Mist Layer 4 - Flowing animated layer */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `url("${pixelatedNoiseDataUrl}")`,
+          backgroundSize: '200px 200px',
+          mixBlendMode: 'soft-light',
+          filter: 'contrast(200%) brightness(140%)',
+          opacity: 0.4,
+          maskImage: `radial-gradient(ellipse 200% 120% at 100% 50%, 
+            rgba(0,0,0,1) 0%, 
+            rgba(0,0,0,0.9) 20%, 
+            rgba(0,0,0,0.7) 40%, 
+            rgba(0,0,0,0.4) 60%, 
+            rgba(0,0,0,0.15) 75%, 
+            rgba(0,0,0,0.05) 85%, 
+            transparent 95%)`,
+          WebkitMaskImage: `radial-gradient(ellipse 200% 120% at 100% 50%, 
+            rgba(0,0,0,1) 0%, 
+            rgba(0,0,0,0.9) 20%, 
+            rgba(0,0,0,0.7) 40%, 
+            rgba(0,0,0,0.4) 60%, 
+            rgba(0,0,0,0.15) 75%, 
+            rgba(0,0,0,0.05) 85%, 
+            transparent 95%)`,
+          animation: 'mistFlow 15s ease-in-out infinite',
+          zIndex: 4,
+        }}
+      />
+
+      {/* Additional soft mist layer to blend any remaining lines */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(90deg, 
+            rgba(249, 254, 241, 0.5) 0%, 
+            rgba(249, 254, 241, 0.3) 35%, 
+            transparent 60%)`,
+          mixBlendMode: 'screen',
+          zIndex: 5,
+        }}
+      />
+
+      {/* Top-left corner specific fade layer to eliminate any sharp lines */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse 60% 50% at 0% 0%, 
+            rgba(249, 254, 241, 0.8) 0%, 
+            rgba(249, 254, 241, 0.5) 20%, 
+            rgba(232, 245, 232, 0.3) 40%, 
+            transparent 70%)`,
+          mixBlendMode: 'normal',
+          zIndex: 6,
         }}
       />
 
@@ -255,9 +377,9 @@ const HomePage = () => {
                 mixBlendMode: 'multiply',
                 filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
                 maskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
                 animation: 'noiseFlow 8s linear infinite',
                 borderRadius: '0 0 50% 50%',
               }}
@@ -274,16 +396,15 @@ const HomePage = () => {
         <div className="relative">
           <div className="relative">
             <div className="relative">
-              {/* Background Image Container with Gradient Background and Noise Effect - Extended far to the left */}
+              {/* Background Image Container with Noise Effect - No gradient background */}
               <div
                 className="absolute flex items-center justify-center -top-10 -right-20 -bottom-10 -left-10 lg:-top-20 lg:-right-20 lg:-bottom-20 lg:-left-96"
                 style={{
                   zIndex: 2,
-                  background: 'linear-gradient(195deg, #F9FEF1 0%, #E8F5E8 50%, #D8F3D8 100%)',
                   maskImage:
-                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage:
-                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
                 }}
               >
                 {/* Original bgMainShade.png */}
@@ -292,13 +413,13 @@ const HomePage = () => {
                   alt="Background Shade"
                   style={{
                     maskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
                   }}
                 />
 
-                {/* Enhanced seamless greenish chunky pixelated mesh overlay for bgMainShade area - Extended to the left */}
+                {/* Enhanced seamless greenish chunky pixelated mesh overlay for bgMainShade area */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -308,9 +429,9 @@ const HomePage = () => {
                     mixBlendMode: 'hard-light',
                     filter: 'contrast(320%) brightness(130%) hue-rotate(15deg)',
                     maskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                      'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
                     zIndex: 3,
                   }}
                 />
@@ -373,9 +494,9 @@ const HomePage = () => {
               mixBlendMode: 'multiply',
               filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
               maskImage:
-                'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage:
-                'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
               animation: 'noiseFlow 8s linear infinite',
               borderRadius: '0 0 40% 40%',
             }}
@@ -383,7 +504,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* CSS Animation for downward flowing noise effect */}
+      {/* CSS Animations */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -393,6 +514,25 @@ const HomePage = () => {
             }
             100% {
               background-position: 0px 40px;
+            }
+          }
+          
+          @keyframes mistFlow {
+            0%, 100% {
+              transform: translateX(0) translateY(0);
+              opacity: 0.4;
+            }
+            25% {
+              transform: translateX(-10px) translateY(5px);
+              opacity: 0.5;
+            }
+            50% {
+              transform: translateX(5px) translateY(-10px);
+              opacity: 0.3;
+            }
+            75% {
+              transform: translateX(-5px) translateY(10px);
+              opacity: 0.45;
             }
           }
         `,

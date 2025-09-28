@@ -1,56 +1,47 @@
 import React from 'react';
 
 const RevenuePage: React.FC = () => {
-  // Create the same seamless chunky pixelated mesh noise effect
+  // Create the same rough, grainy surface mist effect as ServicesPage
   const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
     <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
       <filter id='noiseFilter'>
         <feTurbulence 
-          type='fractalNoise' 
-          baseFrequency='0.45' 
-          numOctaves='3' 
+          type='turbulence' 
+          baseFrequency='0.9' 
+          numOctaves='4' 
           stitchTiles='stitch'
-          seed='5'/>
+          seed='2'/>
         <feColorMatrix type="matrix" values="
-          0.2 0.8 0.2 0 0.1
-          0.3 0.9 0.3 0 0.1
-          0.1 0.6 0.1 0 0.1
+          0.2 0.8 0.2 0 0.15
+          0.3 0.9 0.3 0 0.15
+          0.1 0.6 0.1 0 0.15
           0   0   0   1 0"/>
       </filter>
-      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.7'/>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.9'/>
     </svg>
   `)}`;
 
+  const gradientTextStyle: React.CSSProperties = {
+    background: 'linear-gradient(100.72deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    display: 'inline-block',
+    fontSize: window.innerWidth < 640 ? '14px' : window.innerWidth < 1024 ? '16px' : '18px',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: '90%',
+    letterSpacing: '-0.54px',
+  };
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-black text-white overflow-hidden">
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-          `,
-            backgroundSize: '50px 50px',
-          }}
-        ></div>
-      </div>
-
       {/* Header */}
-      <div className="top-8 mt-8 lg:mt-16">
+      <div>
         <div className="text-center mb-8 lg:mb-16 px-4">
           <p
             className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base lg:text-lg"
-            style={{
-              color: '#45B649',
-              fontSize:
-                window.innerWidth < 640 ? '14px' : window.innerWidth < 1024 ? '16px' : '18px',
-              fontStyle: 'normal',
-              fontWeight: '500',
-              lineHeight: '90%',
-              letterSpacing: '-0.54px',
-            }}
+            style={gradientTextStyle}
           >
             Rewarding $GXN Holders,
             <br />
@@ -223,7 +214,7 @@ const RevenuePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Center - Main Image with Noise Background */}
+            {/* Center - Main Image with Rough Noise Background */}
             <div className="flex justify-center items-center">
               <div className="relative">
                 {/* SVG Background Shade */}
@@ -276,28 +267,119 @@ const RevenuePage: React.FC = () => {
                   </svg>
                 </div>
 
-                {/* Pixelated Noise Background behind main image - smaller with better fade */}
+                {/* Rough grainy surface mist effect behind main image - multiple layers like ServicesPage */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div
                     className="w-[35rem] h-[30rem]"
                     style={{
-                      background:
-                        'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                      background: 'linear-gradient(96.56deg, #DAE339 -10.21%, #00B935 105.8%)',
                       maskImage:
                         'radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)',
                       WebkitMaskImage:
                         'radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 25%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)',
                     }}
                   >
-                    {/* Chunky mesh overlay */}
+                    {/* Primary rough grainy surface mist layer */}
                     <div
                       className="absolute inset-0"
                       style={{
                         background: `url("${pixelatedNoiseDataUrl}")`,
                         backgroundSize: '40px 40px',
                         backgroundRepeat: 'repeat',
-                        mixBlendMode: 'hard-light',
+                        mixBlendMode: 'multiply',
+                        opacity: 0.4,
+                        animation: 'noiseFlow 20s linear infinite',
+                      }}
+                    />
+
+                    {/* Additional rough texture overlay */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `url("${pixelatedNoiseDataUrl}")`,
+                        backgroundSize: '25px 25px',
+                        backgroundRepeat: 'repeat',
+                        mixBlendMode: 'overlay',
+                        opacity: 0.25,
+                        animation: 'noiseFlow 15s linear infinite reverse',
+                      }}
+                    />
+
+                    {/* Enhanced mist effect - always visible */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: `url("${pixelatedNoiseDataUrl}")`,
+                        backgroundSize: '120px 120px',
+                        backgroundRepeat: 'repeat',
+                        mixBlendMode: 'soft-light',
+                        opacity: 0.3,
+                        filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
                         animation: 'noiseFlow 8s linear infinite',
+                      }}
+                    />
+
+                    {/* Bottom rough surface mist - heavy grain texture */}
+                    <div
+                      className="absolute"
+                      style={{
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: '70%',
+                        background: `url("${pixelatedNoiseDataUrl}")`,
+                        backgroundSize: '30px 30px',
+                        backgroundRepeat: 'repeat',
+                        mixBlendMode: 'screen',
+                        opacity: 0.18,
+                        maskImage:
+                          'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                        WebkitMaskImage:
+                          'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                        animation: 'noiseFlow 12s linear infinite',
+                      }}
+                    />
+
+                    {/* Rough grainy corner accumulations */}
+                    <div
+                      className="absolute"
+                      style={{
+                        bottom: '-5px',
+                        left: '-5px',
+                        width: '100px',
+                        height: '100px',
+                        background: `url("${pixelatedNoiseDataUrl}")`,
+                        backgroundSize: '20px 20px',
+                        backgroundRepeat: 'repeat',
+                        mixBlendMode: 'overlay',
+                        opacity: 0.2,
+                        borderRadius: '30%',
+                        maskImage:
+                          'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                        WebkitMaskImage:
+                          'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                        animation: 'noiseFlow 16s linear infinite reverse',
+                      }}
+                    />
+
+                    <div
+                      className="absolute"
+                      style={{
+                        bottom: '-5px',
+                        right: '-5px',
+                        width: '100px',
+                        height: '100px',
+                        background: `url("${pixelatedNoiseDataUrl}")`,
+                        backgroundSize: '20px 20px',
+                        backgroundRepeat: 'repeat',
+                        mixBlendMode: 'overlay',
+                        opacity: 0.2,
+                        borderRadius: '30%',
+                        maskImage:
+                          'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                        WebkitMaskImage:
+                          'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                        animation: 'noiseFlow 16s linear infinite',
                       }}
                     />
                   </div>
@@ -505,29 +587,76 @@ const RevenuePage: React.FC = () => {
                 </svg>
               </div>
 
-              {/* Mobile Pixelated Noise Background behind main image - smaller with better fade */}
+              {/* Mobile Rough grainy surface mist effect - multiple layers like ServicesPage */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div
                   className="w-[25rem] h-[22rem] sm:w-[28rem] sm:h-[25rem] md:w-[30rem] md:h-[28rem]"
                   style={{
-                    background:
-                      'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                    background: 'linear-gradient(96.56deg, #DAE339 -10.21%, #00B935 105.8%)',
                     maskImage:
                       'radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
                       'radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 100%)',
                   }}
                 >
-                  {/* Mobile chunky mesh overlay */}
+                  {/* Mobile primary rough grainy surface mist layer */}
                   <div
                     className="absolute inset-0"
                     style={{
                       background: `url("${pixelatedNoiseDataUrl}")`,
                       backgroundSize: '30px 30px',
                       backgroundRepeat: 'repeat',
-                      mixBlendMode: 'hard-light',
-                      filter: 'contrast(200%) brightness(110%) hue-rotate(10deg)',
+                      mixBlendMode: 'multiply',
+                      opacity: 0.4,
+                      animation: 'noiseFlow 20s linear infinite',
+                    }}
+                  />
+
+                  {/* Mobile additional rough texture overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '20px 20px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'overlay',
+                      opacity: 0.25,
+                      animation: 'noiseFlow 15s linear infinite reverse',
+                    }}
+                  />
+
+                  {/* Mobile enhanced mist effect */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '90px 90px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'soft-light',
+                      opacity: 0.3,
+                      filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
                       animation: 'noiseFlow 8s linear infinite',
+                    }}
+                  />
+
+                  {/* Mobile bottom rough surface mist */}
+                  <div
+                    className="absolute"
+                    style={{
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '70%',
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '25px 25px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'screen',
+                      opacity: 0.18,
+                      maskImage:
+                        'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                      WebkitMaskImage:
+                        'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                      animation: 'noiseFlow 12s linear infinite',
                     }}
                   />
                 </div>
@@ -678,54 +807,306 @@ const RevenuePage: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-7xl mx-auto px-4 sm:px-8">
           {/* Sparkstarter Card */}
           <div
-            className="rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:opacity-90 transition-opacity duration-300"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+              border: '1px solid rgba(255, 255, 255, 0.05)',
             }}
           >
+            {/* Rough grainy surface mist - primary layer */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '40px 40px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'multiply',
+                opacity: 0.4,
+                animation: 'noiseFlow 20s linear infinite',
+              }}
+            />
+
+            {/* Additional rough texture overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '25px 25px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'overlay',
+                opacity: 0.25,
+                animation: 'noiseFlow 15s linear infinite reverse',
+              }}
+            />
+
+            {/* Bottom rough surface mist - heavy grain texture */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '70%',
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '30px 30px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'screen',
+                opacity: 0.18,
+                maskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                WebkitMaskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                animation: 'noiseFlow 12s linear infinite',
+              }}
+            />
+
+            {/* Enhanced mist effect - always visible */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '120px 120px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'soft-light',
+                opacity: 0.3,
+                filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
+                animation: 'noiseFlow 8s linear infinite',
+              }}
+            />
+
             <img
               src={require('../assets/Images/sparkstarter.png')}
               alt="Sparkstarter"
-              className="max-w-full max-h-full object-contain"
+              className="relative z-10 max-w-full max-h-full object-contain"
             />
           </div>
 
           {/* Assure DeFi Card */}
           <div
-            className="rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:opacity-90 transition-opacity duration-300"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+              border: '1px solid rgba(255, 255, 255, 0.05)',
             }}
           >
+            {/* Rough grainy surface mist - primary layer */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '40px 40px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'multiply',
+                opacity: 0.4,
+                animation: 'noiseFlow 20s linear infinite',
+              }}
+            />
+
+            {/* Additional rough texture overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '25px 25px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'overlay',
+                opacity: 0.25,
+                animation: 'noiseFlow 15s linear infinite reverse',
+              }}
+            />
+
+            {/* Bottom rough surface mist - heavy grain texture */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '70%',
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '30px 30px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'screen',
+                opacity: 0.18,
+                maskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                WebkitMaskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                animation: 'noiseFlow 12s linear infinite',
+              }}
+            />
+
+            {/* Enhanced mist effect - always visible */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '120px 120px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'soft-light',
+                opacity: 0.3,
+                filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
+                animation: 'noiseFlow 8s linear infinite',
+              }}
+            />
+
             <img
               src={require('../assets/Images/assure.png')}
               alt="Assure DeFi"
-              className="max-w-full max-h-full object-contain"
+              className="relative z-10 max-w-full max-h-full object-contain"
             />
           </div>
 
           {/* Coming Soon Card 1 */}
           <div
-            className="rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:opacity-90 transition-opacity duration-300"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+              border: '1px solid rgba(255, 255, 255, 0.05)',
             }}
           >
-            <span className="text-gray-400 text-sm sm:text-lg lg:text-xl">Coming Soon</span>
+            {/* Rough grainy surface mist - primary layer */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '40px 40px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'multiply',
+                opacity: 0.4,
+                animation: 'noiseFlow 20s linear infinite',
+              }}
+            />
+
+            {/* Additional rough texture overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '25px 25px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'overlay',
+                opacity: 0.25,
+                animation: 'noiseFlow 15s linear infinite reverse',
+              }}
+            />
+
+            {/* Bottom rough surface mist - heavy grain texture */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '70%',
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '30px 30px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'screen',
+                opacity: 0.18,
+                maskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                WebkitMaskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                animation: 'noiseFlow 12s linear infinite',
+              }}
+            />
+
+            {/* Enhanced mist effect - always visible */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '120px 120px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'soft-light',
+                opacity: 0.3,
+                filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
+                animation: 'noiseFlow 8s linear infinite',
+              }}
+            />
+
+            <span className="relative z-10 text-gray-400 text-sm sm:text-lg lg:text-xl">
+              Coming Soon
+            </span>
           </div>
 
           {/* Coming Soon Card 2 */}
           <div
-            className="rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:opacity-90 transition-opacity duration-300"
+            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center hover:scale-[1.02] transition-all duration-300 overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+              border: '1px solid rgba(255, 255, 255, 0.05)',
             }}
           >
-            <span className="text-gray-400 text-sm sm:text-lg lg:text-xl">Coming Soon</span>
+            {/* Rough grainy surface mist - primary layer */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '40px 40px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'multiply',
+                opacity: 0.4,
+                animation: 'noiseFlow 20s linear infinite',
+              }}
+            />
+
+            {/* Additional rough texture overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '25px 25px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'overlay',
+                opacity: 0.25,
+                animation: 'noiseFlow 15s linear infinite reverse',
+              }}
+            />
+
+            {/* Bottom rough surface mist - heavy grain texture */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '70%',
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '30px 30px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'screen',
+                opacity: 0.18,
+                maskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                WebkitMaskImage:
+                  'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                animation: 'noiseFlow 12s linear infinite',
+              }}
+            />
+
+            {/* Enhanced mist effect - always visible */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `url("${pixelatedNoiseDataUrl}")`,
+                backgroundSize: '120px 120px',
+                backgroundRepeat: 'repeat',
+                mixBlendMode: 'soft-light',
+                opacity: 0.3,
+                filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
+                animation: 'noiseFlow 8s linear infinite',
+              }}
+            />
+
+            <span className="relative z-10 text-gray-400 text-sm sm:text-lg lg:text-xl">
+              Coming Soon
+            </span>
           </div>
         </div>
       </div>
