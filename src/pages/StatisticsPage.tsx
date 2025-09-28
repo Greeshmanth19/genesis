@@ -97,16 +97,16 @@ const StatisticsPage = () => {
           </svg>
         </div>
 
-        {/* Mobile version */}
-        <div className="block md:hidden" style={{ width: '90%', overflow: 'hidden' }}>
+        {/* Mobile version - FIXED */}
+        <div className="block md:hidden" style={{ paddingRight: '20px' }}>
           <svg
-            width="400"
-            height="100"
-            viewBox="0 0 400 100"
-            style={{ position: 'absolute', top: '-10px', left: '-10px' }}
+            width="calc(100vw - 50px)"
+            height="70"
+            viewBox="0 0 400 80"
+            style={{ maxWidth: '380px' }}
           >
             <path
-              d="M 0 0 L 380 0 L 320 82 L 324 74 C 320 90 300 100 285 100 L 0 100 Z"
+              d="M 0 0 L 380 0 L 320 65 L 324 60 C 320 72 300 80 285 80 L 0 80 Z"
               fill="#000000"
             />
           </svg>
@@ -114,23 +114,24 @@ const StatisticsPage = () => {
 
         {/* "Statistics" text - properly positioned for all screen sizes */}
         <div className="absolute top-0 left-0 w-full h-full flex items-center">
-          {/* Mobile positioning - precisely centered in the black surface */}
+          {/* Mobile positioning - FIXED */}
           <div className="block md:hidden w-full h-full flex items-center">
             <div
               style={{
                 position: 'absolute',
-                left: '50px',
-                top: '20px',
-                width: '180px',
-                textAlign: 'center',
+                left: '20px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '200px',
+                textAlign: 'left',
               }}
             >
               <h2
-                className="text-white text-lg sm:text-xl font-medium tracking-tight"
+                className="text-white font-medium tracking-tight"
                 style={{
                   fontFamily: '"TT Firs Neue", sans-serif',
                   fontWeight: 500,
-                  fontSize: '35px',
+                  fontSize: '28px',
                   letterSpacing: '-0.02em',
                 }}
               >
