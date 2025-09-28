@@ -53,23 +53,23 @@ const ServicesPage: React.FC = () => {
     },
   ];
 
-  // Create seamless chunky, thick greenish pixelated mesh noise effect
+  // Create rough, grainy surface mist effect with visible texture
   const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
     <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
       <filter id='noiseFilter'>
         <feTurbulence 
-          type='fractalNoise' 
-          baseFrequency='0.45' 
-          numOctaves='3' 
+          type='turbulence' 
+          baseFrequency='0.9' 
+          numOctaves='4' 
           stitchTiles='stitch'
-          seed='5'/>
+          seed='2'/>
         <feColorMatrix type="matrix" values="
-          0.2 0.8 0.2 0 0.1
-          0.3 0.9 0.3 0 0.1
-          0.1 0.6 0.1 0 0.1
+          0.2 0.8 0.2 0 0.15
+          0.3 0.9 0.3 0 0.15
+          0.1 0.6 0.1 0 0.15
           0   0   0   1 0"/>
       </filter>
-      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.7'/>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.9'/>
     </svg>
   `)}`;
 
@@ -130,13 +130,41 @@ const ServicesPage: React.FC = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 flex 
+                className={`group relative rounded-2xl p-5 hover:scale-[1.02] transition-all duration-300 flex overflow-hidden
                   ${isMobile ? 'min-h-[140px] items-center' : 'min-h-[280px] flex-col'}`}
                 style={{
                   background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
                   border: '1px solid rgba(255, 255, 255, 0.05)',
                 }}
               >
+                {/* Rough grainy surface mist - primary layer */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '40px 40px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'multiply',
+                    filter: 'contrast(120%) brightness(130%)',
+                    opacity: 0.4,
+                    animation: 'noiseFlow 20s linear infinite',
+                  }}
+                />
+
+                {/* Additional rough texture overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '25px 25px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'overlay',
+                    filter: 'contrast(150%) brightness(110%) blur(0.3px)',
+                    opacity: 0.25,
+                    animation: 'noiseFlow 15s linear infinite reverse',
+                  }}
+                />
+
                 {/* Icon box - position changes based on mobile/desktop */}
                 <div className={isMobile ? 'flex-shrink-0 mr-4' : 'absolute top-5 left-5'}>
                   <div className="relative">
@@ -148,7 +176,7 @@ const ServicesPage: React.FC = () => {
                         backdropFilter: 'blur(10px)',
                       }}
                     >
-                      {/* Greenish mesh effect that completely dissolves into black */}
+                      {/* Greenish mesh effect for icon that completely dissolves into black */}
                       <div
                         className="absolute"
                         style={{
@@ -200,7 +228,7 @@ const ServicesPage: React.FC = () => {
                 </div>
 
                 {/* Text content - position changes based on mobile/desktop */}
-                <div className={isMobile ? 'flex-1' : 'mt-auto'}>
+                <div className={isMobile ? 'flex-1 relative z-10' : 'mt-auto relative z-10'}>
                   <h3 className="text-lg font-semibold mb-1.5 text-white group-hover:text-green-400 transition-colors">
                     {service.title}
                   </h3>
@@ -208,6 +236,86 @@ const ServicesPage: React.FC = () => {
                     {service.description}
                   </p>
                 </div>
+
+                {/* Bottom rough surface mist - heavy grain texture */}
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: '70%',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '30px 30px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'screen',
+                    filter: 'contrast(140%) brightness(90%)',
+                    opacity: 0.18,
+                    maskImage:
+                      'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                    WebkitMaskImage:
+                      'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                    animation: 'noiseFlow 12s linear infinite',
+                  }}
+                />
+
+                {/* Rough grainy corner accumulations */}
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    bottom: '-5px',
+                    left: '-5px',
+                    width: '100px',
+                    height: '100px',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '20px 20px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'overlay',
+                    filter: 'contrast(130%) brightness(100%) blur(0.5px)',
+                    opacity: 0.2,
+                    borderRadius: '30%',
+                    maskImage:
+                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                    WebkitMaskImage:
+                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                    animation: 'noiseFlow 16s linear infinite reverse',
+                  }}
+                />
+
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    bottom: '-5px',
+                    right: '-5px',
+                    width: '100px',
+                    height: '100px',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '20px 20px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'overlay',
+                    filter: 'contrast(130%) brightness(100%) blur(0.5px)',
+                    opacity: 0.2,
+                    borderRadius: '30%',
+                    maskImage:
+                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                    WebkitMaskImage:
+                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
+                    animation: 'noiseFlow 16s linear infinite',
+                  }}
+                />
+
+                {/* Enhanced mist effect - always visible (previously hover state) */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '120px 120px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'soft-light',
+                    filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
+                    animation: 'noiseFlow 8s linear infinite',
+                  }}
+                />
               </div>
             ))}
           </div>
@@ -223,7 +331,7 @@ const ServicesPage: React.FC = () => {
               background-position: 0px 0px;
             }
             100% {
-              background-position: 0px 20px;
+              background-position: 0px 40px;
             }
           }
         `,

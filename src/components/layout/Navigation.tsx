@@ -27,6 +27,26 @@ const Navigation: React.FC = () => {
     </svg>
   `)}`;
 
+  // Create a darker, more intense noise effect for the mist
+  const darkerNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
+    <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
+      <filter id='darkerNoiseFilter'>
+        <feTurbulence 
+          type='fractalNoise' 
+          baseFrequency='0.35' 
+          numOctaves='4' 
+          stitchTiles='stitch'
+          seed='7'/>
+        <feColorMatrix type="matrix" values="
+          0.15 0.6 0.15 0 0.05
+          0.2 0.7 0.2 0 0.05
+          0.1 0.5 0.1 0 0.05
+          0   0   0   1.2 0"/>
+      </filter>
+      <rect width='100%' height='100%' filter='url(#darkerNoiseFilter)' opacity='0.9'/>
+    </svg>
+  `)}`;
+
   const navItems = [
     { id: 'about', label: 'About Us' },
     { id: 'services', label: 'Services' },
@@ -82,6 +102,15 @@ const Navigation: React.FC = () => {
               background-position: 0px 40px;
             }
           }
+          
+          @keyframes mistFlow {
+            0% {
+              background-position: 0px 0px, 20px 0px;
+            }
+            100% {
+              background-position: 0px 60px, 20px 60px;
+            }
+          }
         `,
         }}
       />
@@ -91,72 +120,72 @@ const Navigation: React.FC = () => {
         <div className="hidden lg:block">
           <div className="flex items-center justify-between px-6 py-3">
             {/* Left Section - Logo and Nav Items */}
-            <div className="flex items-center justify-between gap-[280px]">
-              <div className="flex items-center gap-[50px]">
-                <div className="flex items-center gap-3">
-                  <img
-                    src={require('../../assets/Images/genesisLogo.png')}
-                    alt="Genesis"
-                    className="h-8 w-8"
-                    style={{ height: '42px', width: '32px' }}
-                  />
-                  <img
-                    src={require('../../assets/Images/genesisText.png')}
-                    alt="Genesis"
-                    className="h-6"
-                    style={{ height: '24px' }}
-                  />
-                </div>
-                <div className="flex items-center gap-8">
-                  {navItems.map((item) => (
-                    <button
-                      key={item.id}
-                      onClick={() => handleNavClick(item.id)}
-                      className="text-gray-800 hover:text-gray-900 font-medium text-sm transition-colors relative"
-                      style={{
-                        fontSize: '15px',
-                        letterSpacing: '0.01em',
-                      }}
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
+            <div className="flex items-center gap-8 xl:gap-[50px]">
+              <div className="flex items-center gap-3">
+                <img
+                  src={require('../../assets/Images/genesisLogo.png')}
+                  alt="Genesis"
+                  className="h-8 w-8"
+                  style={{ height: '42px', width: '32px' }}
+                />
+                <img
+                  src={require('../../assets/Images/genesisText.png')}
+                  alt="Genesis"
+                  className="h-6"
+                  style={{ height: '24px' }}
+                />
               </div>
-              <div className="flex items-center gap-4">
-                <a href="#" className="transition-transform hover:scale-110">
-                  <img
-                    src={require('../../assets/Images/icon1.png')}
-                    alt="Icon 1"
-                    className="h-9 w-9"
-                    style={{ height: '35px', width: '35px' }}
-                  />
-                </a>
-                <a href="#" className="transition-transform hover:scale-110">
-                  <img
-                    src={require('../../assets/Images/icon2.png')}
-                    alt="Icon 2"
-                    className="h-9 w-9"
-                    style={{ height: '35px', width: '35px' }}
-                  />
-                </a>
-                <a href="#" className="transition-transform hover:scale-110">
-                  <img
-                    src={require('../../assets/Images/icon3.png')}
-                    alt="Icon 3"
-                    className="h-9 w-9"
-                    style={{ height: '35px', width: '35px' }}
-                  />
-                </a>
-                <a href="#" className="transition-transform hover:scale-110">
-                  <img
-                    src={require('../../assets/Images/icon4.png')}
-                    alt="Icon 4"
-                    className="h-9 w-9"
-                    style={{ height: '35px', width: '35px' }}
-                  />
-                </a>
+              <div className="flex items-center gap-4 xl:gap-8">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className="text-gray-800 hover:text-gray-900 font-medium text-sm transition-colors relative whitespace-nowrap"
+                    style={{
+                      fontSize: '15px',
+                      letterSpacing: '0.01em',
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
               </div>
+            </div>
+
+            {/* Right Section - Social Icons with proper spacing */}
+            <div className="flex items-center gap-3 xl:gap-4 mr-[260px]">
+              <a href="#" className="transition-transform hover:scale-110">
+                <img
+                  src={require('../../assets/Images/icon1.png')}
+                  alt="Icon 1"
+                  className="h-9 w-9"
+                  style={{ height: '35px', width: '35px' }}
+                />
+              </a>
+              <a href="#" className="transition-transform hover:scale-110">
+                <img
+                  src={require('../../assets/Images/icon2.png')}
+                  alt="Icon 2"
+                  className="h-9 w-9"
+                  style={{ height: '35px', width: '35px' }}
+                />
+              </a>
+              <a href="#" className="transition-transform hover:scale-110">
+                <img
+                  src={require('../../assets/Images/icon3.png')}
+                  alt="Icon 3"
+                  className="h-9 w-9"
+                  style={{ height: '35px', width: '35px' }}
+                />
+              </a>
+              <a href="#" className="transition-transform hover:scale-110">
+                <img
+                  src={require('../../assets/Images/icon4.png')}
+                  alt="Icon 4"
+                  className="h-9 w-9"
+                  style={{ height: '35px', width: '35px' }}
+                />
+              </a>
             </div>
           </div>
 
@@ -258,7 +287,6 @@ const Navigation: React.FC = () => {
                       backgroundSize: '30px 30px',
                       backgroundRepeat: 'repeat',
                       mixBlendMode: 'hard-light',
-                      filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                       transform: 'translateY(1px)',
                       animation: 'noiseFlow 8s linear infinite',
                     }}
@@ -281,11 +309,11 @@ const Navigation: React.FC = () => {
               </button>
             </div>
 
-            {/* Desktop Nav Trailing noise effect below button */}
+            {/* Desktop Nav Trailing mist effect below button - Fixed to match TouchPage approach */}
             <div
               className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
               style={{
-                width: '100%',
+                width: '80%',
                 height: '40px',
                 background: `url("${pixelatedNoiseDataUrl}")`,
                 backgroundSize: '30px 30px',
@@ -293,9 +321,9 @@ const Navigation: React.FC = () => {
                 mixBlendMode: 'multiply',
                 filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
                 maskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                 animation: 'noiseFlow 8s linear infinite',
                 borderRadius: '0 0 40% 40%',
               }}
@@ -492,23 +520,23 @@ const Navigation: React.FC = () => {
                   <span className="relative z-10">Contact Us</span>
                 </button>
 
-                {/* Mobile Contact Trailing noise effect below button */}
+                {/* Mobile Contact Trailing mist effect below button - Using TouchPage approach */}
                 <div
                   className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
                   style={{
-                    width: '60%',
-                    height: '30px',
+                    width: '80%',
+                    height: '40px',
                     background: `url("${pixelatedNoiseDataUrl}")`,
                     backgroundSize: '25px 25px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'multiply',
                     filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
                     maskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
-                      'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                     animation: 'noiseFlow 8s linear infinite',
-                    borderRadius: '0 0 30% 30%',
+                    borderRadius: '0 0 40% 40%',
                   }}
                 />
               </div>

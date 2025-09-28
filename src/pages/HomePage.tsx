@@ -35,10 +35,8 @@ const HomePage = () => {
           top: '0%',
           bottom: '0%',
           background: `url("${pixelatedNoiseDataUrl}")`,
-          backgroundSize: '120px 120px',
-          backgroundRepeat: 'repeat',
           mixBlendMode: 'multiply',
-          filter: 'contrast(280%) brightness(160%) hue-rotate(20deg)',
+          filter: 'contrast(260%) brightness(230%)',
           zIndex: 1,
         }}
       />
@@ -46,7 +44,7 @@ const HomePage = () => {
       {/* Left Side - Content */}
       <div
         className="relative flex-1 max-w-lg flex flex-col justify-center lg:mt-[120px] mt-20 order-1 lg:order-1"
-        style={{ zIndex: 10 }}
+        style={{ zIndex: 20 }}
       >
         <div>
           <div className="mb-2 lg:mb-6">
@@ -66,11 +64,11 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Main Heading - Fixed font sizes */}
+          {/* Main Heading - Desktop zoom-responsive, Mobile normal */}
           <div className="mb-2 lg:mb-6">
-            <h1>
+            <h1 className="leading-none">
               <span
-                className="block lg:inline"
+                className="block lg:hidden"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
@@ -81,24 +79,122 @@ const HomePage = () => {
                   letterSpacing: '-2.16px',
                 }}
               >
-                From Idea <br></br>to Successful <br></br> Token in{' '}
+                From Idea <br />
+                to Successful <br /> Token in{' '}
+                <span
+                  style={{
+                    fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
+                    fontSize: '55px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: '90%',
+                    letterSpacing: '-2.16px',
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  30 Days
+                </span>
               </span>
-              <span
-                style={{
-                  fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                  fontSize: '55px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: '90%',
-                  letterSpacing: '-2.16px',
-                  background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}
-              >
-                30 Days
-              </span>
+
+              {/* Desktop version with zoom-responsive scaling */}
+              <div className="hidden lg:block">
+                <span
+                  className="block"
+                  style={{
+                    color: '#000',
+                    fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
+                    fontSize: 'min(62px, 12vw)',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: '90%',
+                    letterSpacing: '-2.16px',
+                  }}
+                >
+                  From Idea
+                </span>
+                <span
+                  className="block"
+                  style={{
+                    color: '#000',
+                    fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
+                    fontSize: 'min(62px, 12vw)',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: '90%',
+                    letterSpacing: '-2.16px',
+                  }}
+                >
+                  to Successful
+                </span>
+                <div
+                  className="relative"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                  }}
+                >
+                  <span
+                    className="block whitespace-nowrap"
+                    style={{
+                      color: '#000',
+                      fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
+                      fontSize: 'min(62px, 15vw)',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: '90%',
+                      letterSpacing: '-2.16px',
+                      transform: 'scale(1)',
+                      transformOrigin: 'left center',
+                      width: 'fit-content',
+                      maxWidth: '100%',
+                    }}
+                    ref={(el) => {
+                      if (el) {
+                        const adjustFontSize = () => {
+                          const containerWidth = el.parentElement?.offsetWidth || 0;
+                          const textWidth = el.scrollWidth;
+                          if (textWidth > containerWidth && containerWidth > 0) {
+                            const scale = containerWidth / textWidth;
+                            el.style.transform = `scale(${Math.max(scale * 0.95, 0.3)})`;
+                          } else {
+                            el.style.transform = 'scale(1)';
+                          }
+                        };
+
+                        setTimeout(adjustFontSize, 0);
+
+                        const resizeObserver = new ResizeObserver(adjustFontSize);
+                        if (el.parentElement) {
+                          resizeObserver.observe(el.parentElement);
+                        }
+
+                        return () => resizeObserver.disconnect();
+                      }
+                    }}
+                  >
+                    Token in{' '}
+                    <span
+                      style={{
+                        fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
+                        fontSize: 'min(55px, 13vw)',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: '90%',
+                        letterSpacing: '-2.16px',
+                        background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                        backgroundClip: 'text',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                      }}
+                    >
+                      30 Days
+                    </span>
+                  </span>
+                </div>
+              </div>
             </h1>
           </div>
 
@@ -109,9 +205,9 @@ const HomePage = () => {
                 fontSize: '18px',
                 fontStyle: 'normal',
                 lineHeight: '110%',
-                color: '#10B981',
+                color: '#000',
               }}
-              className="text-gray-700 text-base leading-relaxed"
+              className="text-black text-base leading-relaxed"
             >
               We launch token projects with transparency, <br /> security, and trusted support,
               turning bold <br /> ideas into thriving businesses.
@@ -139,7 +235,6 @@ const HomePage = () => {
                   backgroundSize: '40px 40px',
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'hard-light',
-                  filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                   borderRadius: '90px',
                   transform: 'translateY(2px)',
                   animation: 'noiseFlow 8s linear infinite',
@@ -173,17 +268,17 @@ const HomePage = () => {
 
       {/* Right Side - Image Section */}
       <div
-        className="relative flex-1 flex items-center justify-center lg:justify-end order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0 lg:pl-16"
-        style={{ zIndex: 10 }}
+        className="relative flex-1 flex items-center justify-center lg:justify-end order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0 lg:pl-0"
+        style={{ zIndex: 5 }}
       >
-        <div className="relative lg:transform lg:translate-x-20">
+        <div className="relative">
           <div className="relative">
             <div className="relative">
-              {/* Background Image Container with Gradient Background and Noise Effect */}
+              {/* Background Image Container with Gradient Background and Noise Effect - Extended far to the left */}
               <div
-                className="absolute flex items-center justify-center lg:-top-20 lg:-left-20 lg:-right-20 lg:-bottom-20 -top-10 -left-10 -right-10 -bottom-10"
+                className="absolute flex items-center justify-center -top-10 -right-20 -bottom-10 -left-10 lg:-top-20 lg:-right-20 lg:-bottom-20 lg:-left-96"
                 style={{
-                  zIndex: 1,
+                  zIndex: 2,
                   background: 'linear-gradient(195deg, #F9FEF1 0%, #E8F5E8 50%, #D8F3D8 100%)',
                   maskImage:
                     'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
@@ -203,7 +298,7 @@ const HomePage = () => {
                   }}
                 />
 
-                {/* Enhanced seamless greenish chunky pixelated mesh overlay for bgMainShade area */}
+                {/* Enhanced seamless greenish chunky pixelated mesh overlay for bgMainShade area - Extended to the left */}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -216,6 +311,7 @@ const HomePage = () => {
                       'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
                     WebkitMaskImage:
                       'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.3) 85%, rgba(0,0,0,0) 100%)',
+                    zIndex: 3,
                   }}
                 />
               </div>
@@ -225,7 +321,7 @@ const HomePage = () => {
                 src={require('../assets/Images/genesisMain.png')}
                 alt="Genesis Logo"
                 className="relative object-contain w-80 h-80 lg:w-[810px] lg:h-[810px] max-w-none max-h-none"
-                style={{ zIndex: 2 }}
+                style={{ zIndex: 10 }}
               />
             </div>
           </div>
@@ -257,7 +353,6 @@ const HomePage = () => {
                 backgroundSize: '35px 35px',
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'hard-light',
-                filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                 borderRadius: '90px',
                 transform: 'translateY(1px)',
                 animation: 'noiseFlow 8s linear infinite',

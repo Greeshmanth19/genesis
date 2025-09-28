@@ -6,7 +6,7 @@ const TouchPage: React.FC = () => {
     // console.log(`Navigate to ${platform}`);
   };
 
-  // Create seamless chunky, thick greenish pixelated mesh noise effect (same as HomePage)
+  // Create darker greenish pixelated mesh noise effect
   const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
     <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
       <filter id='noiseFilter'>
@@ -17,12 +17,12 @@ const TouchPage: React.FC = () => {
           stitchTiles='stitch'
           seed='5'/>
         <feColorMatrix type="matrix" values="
-          0.2 0.8 0.2 0 0.1
-          0.3 0.9 0.3 0 0.1
-          0.1 0.6 0.1 0 0.1
-          0   0   0   1 0"/>
+          0.15 0.5 0.15 0 0.05
+          0.2  0.6 0.2  0 0.05
+          0.08 0.4 0.08 0 0.05
+          0    0   0    1 0"/>
       </filter>
-      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.7'/>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.85'/>
     </svg>
   `)}`;
 
@@ -430,34 +430,66 @@ const TouchPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Footer Text - Now spread across full width with responsive font sizes */}
-        <div className="flex justify-between items-center w-full">
-          <p
-            className="text-base md:text-lg font-bold mb-16 md:mb-0"
-            style={{
-              color: '#000',
-              fontStyle: 'normal',
-              lineHeight: '120%',
-              letterSpacing: '-0.45px',
-            }}
-          >
-            2025
-          </p>
-          <p
-            className="text-base md:text-lg font-bold mb-16 md:mb-0"
-            style={{
-              color: '#000',
-              fontStyle: 'normal',
-              lineHeight: '120%',
-              letterSpacing: '-0.45px',
-            }}
-          >
-            Genesis All Rights Reserved
-          </p>
+        {/* Footer Text - FIXED: Proper layout for all screens */}
+        <div className="w-full mb-16 md:mb-0">
+          {/* Desktop/Tablet - Show both texts horizontally */}
+          <div className="hidden md:flex justify-between items-center w-full">
+            <p
+              className="text-lg font-bold"
+              style={{
+                color: '#000',
+                fontStyle: 'normal',
+                lineHeight: '120%',
+                letterSpacing: '-0.45px',
+              }}
+            >
+              2025
+            </p>
+            <p
+              className="text-lg font-bold"
+              style={{
+                color: '#000',
+                fontStyle: 'normal',
+                lineHeight: '120%',
+                letterSpacing: '-0.45px',
+                position: 'absolute',
+                left: '30%',
+                transform: 'translateX(-50%)',
+              }}
+            >
+              Genesis All Rights Reserved
+            </p>
+          </div>
+
+          {/* Mobile - Stack texts vertically for better readability */}
+          <div className="flex md:hidden flex-col items-center gap-2">
+            <p
+              className="text-base font-bold"
+              style={{
+                color: '#000',
+                fontStyle: 'normal',
+                lineHeight: '120%',
+                letterSpacing: '-0.45px',
+              }}
+            >
+              2025
+            </p>
+            <p
+              className="text-base font-bold"
+              style={{
+                color: '#000',
+                fontStyle: 'normal',
+                lineHeight: '120%',
+                letterSpacing: '-0.45px',
+              }}
+            >
+              Genesis All Rights Reserved
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Left Shade SVG - Hide on mobile to save space */}
+      {/* Bottom Left Shade SVG with darker mist - Hide on mobile to save space */}
       <div
         className="absolute left-0 hidden md:block"
         style={{
@@ -484,7 +516,7 @@ const TouchPage: React.FC = () => {
             transformOrigin: 'bottom left',
           }}
         >
-          <g opacity="0.4" filter="url(#filter0_f_33_601)">
+          <g opacity="0.65" filter="url(#filter0_f_33_601)">
             <path
               d="M1029.04 352.823C1004.95 555.609 730.125 689.669 415.208 652.253C100.291 614.838 -135.468 420.115 -111.375 217.329C-87.282 14.5427 178.259 302.869 493.176 340.285C808.094 377.7 1053.13 150.037 1029.04 352.823Z"
               fill="url(#paint0_linear_33_601)"
@@ -512,8 +544,8 @@ const TouchPage: React.FC = () => {
               y2="257.638"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#DCE35B" />
-              <stop offset="1" stopColor="#45B649" />
+              <stop stopColor="#7BA935" />
+              <stop offset="1" stopColor="#2E7A31" />
             </linearGradient>
           </defs>
         </svg>
@@ -764,8 +796,6 @@ const TouchPage: React.FC = () => {
               </foreignObject>
             </g>
           </svg>
-
-          {/* Black overlay SVG - removed as it was causing visibility issues */}
 
           {/* Contact Us text - Mobile positioning */}
           <div

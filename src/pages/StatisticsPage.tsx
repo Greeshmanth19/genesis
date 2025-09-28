@@ -79,10 +79,11 @@ const StatisticsPage = () => {
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden"
+      className="relative overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #F9FEF1 0%, #E8F5E8 50%, #D8F3D8 100%)',
         borderRadius: '30px',
+        minHeight: 'fit-content',
       }}
     >
       {/* Global Pixelated Mesh Noise Overlay */}
@@ -98,41 +99,21 @@ const StatisticsPage = () => {
         }}
       />
 
-      {/* statShade replacement - Same chunky mesh effect as buttons with smooth edge fade */}
+      {/* Top-Left Mist Effect using Image */}
       <div
         className="absolute top-0 left-0 hidden md:block pointer-events-none"
         style={{
           zIndex: 5,
-          width: '820px',
-          height: '500px',
         }}
       >
-        {/* Base gradient background similar to button */}
-        <div
-          className="absolute inset-0"
+        <img
+          src={require('../assets/Images/topleft.png')}
+          alt=""
           style={{
-            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-            maskImage:
-              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
-          }}
-        />
-
-        {/* Same chunky mesh overlay as buttons with smooth fade */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `url("${pixelatedNoiseDataUrl}")`,
-            backgroundSize: '40px 40px',
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'hard-light',
-            filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
-            animation: 'noiseFlow 8s linear infinite',
-            maskImage:
-              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage:
-              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
+            width: '820px',
+            height: '500px',
+            objectFit: 'cover',
+            objectPosition: 'top left',
           }}
         />
       </div>
@@ -209,10 +190,13 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* Main Content Container - Responsive */}
+      {/* Main Content Container - Compact layout */}
       <div
-        className="relative flex flex-col md:flex-row md:items-start md:justify-between px-4 md:px-8 lg:px-20 min-h-screen pb-2 md:pb-0"
-        style={{ zIndex: 8 }}
+        className="relative flex flex-col md:flex-row md:items-start md:justify-between px-4 md:px-8 lg:px-20"
+        style={{
+          zIndex: 8,
+          paddingBottom: '40px',
+        }}
       >
         {/* Left Side - Statistics - Move to bottom on mobile */}
         <div className="flex-1 max-w-md pt-8 md:pt-48 order-2 md:order-1">
@@ -292,7 +276,7 @@ const StatisticsPage = () => {
           </div>
         </div>
 
-        {/* Right Side - Projects Table - Move to top on mobile with proper spacing */}
+        {/* Right Side - Projects Table - Compact spacing */}
         <div className="flex-1 max-w-full md:max-w-2xl order-1 md:order-2 mt-24 md:mt-10 ml-0 md:ml-0">
           {/* Header Section - Properly spaced from black shape */}
           <div
@@ -334,7 +318,6 @@ const StatisticsPage = () => {
                     backgroundSize: '40px 40px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
-                    filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                     borderRadius: '90px',
                     animation: 'noiseFlow 8s linear infinite',
                   }}
@@ -364,18 +347,19 @@ const StatisticsPage = () => {
             </div>
           </div>
 
-          {/* Table Card */}
+          {/* Table Card - Stable positioning */}
           <div className="backdrop-blur-sm rounded-2xl">
-            {/* Table Header - Adjusted grid layout */}
+            {/* Table Header - Adjusted grid layout with responsive sizing */}
             <div className="flex justify-between items-center mb-4 pb-4 px-2 md:px-0">
               {/* Project column */}
               <div
-                className="flex-shrink-0 w-20 md:w-30 text-base md:text-2xl font-medium"
+                className="flex-1 text-left font-medium"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
+                  fontSize: 'clamp(16px, 2vw, 24px)', // Responsive font size
                 }}
               >
                 Project
@@ -383,12 +367,13 @@ const StatisticsPage = () => {
 
               {/* Revenue column */}
               <div
-                className="flex-shrink-0 w-20 md:w-30 text-base md:text-2xl font-medium"
+                className="flex-1 text-center font-medium"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
+                  fontSize: 'clamp(16px, 2vw, 24px)', // Responsive font size
                 }}
               >
                 Revenue
@@ -396,12 +381,13 @@ const StatisticsPage = () => {
 
               {/* Volume column - aligned with other headers */}
               <div
-                className="flex-shrink-0 w-25 md:w-35 text-base md:text-2xl font-medium text-right"
+                className="flex-1 text-right font-medium"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
+                  fontSize: 'clamp(16px, 2vw, 24px)', // Responsive font size
                 }}
               >
                 Volume
@@ -420,41 +406,44 @@ const StatisticsPage = () => {
                 >
                   {/* Project name */}
                   <div
-                    className="flex-shrink-0 w-20 md:w-30 text-xs md:text-lg"
+                    className="flex-1 text-left"
                     style={{
                       color: '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
+                      fontSize: 'clamp(12px, 1.5vw, 18px)', // Responsive font size
                     }}
                   >
                     {project.name}
                   </div>
 
-                  {/* Revenue */}
+                  {/* Revenue - Center aligned */}
                   <div
-                    className="flex-shrink-0 w-20 md:w-30 text-xs md:text-lg"
+                    className="flex-1 text-center"
                     style={{
                       color: '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
+                      fontSize: 'clamp(12px, 1.5vw, 18px)', // Responsive font size
                     }}
                   >
                     {project.revenue}
                   </div>
 
-                  {/* Volume - positioned to the far right with more space */}
+                  {/* Volume - positioned to the far right */}
                   <div
-                    className="flex-shrink-0 w-25 md:w-35 text-xs md:text-lg text-right"
+                    className="flex-1 text-right"
                     style={{
                       color: '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
+                      fontSize: 'clamp(12px, 1.5vw, 18px)', // Responsive font size
                     }}
                   >
                     {project.volume}
@@ -467,7 +456,7 @@ const StatisticsPage = () => {
       </div>
 
       {/* Mobile Learn More Button with noise effect */}
-      <div className="relative block md:hidden px-4 pb-4 -mt-[40px]" style={{ zIndex: 10 }}>
+      <div className="relative block md:hidden px-4 pb-4" style={{ zIndex: 10, marginTop: 'auto' }}>
         <div className="flex justify-center">
           <div className="relative">
             <button
@@ -489,7 +478,6 @@ const StatisticsPage = () => {
                   backgroundSize: '35px 35px',
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'hard-light',
-                  filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                   borderRadius: '90px',
                   animation: 'noiseFlow 8s linear infinite',
                 }}
@@ -520,41 +508,46 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* statEndShade replacement - Same chunky mesh effect as buttons with smooth edge fade (smaller) */}
+      {/* Enhanced Bottom-Right Mist Effect */}
       <div
         className="absolute bottom-0 right-0 hidden md:block pointer-events-none"
         style={{
           zIndex: 5,
-          width: '250px',
-          height: '200px',
+          width: '400px',
+          height: '350px',
         }}
       >
-        {/* Base gradient background similar to button */}
+        {/* Base gradient with blur */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+            background: 'linear-gradient(96.56deg, #DAE339 -10.21%, #00B935 105.8%)',
+            backdropFilter: 'blur(150px)',
+            WebkitBackdropFilter: 'blur(150px)',
+            filter: 'blur(80px)',
+            opacity: 0.4,
             maskImage:
-              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 70% 80% at 80% 80%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
-              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 70% 80% at 80% 80%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
           }}
         />
 
-        {/* Same chunky mesh overlay as buttons with smooth fade */}
+        {/* Chunky mesh overlay */}
         <div
           className="absolute inset-0"
           style={{
             background: `url("${pixelatedNoiseDataUrl}")`,
             backgroundSize: '40px 40px',
             backgroundRepeat: 'repeat',
-            mixBlendMode: 'hard-light',
+            mixBlendMode: 'overlay',
             filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
-            animation: 'noiseFlow 8s linear infinite',
+            animation: 'mistFlow 12s ease-in-out infinite reverse',
+            opacity: 0.5,
             maskImage:
-              'radial-gradient(ellipse 40% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
-              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
           }}
         />
       </div>
@@ -580,6 +573,21 @@ const StatisticsPage = () => {
             }
             100% {
               background-position: 0px 40px;
+            }
+          }
+          
+          @keyframes mistFlow {
+            0% {
+              opacity: 0.5;
+              transform: scale(1) translateX(0) translateY(0);
+            }
+            50% {
+              opacity: 0.7;
+              transform: scale(1.05) translateX(-5px) translateY(-5px);
+            }
+            100% {
+              opacity: 0.5;
+              transform: scale(1) translateX(0) translateY(0);
             }
           }
         `,
