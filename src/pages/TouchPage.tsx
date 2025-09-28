@@ -642,7 +642,6 @@ const TouchPage: React.FC = () => {
                     backgroundSize: '40px 40px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
-                    filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                     transform: 'translateY(2px)',
                     animation: 'noiseFlow 8s linear infinite',
                   }}

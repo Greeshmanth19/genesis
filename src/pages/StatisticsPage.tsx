@@ -99,21 +99,41 @@ const StatisticsPage = () => {
         }}
       />
 
-      {/* Top-Left Mist Effect using Image */}
+      {/* statShade replacement - Same chunky mesh effect as buttons with smooth edge fade */}
       <div
         className="absolute top-0 left-0 hidden md:block pointer-events-none"
         style={{
           zIndex: 5,
+          width: '820px',
+          height: '500px',
         }}
       >
-        <img
-          src={require('../assets/Images/topleft.png')}
-          alt=""
+        {/* Base gradient background similar to button */}
+        <div
+          className="absolute inset-0"
           style={{
-            width: '820px',
-            height: '500px',
-            objectFit: 'cover',
-            objectPosition: 'top left',
+            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+            maskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
+          }}
+        />
+
+        {/* Same chunky mesh overlay as buttons with smooth fade */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `url("${pixelatedNoiseDataUrl}")`,
+            backgroundSize: '40px 40px',
+            backgroundRepeat: 'repeat',
+            mixBlendMode: 'hard-light',
+            filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+            animation: 'noiseFlow 8s linear infinite',
+            maskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
           }}
         />
       </div>
@@ -508,46 +528,41 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* Enhanced Bottom-Right Mist Effect */}
+      {/* statEndShade replacement - Same chunky mesh effect as buttons with smooth edge fade (smaller) */}
       <div
         className="absolute bottom-0 right-0 hidden md:block pointer-events-none"
         style={{
           zIndex: 5,
-          width: '400px',
-          height: '350px',
+          width: '250px',
+          height: '200px',
         }}
       >
-        {/* Base gradient with blur */}
+        {/* Base gradient background similar to button */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(96.56deg, #DAE339 -10.21%, #00B935 105.8%)',
-            backdropFilter: 'blur(150px)',
-            WebkitBackdropFilter: 'blur(150px)',
-            filter: 'blur(80px)',
-            opacity: 0.4,
+            background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
             maskImage:
-              'radial-gradient(ellipse 70% 80% at 80% 80%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
-              'radial-gradient(ellipse 70% 80% at 80% 80%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 25%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
           }}
         />
 
-        {/* Chunky mesh overlay */}
+        {/* Same chunky mesh overlay as buttons with smooth fade */}
         <div
           className="absolute inset-0"
           style={{
             background: `url("${pixelatedNoiseDataUrl}")`,
             backgroundSize: '40px 40px',
             backgroundRepeat: 'repeat',
-            mixBlendMode: 'overlay',
+            mixBlendMode: 'hard-light',
             filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
-            animation: 'mistFlow 12s ease-in-out infinite reverse',
-            opacity: 0.5,
+            animation: 'noiseFlow 8s linear infinite',
             maskImage:
-              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 40% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
-              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0) 100%)',
+              'radial-gradient(ellipse 60% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
           }}
         />
       </div>
@@ -573,21 +588,6 @@ const StatisticsPage = () => {
             }
             100% {
               background-position: 0px 40px;
-            }
-          }
-          
-          @keyframes mistFlow {
-            0% {
-              opacity: 0.5;
-              transform: scale(1) translateX(0) translateY(0);
-            }
-            50% {
-              opacity: 0.7;
-              transform: scale(1.05) translateX(-5px) translateY(-5px);
-            }
-            100% {
-              opacity: 0.5;
-              transform: scale(1) translateX(0) translateY(0);
             }
           }
         `,
