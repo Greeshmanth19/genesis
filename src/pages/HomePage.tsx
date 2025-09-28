@@ -324,7 +324,7 @@ const HomePage = () => {
           {/* CTA Button - Hidden on mobile, shown on desktop */}
           <div className="hidden lg:block relative">
             <button
-              className="ios-button-fix relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              className="relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 overflow-hidden focus:outline-none focus-visible:outline-none"
               style={{
                 borderRadius: '90px',
                 border: '1px solid #DAE339',
@@ -332,11 +332,12 @@ const HomePage = () => {
                   'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
                 boxShadow:
                   '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                outline: 'none',
               }}
             >
               {/* Button Noise Overlay with downward flow effect */}
               <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute inset-0"
                 style={{
                   background: `url("${pixelatedNoiseDataUrl}")`,
                   backgroundSize: '40px 40px',
@@ -433,14 +434,14 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Mobile CTA Button - Full width on mobile - FIXED iOS tap highlights */}
+      {/* Mobile CTA Button - Full width on mobile - FIXED: Adjusted padding */}
       <div
         className="relative lg:hidden block order-3 w-full -mt-8 mb-4 px-4"
         style={{ zIndex: 10 }}
       >
         <div className="relative">
           <button
-            className="ios-button-fix relative text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 w-full overflow-hidden"
+            className="relative text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 w-full overflow-hidden focus:outline-none focus-visible:outline-none"
             style={{
               borderRadius: '90px',
               border: '1px solid #DAE339',
@@ -448,11 +449,12 @@ const HomePage = () => {
                 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
               boxShadow:
                 '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+              outline: 'none',
             }}
           >
             {/* Mobile Button Noise Overlay with downward flow effect */}
             <div
-              className="absolute inset-0 pointer-events-none"
+              className="absolute inset-0"
               style={{
                 background: `url("${pixelatedNoiseDataUrl}")`,
                 backgroundSize: '35px 35px',
@@ -519,70 +521,25 @@ const HomePage = () => {
             }
           }
           
-          /* Enhanced iOS-specific button fixes */
-          .ios-button-fix {
+          /* Remove all focus outlines for buttons */
+          button:focus {
             outline: none !important;
-            border: 1px solid #DAE339 !important;
-            -webkit-appearance: none !important;
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-focus-ring-color: transparent !important;
-            -webkit-touch-callout: none !important;
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-            touch-action: manipulation !important;
-            background-clip: padding-box !important;
-          }
-          
-          .ios-button-fix:focus,
-          .ios-button-fix:focus-visible,
-          .ios-button-fix:active,
-          .ios-button-fix:hover {
-            outline: none !important;
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-focus-ring-color: transparent !important;
             box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
           }
           
-          .ios-button-fix::-moz-focus-inner {
-            border: none !important;
+          button:focus-visible {
             outline: none !important;
-            padding: 0 !important;
           }
           
-          /* Additional iOS Safari fixes */
-          button {
-            outline: none !important;
-            -webkit-appearance: none !important;
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-focus-ring-color: transparent !important;
-            -webkit-touch-callout: none !important;
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-            touch-action: manipulation !important;
-          }
-          
-          button:focus,
-          button:focus-visible,
           button:active {
             outline: none !important;
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-focus-ring-color: transparent !important;
           }
           
-          button::-moz-focus-inner {
-            border: none !important;
+          /* Ensure no border appears on click */
+          button {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
             outline: none !important;
-            padding: 0 !important;
-          }
-          
-          /* Prevent any system highlight on touch devices */
-          * {
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-touch-callout: none !important;
           }
         `,
         }}
