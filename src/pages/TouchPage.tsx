@@ -315,15 +315,15 @@ const TouchPage: React.FC = () => {
       </div>
 
       {/* Main Content Container - Responsive with proper spacing from black shape */}
-      <div className="flex flex-col px-4 md:px-8 lg:px-20 mt-24 md:mt-32">
-        {/* Social Media Icons - Mobile only - below black section */}
-        <div className="w-full flex justify-center mb-12 md:hidden">
-          {/* Mobile Layout - 2x2 grid */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-5">
+      <div className="flex flex-col px-4 md:px-8 lg:px-20 mt-20 md:mt-32">
+        {/* Social Media Icons - Mobile only - REDUCED SPACING */}
+        <div className="w-full flex justify-center mb-6 md:hidden">
+          {/* Mobile Layout - 2x2 grid with reduced gaps */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-3">
             {/* SparkStarter Icon */}
             <button
               onClick={() => handleSocialClick('SparkStarter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -345,7 +345,7 @@ const TouchPage: React.FC = () => {
             {/* Unicrypt Icon */}
             <button
               onClick={() => handleSocialClick('Unicrypt')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -367,7 +367,7 @@ const TouchPage: React.FC = () => {
             {/* Twitter/X Icon */}
             <button
               onClick={() => handleSocialClick('Twitter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -389,7 +389,7 @@ const TouchPage: React.FC = () => {
             {/* Telegram Icon */}
             <button
               onClick={() => handleSocialClick('Telegram')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -431,7 +431,7 @@ const TouchPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Footer Text - FIXED: Proper layout for all screens */}
+        {/* Footer Text - FIXED: Horizontal layout for mobile with space between */}
         <div className="w-full mb-16 md:mb-0">
           {/* Desktop/Tablet - Show both texts horizontally */}
           <div className="hidden md:flex justify-between items-center w-full">
@@ -462,8 +462,8 @@ const TouchPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Mobile - Stack texts vertically for better readability */}
-          <div className="flex md:hidden flex-col items-center gap-2">
+          {/* Mobile - FIXED: Horizontal layout with space-between */}
+          <div className="flex md:hidden justify-between items-center w-full px-2">
             <p
               className="text-base font-bold"
               style={{
@@ -475,82 +475,33 @@ const TouchPage: React.FC = () => {
             >
               2025
             </p>
-            <p
-              className="text-base font-bold"
-              style={{
-                color: '#000',
-                fontStyle: 'normal',
-                lineHeight: '120%',
-                letterSpacing: '-0.45px',
-              }}
-            >
-              Genesis All Rights Reserved
-            </p>
+            <div className="flex gap-2">
+              <p
+                className="text-base font-bold"
+                style={{
+                  color: '#000',
+                  fontStyle: 'normal',
+                  lineHeight: '120%',
+                  letterSpacing: '-0.45px',
+                }}
+              >
+                Genesis
+              </p>
+              <p
+                className="text-base font-bold"
+                style={{
+                  color: '#000',
+                  fontStyle: 'normal',
+                  lineHeight: '120%',
+                  letterSpacing: '-0.45px',
+                }}
+              >
+                All Rights Reserved
+              </p>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Bottom Left Shade SVG with darker mist - Hide on mobile to save space */}
-      {/* <div
-        className="absolute left-0 hidden md:block"
-        style={{
-          bottom: '0px',
-          left: '0px',
-          zIndex: 1,
-          width: '800px',
-          height: '300px',
-          overflow: 'hidden',
-          borderRadius: '0 0 0 30px',
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="800"
-          height="300"
-          viewBox="0 0 1231 372"
-          fill="none"
-          style={{
-            position: 'absolute',
-            bottom: '0px',
-            left: '0px',
-            transform: 'scale(0.7)',
-            transformOrigin: 'bottom left',
-          }}
-        >
-          <g opacity="0.65" filter="url(#filter0_f_33_601)">
-            <path
-              d="M1029.04 352.823C1004.95 555.609 730.125 689.669 415.208 652.253C100.291 614.838 -135.468 420.115 -111.375 217.329C-87.282 14.5427 178.259 302.869 493.176 340.285C808.094 377.7 1053.13 150.037 1029.04 352.823Z"
-              fill="url(#paint0_linear_33_601)"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_33_601"
-              x="-313.069"
-              y="-54.3032"
-              width="1543.75"
-              height="912.82"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-              <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_33_601" />
-            </filter>
-            <linearGradient
-              id="paint0_linear_33_601"
-              x1="-49.5737"
-              y1="-302.838"
-              x2="1260.71"
-              y2="257.638"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#7BA935" />
-              <stop offset="1" stopColor="#2E7A31" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div> */}
 
       {/* Black Corner Section at Bottom Right with Contact Us Button - Now visible on all devices */}
       <div className="absolute -bottom-2 -right-1" style={{ zIndex: 10 }}>
