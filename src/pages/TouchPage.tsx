@@ -80,16 +80,16 @@ const TouchPage: React.FC = () => {
 
         {/* "Get in Touch" text - properly positioned for all screen sizes */}
         <div className="absolute top-0 left-0 w-full h-full flex items-center">
-          {/* Mobile positioning - FIXED to always stay at left */}
+          {/* Mobile positioning - FIXED to center text within black shape */}
           <div className="block md:hidden w-full h-full flex items-center">
             <div
               style={{
                 position: 'absolute',
-                left: '50px',
+                left: '20px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                width: '250px',
-                textAlign: 'left',
+                width: 'calc(60vw - 40px)',
+                textAlign: 'center',
                 zIndex: 20,
               }}
             >
@@ -98,8 +98,9 @@ const TouchPage: React.FC = () => {
                 style={{
                   fontFamily: '"TT Firs Neue", sans-serif',
                   fontWeight: 500,
-                  fontSize: '34px',
+                  fontSize: '28px',
                   letterSpacing: '-0.02em',
+                  whiteSpace: 'nowrap',
                 }}
               >
                 Get in Touch
