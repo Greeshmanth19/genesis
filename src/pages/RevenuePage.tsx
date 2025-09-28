@@ -37,7 +37,7 @@ const RevenuePage: React.FC = () => {
   return (
     <div className="relative min-h-screen mobile-container flex flex-col items-center justify-start sm:justify-center bg-black text-white overflow-hidden pt-safe-top pb-safe-bottom">
       {/* Header */}
-      <div>
+      <div className="mt-20 sm:mt-16 md:mt-0">
         <div className="text-center mb-8 lg:mb-16 px-4 mobile-header-spacing">
           <p
             className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base lg:text-lg"
@@ -532,14 +532,14 @@ const RevenuePage: React.FC = () => {
         {/* Mobile Layout - Hidden on desktop */}
         <div className="block lg:hidden">
           {/* Center - Main Image for Mobile */}
-          <div className="flex justify-center items-center mb-2">
+          <div className="flex justify-center items-center mb-2 -mt-4">
             <div className="relative">
               {/* SVG Background Shade - Responsive */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="600"
-                  height="425"
+                  width="500"
+                  height="350"
                   viewBox="0 0 797 564"
                   fill="none"
                   className="w-full h-full opacity-60"
@@ -590,7 +590,7 @@ const RevenuePage: React.FC = () => {
               {/* Mobile Rough grainy surface mist effect - multiple layers like ServicesPage */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div
-                  className="w-[25rem] h-[22rem] sm:w-[28rem] sm:h-[25rem] md:w-[30rem] md:h-[28rem]"
+                  className="w-[20rem] h-[18rem] sm:w-[24rem] sm:h-[21rem] md:w-[28rem] md:h-[25rem]"
                   style={{
                     background: 'linear-gradient(96.56deg, #DAE339 -10.21%, #00B935 105.8%)',
                     maskImage:
@@ -663,7 +663,7 @@ const RevenuePage: React.FC = () => {
               </div>
 
               {/* Main logo container - Mobile responsive */}
-              <div className="relative w-[32rem] h-[28rem] sm:w-[36rem] sm:h-[32rem] md:w-[40rem] md:h-[36rem] flex items-center justify-center z-10">
+              <div className="relative w-[24rem] h-[20rem] sm:w-[28rem] sm:h-[24rem] md:w-[32rem] md:h-[28rem] flex items-center justify-center z-10">
                 <img
                   src={require('../assets/Images/revenueMain.png')}
                   alt="Revenue Sharing Logo"
@@ -674,7 +674,7 @@ const RevenuePage: React.FC = () => {
           </div>
 
           {/* Mobile Content - Column Layout */}
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-6 md:space-y-12 mt-4">
             {/* Transaction Tax Allocation */}
             <div className="text-left px-4">
               <h3
