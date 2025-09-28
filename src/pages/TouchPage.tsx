@@ -6,6 +6,26 @@ const TouchPage: React.FC = () => {
     // console.log(`Navigate to ${platform}`);
   };
 
+  // Create seamless chunky, thick greenish pixelated mesh noise effect (same as HomePage)
+  const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
+    <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
+      <filter id='noiseFilter'>
+        <feTurbulence 
+          type='fractalNoise' 
+          baseFrequency='0.45' 
+          numOctaves='3' 
+          stitchTiles='stitch'
+          seed='5'/>
+        <feColorMatrix type="matrix" values="
+          0.2 0.8 0.2 0 0.1
+          0.3 0.9 0.3 0 0.1
+          0.1 0.6 0.1 0 0.1
+          0   0   0   1 0"/>
+      </filter>
+      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.7'/>
+    </svg>
+  `)}`;
+
   return (
     <div
       className="relative py-12"
@@ -14,6 +34,22 @@ const TouchPage: React.FC = () => {
         borderRadius: '30px',
       }}
     >
+      {/* CSS Animation for downward flowing noise effect */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes noiseFlow {
+            0% {
+              background-position: 0px 0px;
+            }
+            100% {
+              background-position: 0px 40px;
+            }
+          }
+        `,
+        }}
+      />
+
       {/* Black Corner Section with "Get in Touch" - Responsive */}
       <div className="absolute top-0 left-0" style={{ zIndex: 10 }}>
         {/* Desktop version */}
@@ -557,12 +593,36 @@ const TouchPage: React.FC = () => {
                 boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
               }}
             />
+
+            {/* Desktop Button Noise Overlay with downward flow effect */}
+            <defs>
+              <clipPath id="desktopButtonClip">
+                <path d="M 520 90 L 5 90 L 95 12 L 95 12 C 100 8 110 0 125 0 L 520 0 Z" />
+              </clipPath>
+            </defs>
+            <g clipPath="url(#desktopButtonClip)">
+              <foreignObject x="0" y="0" width="520" height="90">
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '40px 40px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'hard-light',
+                    filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+                    transform: 'translateY(2px)',
+                    animation: 'noiseFlow 8s linear infinite',
+                  }}
+                />
+              </foreignObject>
+            </g>
           </svg>
 
           {/* Contact Us text - Desktop positioning */}
           <button
             onClick={() => handleSocialClick('Contact')}
-            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer"
+            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-105"
             style={{
               width: '100%',
               height: '100%',
@@ -582,47 +642,63 @@ const TouchPage: React.FC = () => {
               Contact Us
             </h3>
           </button>
+
+          {/* Desktop Trailing noise effect below button */}
+          <div
+            className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+            style={{
+              width: '120%',
+              height: '60px',
+              background: `url("${pixelatedNoiseDataUrl}")`,
+              backgroundSize: '40px 40px',
+              backgroundRepeat: 'repeat',
+              mixBlendMode: 'multiply',
+              filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+              maskImage:
+                'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+              animation: 'noiseFlow 8s linear infinite',
+              borderRadius: '0 0 50% 50%',
+            }}
+          />
         </div>
 
-        {/* Mobile version - Fixed with rounded edges and proper styling */}
+        {/* Mobile version - Fixed with proper width and positioning */}
         <button
           onClick={() => handleSocialClick('Contact')}
-          className="block md:hidden cursor-pointer"
+          className="block md:hidden cursor-pointer transition-all duration-300 transform hover:scale-105 relative"
           style={{
-            width: '100vw',
+            width: 'calc(100vw + 20px)',
             height: '80px',
-            overflow: 'hidden',
+            overflow: 'visible',
             borderRadius: '0 0 0 20px',
+            marginRight: '-20px',
           }}
         >
-          {/* Outer SVG for black background shape with rounded corners */}
+          {/* Outer SVG for black background shape - full width */}
           <svg
             width="100%"
-            height="90"
-            viewBox="0 0 400 80"
+            height="80"
+            viewBox="0 0 420 80"
             style={{
               position: 'absolute',
               bottom: 0,
               right: 0,
+              overflow: 'visible',
             }}
           >
-            <defs>
-              <clipPath id="roundedClipMobile">
-                <rect x="0" y="0" width="400" height="80" rx="20" ry="20" />
-              </clipPath>
-            </defs>
             <path
-              d="M 400 80 L 320 10 C 315 4 305 0 295 0 L 105 0 C 95 0 85 4 80 10 L 0 80 Z"
+              d="M 420 70 L 380 20 C 370 8 360 0 345 0 L 75 0 C 60 0 50 4 40 12 L 0 70 L 0 80 L 420 80 Z"
               fill="#000000"
-              clipPath="url(#roundedClipMobile)"
             />
           </svg>
 
-          {/* Inner SVG for gradient shape with padding and rounded corners */}
+          {/* Inner SVG for gradient shape - full width */}
           <svg
-            width="100%"
-            height="75"
-            viewBox="0 0 395 70"
+            width="99%"
+            height="76"
+            viewBox="0 0 415 70"
             style={{
               position: 'absolute',
               bottom: '2px',
@@ -657,44 +733,39 @@ const TouchPage: React.FC = () => {
                   floodColor="rgba(113, 173, 77, 0.40)"
                 />
               </filter>
-              <clipPath id="roundedClipInnerMobile">
-                <rect x="0" y="0" width="395" height="70" rx="18" ry="18" />
+              <clipPath id="mobileButtonClip">
+                <path d="M 410 70 L 370 18 C 360 6 350 0 335 0 L 75 0 C 60 0 50 3 40 10 L 2 70 L 0 70 L 0 70 L 410 70 Z" />
               </clipPath>
             </defs>
             <path
-              d="M 395 70 L 318 8 C 313 3 303 0 293 0 L 102 0 C 92 0 82 3 77 8 L 2 70 Z"
+              d="M 410 70 L 370 18 C 360 6 350 0 335 0 L 75 0 C 60 0 50 3 40 10 L 2 70 L 0 70 L 0 70 L 410 70 Z"
               fill="url(#bottomContactGradientMobile)"
               stroke="#DAE339"
               strokeWidth="0.5"
               filter="url(#bottomContactShadowMobile)"
-              clipPath="url(#roundedClipInnerMobile)"
             />
+
+            {/* Mobile Button Noise Overlay with downward flow effect */}
+            <g clipPath="url(#mobileButtonClip)">
+              <foreignObject x="0" y="0" width="410" height="70">
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '35px 35px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'hard-light',
+                    filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
+                    transform: 'translateY(1px)',
+                    animation: 'noiseFlow 8s linear infinite',
+                  }}
+                />
+              </foreignObject>
+            </g>
           </svg>
 
-          {/* Black overlay SVG on top with rounded corners */}
-          <svg
-            width="100%"
-            height="75"
-            viewBox="0 0 390 68"
-            style={{
-              position: 'absolute',
-              bottom: '3px',
-              right: '3px',
-              zIndex: 5,
-            }}
-          >
-            <defs>
-              <clipPath id="roundedClipOverlayMobile">
-                <rect x="0" y="0" width="390" height="68" rx="16" ry="16" />
-              </clipPath>
-            </defs>
-            <path
-              d="M 390 68 L 316 6 C 311 2 301 0 291 0 L 99 0 C 89 0 79 2 74 6 L 5 68 Z"
-              fill="#000000"
-              opacity="0.3"
-              clipPath="url(#roundedClipOverlayMobile)"
-            />
-          </svg>
+          {/* Black overlay SVG - removed as it was causing visibility issues */}
 
           {/* Contact Us text - Mobile positioning */}
           <div
@@ -719,6 +790,26 @@ const TouchPage: React.FC = () => {
               Contact Us
             </h3>
           </div>
+
+          {/* Mobile Trailing noise effect below button */}
+          <div
+            className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+            style={{
+              width: '80%',
+              height: '50px',
+              background: `url("${pixelatedNoiseDataUrl}")`,
+              backgroundSize: '35px 35px',
+              backgroundRepeat: 'repeat',
+              mixBlendMode: 'multiply',
+              filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+              maskImage:
+                'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+              animation: 'noiseFlow 8s linear infinite',
+              borderRadius: '0 0 40% 40%',
+            }}
+          />
         </button>
       </div>
     </div>
