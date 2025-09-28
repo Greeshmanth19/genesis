@@ -1,6 +1,11 @@
 import React from 'react';
 
 const TouchPage: React.FC = () => {
+  const handleSocialClick = (_platform: string) => {
+    // Add your actual navigation logic here
+    // console.log(`Navigate to ${platform}`);
+  };
+
   return (
     <div
       className="relative py-12"
@@ -85,8 +90,8 @@ const TouchPage: React.FC = () => {
         {/* Desktop Layout - 4 icons in a row */}
         <div className="hidden lg:flex items-center gap-16" style={{ width: '800px' }}>
           {/* SparkStarter Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('SparkStarter')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
@@ -104,11 +109,11 @@ const TouchPage: React.FC = () => {
             >
               SparkStarter
             </span>
-          </a>
+          </button>
 
           {/* Unicrypt Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('Unicrypt')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
@@ -126,11 +131,11 @@ const TouchPage: React.FC = () => {
             >
               Unicrypt
             </span>
-          </a>
+          </button>
 
           {/* Twitter/X Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('Twitter')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
@@ -148,11 +153,11 @@ const TouchPage: React.FC = () => {
             >
               Twitter/X
             </span>
-          </a>
+          </button>
 
           {/* Telegram Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('Telegram')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
@@ -170,7 +175,7 @@ const TouchPage: React.FC = () => {
             >
               Telegram
             </span>
-          </a>
+          </button>
         </div>
 
         {/* Tablet Layout - 2x2 grid */}
@@ -179,8 +184,8 @@ const TouchPage: React.FC = () => {
           style={{ width: '300px' }}
         >
           {/* SparkStarter Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('SparkStarter')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
@@ -198,11 +203,11 @@ const TouchPage: React.FC = () => {
             >
               SparkStarter
             </span>
-          </a>
+          </button>
 
           {/* Unicrypt Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('Unicrypt')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
@@ -220,11 +225,11 @@ const TouchPage: React.FC = () => {
             >
               Unicrypt
             </span>
-          </a>
+          </button>
 
           {/* Twitter/X Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('Twitter')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
@@ -242,11 +247,11 @@ const TouchPage: React.FC = () => {
             >
               Twitter/X
             </span>
-          </a>
+          </button>
 
           {/* Telegram Icon */}
-          <a
-            href="#"
+          <button
+            onClick={() => handleSocialClick('Telegram')}
             className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
@@ -264,7 +269,7 @@ const TouchPage: React.FC = () => {
             >
               Telegram
             </span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -275,8 +280,8 @@ const TouchPage: React.FC = () => {
           {/* Mobile Layout - 2x2 grid */}
           <div className="grid grid-cols-2 gap-x-6 gap-y-5">
             {/* SparkStarter Icon */}
-            <a
-              href="#"
+            <button
+              onClick={() => handleSocialClick('SparkStarter')}
               className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
@@ -294,11 +299,11 @@ const TouchPage: React.FC = () => {
               >
                 SparkStarter
               </span>
-            </a>
+            </button>
 
             {/* Unicrypt Icon */}
-            <a
-              href="#"
+            <button
+              onClick={() => handleSocialClick('Unicrypt')}
               className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
@@ -316,11 +321,11 @@ const TouchPage: React.FC = () => {
               >
                 Unicrypt
               </span>
-            </a>
+            </button>
 
             {/* Twitter/X Icon */}
-            <a
-              href="#"
+            <button
+              onClick={() => handleSocialClick('Twitter')}
               className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
@@ -338,11 +343,11 @@ const TouchPage: React.FC = () => {
               >
                 Twitter/X
               </span>
-            </a>
+            </button>
 
             {/* Telegram Icon */}
-            <a
-              href="#"
+            <button
+              onClick={() => handleSocialClick('Telegram')}
               className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
@@ -360,7 +365,7 @@ const TouchPage: React.FC = () => {
               >
                 Telegram
               </span>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -551,7 +556,8 @@ const TouchPage: React.FC = () => {
           </svg>
 
           {/* Contact Us text - Desktop positioning */}
-          <div
+          <button
+            onClick={() => handleSocialClick('Contact')}
             className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer"
             style={{
               width: '100%',
@@ -571,11 +577,12 @@ const TouchPage: React.FC = () => {
             >
               Contact Us
             </h3>
-          </div>
+          </button>
         </div>
 
         {/* Mobile version - Fixed with rounded edges and proper styling */}
-        <div
+        <button
+          onClick={() => handleSocialClick('Contact')}
           className="block md:hidden cursor-pointer"
           style={{
             width: '100vw',
@@ -708,7 +715,7 @@ const TouchPage: React.FC = () => {
               Contact Us
             </h3>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );

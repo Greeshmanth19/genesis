@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const StatisticsPage = () => {
   // Mock intersection observer hook
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible] = useState(true);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const StatisticsPage = () => {
 
   return (
     <div
-      className="relative min-h-screen"
+      className="relative min-h-screen overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #F9FEF1 0%, #E8F5E8 50%, #D8F3D8 100%)',
         borderRadius: '30px',
@@ -390,13 +390,15 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* statEndShade.png Image - Positioned at bottom end */}
+      {/* statEndShade.png Image - Positioned at bottom right with proper clipping */}
       <div
         className="absolute bottom-0 right-0 hidden md:block"
         style={{
           zIndex: 5,
           width: '300px',
           height: 'auto',
+          maxWidth: '100%',
+          overflow: 'hidden',
         }}
       >
         <img
@@ -406,6 +408,7 @@ const StatisticsPage = () => {
             width: '100%',
             height: 'auto',
             objectFit: 'contain',
+            maxWidth: '100%',
           }}
         />
       </div>
