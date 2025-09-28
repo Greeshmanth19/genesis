@@ -369,13 +369,11 @@ const Navigation: React.FC = () => {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Full screen menu with gradient background */}
+          {/* Full screen menu with solid gradient background */}
           <div
             className="fixed inset-0 w-full h-full transition-all duration-300 flex flex-col"
             style={{
-              background:
-                'linear-gradient(180deg, rgba(240, 240, 240, 0.95) 0%, rgba(218, 227, 57, 0.3) 100%)',
-              backdropFilter: 'blur(10px)',
+              background: 'linear-gradient(180deg, #F0F0F0 0%, #F5F5F5 100%)',
             }}
           >
             {/* Header with logo and close button */}
@@ -398,15 +396,15 @@ const Navigation: React.FC = () => {
               {/* Close X button */}
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-8 h-8 flex items-center justify-center"
+                className="w-10 h-10 flex items-center justify-center"
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="28"
+                  height="28"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
@@ -418,19 +416,21 @@ const Navigation: React.FC = () => {
 
             {/* Navigation Items - Takes up available space */}
             <div className="flex-1 px-6 mt-8 relative overflow-hidden">
-              {/* Background image with dissolved/fade effect */}
+              {/* Background image with dissolved/fade effect - lowered and enlarged */}
               <div
-                className="absolute inset-0 -inset-x-6"
+                className="absolute -inset-x-12"
                 style={{
+                  top: '80px', // Lowered position
+                  bottom: '-40px', // Extended bottom
                   backgroundImage: `url(${require('../../assets/Images/bgMainShade.png')})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center center',
+                  backgroundSize: '120% auto', // Increased size
+                  backgroundPosition: 'center top',
                   backgroundRepeat: 'no-repeat',
                   opacity: 0.6,
                   maskImage:
-                    'radial-gradient(ellipse 120% 80% at center center, rgba(0,0,0,1) 20%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.3) 80%, transparent 100%)',
+                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.1) 85%, transparent 95%)',
                   WebkitMaskImage:
-                    'radial-gradient(ellipse 120% 80% at center center, rgba(0,0,0,1) 20%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.3) 80%, transparent 100%)',
+                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.8) 65%, rgba(0,0,0,0.4) 75%, rgba(0,0,0,0.1) 85%, transparent 95%)',
                 }}
               />
 

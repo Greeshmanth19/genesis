@@ -23,7 +23,7 @@ const HomePage = () => {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-4 lg:px-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-4 lg:pl-8 lg:pr-16 overflow-hidden"
       style={{ borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px' }}
     >
       {/* Full Background Mist Layer 1 - Base layer covering entire background */}
@@ -163,9 +163,9 @@ const HomePage = () => {
         }}
       />
 
-      {/* Left Side - Content - FIXED: Complete left alignment on mobile */}
+      {/* Left Side - Content - FIXED: Removed flex-1 and max-w-lg, made it stick to left on desktop */}
       <div
-        className="relative flex-1 max-w-lg flex flex-col justify-center lg:mt-[120px] mt-20 order-1 lg:order-1 w-full lg:w-auto pl-0 lg:pl-0"
+        className="relative flex flex-col justify-center mt-20 lg:mt-[200px] order-1 lg:order-1 w-full lg:w-auto"
         style={{ zIndex: 20 }}
       >
         <div className="text-left">
@@ -231,7 +231,7 @@ const HomePage = () => {
                   style={{
                     color: '#000',
                     fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                    fontSize: 'min(62px, 12vw)',
+                    fontSize: '62px',
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: '90%',
@@ -245,7 +245,7 @@ const HomePage = () => {
                   style={{
                     color: '#000',
                     fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                    fontSize: 'min(62px, 12vw)',
+                    fontSize: '62px',
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: '90%',
@@ -254,76 +254,41 @@ const HomePage = () => {
                 >
                   to Successful
                 </span>
-                <div
-                  className="relative"
+                <span
+                  className="block"
                   style={{
-                    width: '100%',
-                    height: 'auto',
+                    color: '#000',
+                    fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
+                    fontSize: '62px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: '90%',
+                    letterSpacing: '-2.16px',
+                    whiteSpace: 'nowrap',
                   }}
                 >
+                  Token in{' '}
                   <span
-                    className="block whitespace-nowrap"
                     style={{
-                      color: '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                      fontSize: 'min(62px, 15vw)',
+                      fontSize: '55px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: '90%',
                       letterSpacing: '-2.16px',
-                      transform: 'scale(1)',
-                      transformOrigin: 'left center',
-                      width: 'fit-content',
-                      maxWidth: '100%',
-                    }}
-                    ref={(el) => {
-                      if (el) {
-                        const adjustFontSize = () => {
-                          const containerWidth = el.parentElement?.offsetWidth || 0;
-                          const textWidth = el.scrollWidth;
-                          if (textWidth > containerWidth && containerWidth > 0) {
-                            const scale = containerWidth / textWidth;
-                            el.style.transform = `scale(${Math.max(scale * 0.95, 0.3)})`;
-                          } else {
-                            el.style.transform = 'scale(1)';
-                          }
-                        };
-
-                        setTimeout(adjustFontSize, 0);
-
-                        const resizeObserver = new ResizeObserver(adjustFontSize);
-                        if (el.parentElement) {
-                          resizeObserver.observe(el.parentElement);
-                        }
-
-                        return () => resizeObserver.disconnect();
-                      }
+                      background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
                     }}
                   >
-                    Token in{' '}
-                    <span
-                      style={{
-                        fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                        fontSize: 'min(55px, 13vw)',
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        lineHeight: '90%',
-                        letterSpacing: '-2.16px',
-                        background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
-                        backgroundClip: 'text',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                      }}
-                    >
-                      30 Days
-                    </span>
+                    30 Days
                   </span>
-                </div>
+                </span>
               </div>
             </h1>
           </div>
 
-          {/* Description */}
           {/* Description */}
           <div className="mb-2 lg:mb-8">
             {/* Mobile Description */}
@@ -379,7 +344,6 @@ const HomePage = () => {
                   mixBlendMode: 'hard-light',
                   borderRadius: '90px',
                   transform: 'translateY(2px)',
-                  animation: 'noiseFlow 8s linear infinite',
                 }}
               />
               <span className="relative z-10">Learn More</span>
@@ -410,7 +374,7 @@ const HomePage = () => {
 
       {/* Right Side - Image Section */}
       <div
-        className="relative flex-1 flex items-center justify-center lg:justify-end order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0 lg:pl-0"
+        className="relative flex-1 flex items-center justify-center lg:justify-end order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0"
         style={{ zIndex: 5 }}
       >
         <div className="relative">
@@ -496,7 +460,6 @@ const HomePage = () => {
                 mixBlendMode: 'hard-light',
                 borderRadius: '90px',
                 transform: 'translateY(1px)',
-                animation: 'noiseFlow 8s linear infinite',
               }}
             />
             <span className="relative z-10">Learn More</span>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RevenuePage: React.FC = () => {
+const RevenuePage = () => {
   // Create the same rough, grainy surface mist effect as ServicesPage
   const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
     <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
@@ -21,7 +21,7 @@ const RevenuePage: React.FC = () => {
     </svg>
   `)}`;
 
-  const gradientTextStyle: React.CSSProperties = {
+  const gradientTextStyle = {
     background: 'linear-gradient(100.72deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
@@ -35,10 +35,10 @@ const RevenuePage: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen mobile-container flex flex-col items-center justify-start sm:justify-center bg-black text-white overflow-hidden pt-safe-top pb-safe-bottom">
-      {/* Header */}
-      <div className="mt-20 sm:mt-16 md:mt-0">
-        <div className="text-center mb-8 lg:mb-16 px-4 mobile-header-spacing">
+    <div className="relative min-h-screen flex flex-col items-center justify-start bg-black text-white overflow-hidden">
+      {/* Header - Fixed: removed mt-20 on mobile, only md:mt-0 for desktop reset */}
+      <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-16 px-4">
           <p
             className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base lg:text-lg"
             style={gradientTextStyle}
@@ -48,7 +48,7 @@ const RevenuePage: React.FC = () => {
             Strengthening the Ecosystem
           </p>
           <h1
-            className="mb-4 lg:mb-6"
+            className="mb-3 sm:mb-4 lg:mb-6"
             style={{
               color: '#FFF',
               fontSize:
@@ -84,7 +84,7 @@ const RevenuePage: React.FC = () => {
       </div>
 
       {/* Main content container */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-8 mobile-content-wrapper">
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-8">
         {/* Desktop Layout - Hidden on mobile */}
         <div className="hidden lg:block">
           <div className="grid grid-cols-3 gap-[150px] items-start">
@@ -531,8 +531,8 @@ const RevenuePage: React.FC = () => {
 
         {/* Mobile Layout - Hidden on desktop */}
         <div className="block lg:hidden">
-          {/* Center - Main Image for Mobile */}
-          <div className="flex justify-center items-center mb-2 -mt-4">
+          {/* Center - Main Image for Mobile - Fixed: removed negative margin */}
+          <div className="flex justify-center items-center mb-6">
             <div className="relative">
               {/* SVG Background Shade - Responsive */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -673,12 +673,12 @@ const RevenuePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Mobile Content - Column Layout */}
-          <div className="space-y-6 md:space-y-12 mt-4">
+          {/* Mobile Content - Column Layout - Fixed: adjusted spacing */}
+          <div className="space-y-6 md:space-y-8">
             {/* Transaction Tax Allocation */}
             <div className="text-left px-4">
               <h3
-                className="mb-4 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -707,7 +707,7 @@ const RevenuePage: React.FC = () => {
             {/* Incubation Revenue Sharing */}
             <div className="text-left px-4">
               <h3
-                className="mb-4 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -737,7 +737,7 @@ const RevenuePage: React.FC = () => {
             {/* Inclusive Staking */}
             <div className="text-left px-4">
               <h3
-                className="mb-4 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -767,7 +767,7 @@ const RevenuePage: React.FC = () => {
             {/* Weekly Deposits */}
             <div className="text-left px-4">
               <h3
-                className="mb-4 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -796,8 +796,8 @@ const RevenuePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Our Partners Section */}
-      <div className="w-full mt-16 lg:mt-0 mb-8 lg:mb-16">
+      {/* Our Partners Section - Fixed: adjusted top margin */}
+      <div className="w-full mt-12 lg:mt-16 mb-8 lg:mb-16">
         <div className="text-center mb-8 lg:mb-16 px-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-8">
             Our Partners
@@ -823,7 +823,6 @@ const RevenuePage: React.FC = () => {
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'multiply',
                 opacity: 0.4,
-                //animation: 'noiseFlow 20s linear infinite',
               }}
             />
 
@@ -836,7 +835,6 @@ const RevenuePage: React.FC = () => {
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'overlay',
                 opacity: 0.25,
-                //animation: 'noiseFlow 15s linear infinite reverse',
               }}
             />
 
@@ -871,12 +869,11 @@ const RevenuePage: React.FC = () => {
                 mixBlendMode: 'soft-light',
                 opacity: 0.3,
                 filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
-                //animation: 'noiseFlow 8s linear infinite',
               }}
             />
 
             <img
-              src={require('../assets/Images/sparkstarter.png')}
+              src="/sparkstarter.png"
               alt="Sparkstarter"
               className="relative z-10 max-w-full max-h-full object-contain"
             />
@@ -900,7 +897,6 @@ const RevenuePage: React.FC = () => {
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'multiply',
                 opacity: 0.4,
-                //animation: 'noiseFlow 20s linear infinite',
               }}
             />
 
@@ -953,7 +949,7 @@ const RevenuePage: React.FC = () => {
             />
 
             <img
-              src={require('../assets/Images/assure.png')}
+              src="/assure.png"
               alt="Assure DeFi"
               className="relative z-10 max-w-full max-h-full object-contain"
             />
@@ -1121,50 +1117,6 @@ const RevenuePage: React.FC = () => {
               }
               100% {
                 background-position: 0px 45px;
-              }
-            }
-            
-            @supports (padding-top: env(safe-area-inset-top)) {
-              .pt-safe-top {
-                padding-top: max(env(safe-area-inset-top), 1rem);
-              }
-              .pb-safe-bottom {
-                padding-bottom: max(env(safe-area-inset-bottom), 1rem);
-              }
-            }
-            
-            @supports not (padding-top: env(safe-area-inset-top)) {
-              .pt-safe-top {
-                padding-top: 1rem;
-              }
-              .pb-safe-bottom {
-                padding-bottom: 1rem;
-              }
-            }
-            
-            @media (max-width: 640px) {
-              .mobile-container {
-                min-height: 100vh;
-                min-height: 100dvh;
-              }
-              
-              .mobile-header-spacing {
-                margin-top: max(env(safe-area-inset-top, 0px), 1rem);
-                margin-bottom: 2rem;
-              }
-              
-              .mobile-content-wrapper {
-                padding-top: max(env(safe-area-inset-top, 0px), 1rem);
-                padding-bottom: max(env(safe-area-inset-bottom, 0px), 1rem);
-              }
-            }
-            
-            /* iOS Safari specific fixes */
-            @supports (-webkit-touch-callout: none) {
-              @media (max-width: 640px) {
-                .mobile-container {
-                  min-height: -webkit-fill-available;
-                }
               }
             }
           `,
