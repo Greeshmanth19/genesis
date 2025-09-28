@@ -322,7 +322,7 @@ const StatisticsPage = () => {
             {/* Desktop Learn More Button with noise effect */}
             <div className="hidden md:block relative">
               <button
-                className="relative text-white font-semibold px-6 md:px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm md:text-base w-full md:w-auto overflow-hidden"
+                className="relative text-white font-semibold px-6 md:px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm md:text-base w-full md:w-auto overflow-hidden focus:outline-none focus-visible:outline-none"
                 style={{
                   borderRadius: '90px',
                   border: '1px solid #DAE339',
@@ -330,6 +330,7 @@ const StatisticsPage = () => {
                     'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
                   boxShadow:
                     '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                  outline: 'none',
                 }}
               >
                 {/* Button Noise Overlay */}
@@ -482,7 +483,7 @@ const StatisticsPage = () => {
         <div className="flex justify-center">
           <div className="relative">
             <button
-              className="relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm w-full max-w-xs overflow-hidden"
+              className="relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm w-full max-w-xs overflow-hidden focus:outline-none focus-visible:outline-none"
               style={{
                 borderRadius: '90px',
                 border: '1px solid #DAE339',
@@ -490,6 +491,7 @@ const StatisticsPage = () => {
                   'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
                 boxShadow:
                   '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                outline: 'none',
               }}
             >
               {/* Mobile Button Noise Overlay */}
@@ -585,6 +587,27 @@ const StatisticsPage = () => {
             100% {
               background-position: 0px 40px;
             }
+          }
+          
+          /* Remove all focus outlines for buttons */
+          button:focus {
+            outline: none !important;
+            box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
+          }
+          
+          button:focus-visible {
+            outline: none !important;
+          }
+          
+          button:active {
+            outline: none !important;
+          }
+          
+          /* Ensure no border appears on click */
+          button {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+            outline: none !important;
           }
         `,
         }}

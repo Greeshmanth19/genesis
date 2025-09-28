@@ -34,7 +34,7 @@ const TouchPage: React.FC = () => {
         borderRadius: '30px',
       }}
     >
-      {/* CSS Animation for downward flowing noise effect */}
+      {/* CSS Animation for downward flowing noise effect and button focus removal */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -45,6 +45,26 @@ const TouchPage: React.FC = () => {
             100% {
               background-position: 0px 40px;
             }
+          }
+          
+          /* Remove all focus outlines for buttons */
+          button:focus {
+            outline: none !important;
+          }
+          
+          button:focus-visible {
+            outline: none !important;
+          }
+          
+          button:active {
+            outline: none !important;
+          }
+          
+          /* Ensure no border appears on click */
+          button {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+            outline: none !important;
           }
         `,
         }}
@@ -133,7 +153,7 @@ const TouchPage: React.FC = () => {
           {/* SparkStarter Icon */}
           <button
             onClick={() => handleSocialClick('SparkStarter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -155,7 +175,7 @@ const TouchPage: React.FC = () => {
           {/* Unicrypt Icon */}
           <button
             onClick={() => handleSocialClick('Unicrypt')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -177,7 +197,7 @@ const TouchPage: React.FC = () => {
           {/* Twitter/X Icon */}
           <button
             onClick={() => handleSocialClick('Twitter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -199,7 +219,7 @@ const TouchPage: React.FC = () => {
           {/* Telegram Icon */}
           <button
             onClick={() => handleSocialClick('Telegram')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -227,7 +247,7 @@ const TouchPage: React.FC = () => {
           {/* SparkStarter Icon */}
           <button
             onClick={() => handleSocialClick('SparkStarter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -249,7 +269,7 @@ const TouchPage: React.FC = () => {
           {/* Unicrypt Icon */}
           <button
             onClick={() => handleSocialClick('Unicrypt')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -271,7 +291,7 @@ const TouchPage: React.FC = () => {
           {/* Twitter/X Icon */}
           <button
             onClick={() => handleSocialClick('Twitter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -293,7 +313,7 @@ const TouchPage: React.FC = () => {
           {/* Telegram Icon */}
           <button
             onClick={() => handleSocialClick('Telegram')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3"
+            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
               <img
@@ -323,7 +343,7 @@ const TouchPage: React.FC = () => {
             {/* SparkStarter Icon */}
             <button
               onClick={() => handleSocialClick('SparkStarter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start focus:outline-none focus-visible:outline-none"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -345,7 +365,7 @@ const TouchPage: React.FC = () => {
             {/* Unicrypt Icon */}
             <button
               onClick={() => handleSocialClick('Unicrypt')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2 focus:outline-none focus-visible:outline-none"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -367,7 +387,7 @@ const TouchPage: React.FC = () => {
             {/* Twitter/X Icon */}
             <button
               onClick={() => handleSocialClick('Twitter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start focus:outline-none focus-visible:outline-none"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -389,7 +409,7 @@ const TouchPage: React.FC = () => {
             {/* Telegram Icon */}
             <button
               onClick={() => handleSocialClick('Telegram')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2"
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2 focus:outline-none focus-visible:outline-none"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
                 <img
@@ -610,10 +630,11 @@ const TouchPage: React.FC = () => {
           {/* Contact Us text - Desktop positioning */}
           <button
             onClick={() => handleSocialClick('Contact')}
-            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-105"
+            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-105 focus:outline-none focus-visible:outline-none"
             style={{
               width: '100%',
               height: '100%',
+              outline: 'none',
             }}
           >
             <h3
@@ -654,13 +675,14 @@ const TouchPage: React.FC = () => {
         {/* Mobile version - Fixed with proper width and positioning */}
         <button
           onClick={() => handleSocialClick('Contact')}
-          className="block md:hidden cursor-pointer transition-all duration-300 transform hover:scale-105 relative"
+          className="block md:hidden cursor-pointer transition-all duration-300 transform hover:scale-105 relative focus:outline-none focus-visible:outline-none"
           style={{
             width: 'calc(100vw + 20px)',
             height: '80px',
             overflow: 'visible',
             borderRadius: '0 0 0 20px',
             marginRight: '-20px',
+            outline: 'none',
           }}
         >
           {/* Outer SVG for black background shape - full width */}

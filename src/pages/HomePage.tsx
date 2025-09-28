@@ -324,7 +324,7 @@ const HomePage = () => {
           {/* CTA Button - Hidden on mobile, shown on desktop */}
           <div className="hidden lg:block relative">
             <button
-              className="relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              className="relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 overflow-hidden focus:outline-none focus-visible:outline-none"
               style={{
                 borderRadius: '90px',
                 border: '1px solid #DAE339',
@@ -332,6 +332,7 @@ const HomePage = () => {
                   'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
                 boxShadow:
                   '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                outline: 'none',
               }}
             >
               {/* Button Noise Overlay with downward flow effect */}
@@ -440,7 +441,7 @@ const HomePage = () => {
       >
         <div className="relative">
           <button
-            className="relative text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 w-full overflow-hidden"
+            className="relative text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 w-full overflow-hidden focus:outline-none focus-visible:outline-none"
             style={{
               borderRadius: '90px',
               border: '1px solid #DAE339',
@@ -448,6 +449,7 @@ const HomePage = () => {
                 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
               boxShadow:
                 '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+              outline: 'none',
             }}
           >
             {/* Mobile Button Noise Overlay with downward flow effect */}
@@ -517,6 +519,27 @@ const HomePage = () => {
               transform: translateX(-5px) translateY(10px);
               opacity: 0.45;
             }
+          }
+          
+          /* Remove all focus outlines for buttons */
+          button:focus {
+            outline: none !important;
+            box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
+          }
+          
+          button:focus-visible {
+            outline: none !important;
+          }
+          
+          button:active {
+            outline: none !important;
+          }
+          
+          /* Ensure no border appears on click */
+          button {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+            outline: none !important;
           }
         `,
         }}
