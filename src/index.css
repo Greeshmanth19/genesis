@@ -4,6 +4,55 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scroll on html and body */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure main container doesn't overflow */
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Fix for elements that might cause horizontal scroll */
+.overflow-fix {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive image fix */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* SVG responsive fix */
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Container width fixes */
+.container-fix {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Grid container fixes */
+.grid-container-fix {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family:
