@@ -1115,15 +1115,59 @@ const RevenuePage: React.FC = () => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
-          @keyframes noiseFlow {
-            0% {
-              background-position: 0px 0px;
+            @keyframes noiseFlow {
+              0% {
+                background-position: 0px 0px;
+              }
+              100% {
+                background-position: 0px 45px;
+              }
             }
-            100% {
-              background-position: 0px 45px;
+            
+            @supports (padding-top: env(safe-area-inset-top)) {
+              .pt-safe-top {
+                padding-top: max(env(safe-area-inset-top), 1rem);
+              }
+              .pb-safe-bottom {
+                padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+              }
             }
-          }
-        `,
+            
+            @supports not (padding-top: env(safe-area-inset-top)) {
+              .pt-safe-top {
+                padding-top: 1rem;
+              }
+              .pb-safe-bottom {
+                padding-bottom: 1rem;
+              }
+            }
+            
+            @media (max-width: 640px) {
+              .mobile-container {
+                min-height: 100vh;
+                min-height: 100dvh;
+              }
+              
+              .mobile-header-spacing {
+                margin-top: max(env(safe-area-inset-top, 0px), 1rem);
+                margin-bottom: 2rem;
+              }
+              
+              .mobile-content-wrapper {
+                padding-top: max(env(safe-area-inset-top, 0px), 1rem);
+                padding-bottom: max(env(safe-area-inset-bottom, 0px), 1rem);
+              }
+            }
+            
+            /* iOS Safari specific fixes */
+            @supports (-webkit-touch-callout: none) {
+              @media (max-width: 640px) {
+                .mobile-container {
+                  min-height: -webkit-fill-available;
+                }
+              }
+            }
+          `,
         }}
       />
     </div>
