@@ -220,10 +220,10 @@ const StatisticsPage = () => {
           paddingBottom: '40px',
         }}
       >
-        {/* Left Side - Statistics - Move to bottom on mobile/tablet, left on desktop */}
-        <div className="flex-1 max-w-md pt-8 lg:pt-48 order-2 lg:order-1">
+        {/* Left Side - Statistics - Bottom on mobile/tablet, left on desktop */}
+        <div className="flex-1 max-w-md pt-8 md:pt-32 lg:pt-48 order-2 lg:order-1">
           {/* Stats - Row layout on mobile/tablet, column on desktop */}
-          <div className="flex flex-row lg:flex-col space-x-4 md:space-x-6 lg:space-x-0 lg:space-y-8 xl:space-y-10 justify-between lg:justify-start">
+          <div className="flex flex-row lg:flex-col space-x-6 lg:space-x-0 lg:space-y-8 xl:space-y-10 justify-between lg:justify-start">
             {/* Total Projects */}
             <div className="flex-1 lg:flex-none text-center lg:text-left">
               <div
