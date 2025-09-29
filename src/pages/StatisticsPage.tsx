@@ -77,7 +77,7 @@ const StatisticsPage = () => {
     { name: 'Rollback', revenue: '$8,663', volume: '$530K' },
   ];
 
-  // Button style object to ensure consistency
+  // Button style object to ensure consistency - REMOVED transitions
   const buttonStyle: React.CSSProperties = {
     borderRadius: '90px',
     border: '1px solid #DAE339',
@@ -90,6 +90,8 @@ const StatisticsPage = () => {
     appearance: 'none' as any,
     WebkitTapHighlightColor: 'transparent' as any,
     touchAction: 'manipulation' as any,
+    transition: 'none',
+    transform: 'none',
   };
 
   return (
@@ -333,40 +335,41 @@ const StatisticsPage = () => {
             {/* Desktop Learn More Button with noise effect */}
             <div className="hidden md:block relative">
               <button
-                className="button-reset relative text-white font-semibold px-6 md:px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm md:text-base w-full md:w-auto overflow-hidden"
+                className="button-reset relative text-white font-semibold px-6 md:px-8 py-3 text-sm md:text-base w-full md:w-auto overflow-hidden"
                 style={buttonStyle}
+                tabIndex={-1}
               >
                 {/* Button Noise Overlay */}
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 pointer-events-none"
                   style={{
                     background: `url("${pixelatedNoiseDataUrl}")`,
                     backgroundSize: '40px 40px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
                     borderRadius: '90px',
-                    pointerEvents: 'none',
                   }}
                 />
-                <span className="relative z-10">Learn More</span>
+                <span className="relative z-10 pointer-events-none">Learn More</span>
               </button>
 
-              {/* Trailing noise effect below button */}
+              {/* Trailing noise effect below button - SMOOTH DISSOLVE */}
               <div
                 className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
                 style={{
-                  width: '120%',
-                  height: '60px',
+                  width: '140%',
+                  height: '80px',
                   background: `url("${pixelatedNoiseDataUrl}")`,
                   backgroundSize: '40px 40px',
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'multiply',
-                  filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+                  opacity: 0.6,
+                  filter: 'contrast(180%) brightness(110%) hue-rotate(10deg) blur(0.5px)',
                   maskImage:
-                    'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                    'radial-gradient(ellipse 100% 100% at 50% 0%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.45) 15%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 90%)',
                   WebkitMaskImage:
-                    'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
-                  borderRadius: '0 0 50% 50%',
+                    'radial-gradient(ellipse 100% 100% at 50% 0%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.45) 15%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 90%)',
+                  borderRadius: '0 0 60% 60%',
                 }}
               />
             </div>
@@ -485,12 +488,13 @@ const StatisticsPage = () => {
         <div className="flex justify-center">
           <div className="relative">
             <button
-              className="button-reset relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 text-sm w-full max-w-xs overflow-hidden"
+              className="button-reset relative text-white font-semibold px-8 py-3 text-sm w-full max-w-xs overflow-hidden"
               style={buttonStyle}
+              tabIndex={-1}
             >
               {/* Mobile Button Noise Overlay */}
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 pointer-events-none"
                 style={{
                   background: `url("${pixelatedNoiseDataUrl}")`,
                   backgroundSize: '35px 35px',
@@ -498,29 +502,29 @@ const StatisticsPage = () => {
                   mixBlendMode: 'hard-light',
                   filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                   borderRadius: '90px',
-                  pointerEvents: 'none',
                 }}
               />
-              <span className="relative z-10">Learn More</span>
+              <span className="relative z-10 pointer-events-none">Learn More</span>
             </button>
 
-            {/* Mobile Trailing noise effect below button */}
+            {/* Mobile Trailing noise effect below button - SMOOTH DISSOLVE */}
             <div
               className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
               style={{
-                width: '80%',
-                height: '50px',
+                width: '100%',
+                height: '70px',
                 background: `url("${pixelatedNoiseDataUrl}")`,
                 backgroundSize: '35px 35px',
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'multiply',
-                filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+                opacity: 0.5,
+                filter: 'contrast(160%) brightness(100%) hue-rotate(10deg) blur(0.3px)',
                 maskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  'radial-gradient(ellipse 90% 90% at 50% 0%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.22) 35%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 65%, rgba(0,0,0,0.01) 80%, rgba(0,0,0,0) 95%)',
                 WebkitMaskImage:
-                  'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+                  'radial-gradient(ellipse 90% 90% at 50% 0%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.22) 35%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 65%, rgba(0,0,0,0.01) 80%, rgba(0,0,0,0) 95%)',
                 animation: 'noiseFlow 8s linear infinite',
-                borderRadius: '0 0 40% 40%',
+                borderRadius: '0 0 50% 50%',
               }}
             />
           </div>
@@ -558,7 +562,7 @@ const StatisticsPage = () => {
         />
       </div>
 
-      {/* CSS Animations */}
+      {/* CSS Animations - ENHANCED with complete focus removal */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -583,7 +587,18 @@ const StatisticsPage = () => {
           }
           
           /* Complete button reset for all states */
-          .button-reset,
+          .button-reset {
+            outline: none !important;
+            border: 1px solid #DAE339 !important;
+            box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-focus-ring-color: transparent !important;
+            -moz-outline-radius: 90px !important;
+            transition: none !important;
+            transform: none !important;
+            animation: none !important;
+          }
+          
           .button-reset:focus,
           .button-reset:active,
           .button-reset:hover,
@@ -592,21 +607,40 @@ const StatisticsPage = () => {
             outline: none !important;
             border: 1px solid #DAE339 !important;
             box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-focus-ring-color: transparent !important;
-            -moz-outline-radius: 90px !important;
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
           }
           
-          /* Remove all focus indicators */
+          /* Remove ALL focus indicators and animations globally */
           button {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-focus-ring-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-focus-ring-color: transparent !important;
+            -webkit-touch-callout: none !important;
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            touch-action: manipulation !important;
+            transition: none !important;
+            animation: none !important;
+          }
+          
+          button:focus,
+          button:focus-visible,
+          button:focus-within,
+          button:active {
+            outline: none !important;
+            transition: none !important;
+            transform: none !important;
+            animation: none !important;
+          }
+          
+          /* Remove hover animations */
+          button:hover {
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
           }
           
           /* Prevent iOS zoom on double-tap */
@@ -650,6 +684,7 @@ const StatisticsPage = () => {
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            pointer-events: none;
           }
         `,
         }}
