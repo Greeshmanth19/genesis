@@ -23,7 +23,7 @@ const HomePage = () => {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-4 lg:pl-8 lg:pr-16 overflow-hidden"
+      className="relative min-h-0 lg:min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-4 lg:pl-8 lg:pr-16 overflow-hidden"
       style={{ borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px' }}
     >
       {/* Full Background Mist Layer 1 - Base layer covering entire background */}
