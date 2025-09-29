@@ -21,38 +21,34 @@ const RevenuePage = () => {
     </svg>
   `)}`;
 
-  const gradientTextStyle = {
-    background: 'linear-gradient(100.72deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    display: 'inline-block',
-    fontSize: window.innerWidth < 640 ? '14px' : window.innerWidth < 1024 ? '16px' : '18px',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    lineHeight: '90%',
-    letterSpacing: '-0.54px',
-  };
-
   return (
     <div className="relative min-h-0 lg:min-h-screen flex flex-col items-center justify-start bg-black text-white overflow-hidden">
-      {/* Header - Fixed: removed mt-20 on mobile, only md:mt-0 for desktop reset */}
-      <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
-        <div className="text-center mb-6 sm:mb-8 lg:mb-16 px-4">
+      {/* Header - Zero spacing */}
+      <div className="mt-0 sm:mt-0 md:mt-1 lg:mt-2">
+        <div className="text-center mb-0 sm:mb-1 md:mb-2 lg:mb-4 px-4">
           <p
-            className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base lg:text-lg"
-            style={gradientTextStyle}
+            className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base md:text-base lg:text-lg"
+            style={{
+              background:
+                'linear-gradient(100.72deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              display: 'inline-block',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              lineHeight: '90%',
+              letterSpacing: '-0.54px',
+            }}
           >
             Rewarding $GXN Holders,
             <br />
             Strengthening the Ecosystem
           </p>
           <h1
-            className="mb-3 sm:mb-4 lg:mb-6"
+            className="mb-3 sm:mb-4 md:mb-4 lg:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
             style={{
               color: '#FFF',
-              fontSize:
-                window.innerWidth < 640 ? '36px' : window.innerWidth < 1024 ? '48px' : '72px',
               fontStyle: 'normal',
               fontWeight: '500',
               lineHeight: '90%',
@@ -62,11 +58,9 @@ const RevenuePage = () => {
             Revenue Sharing
           </h1>
           <p
-            className="max-w-2xl mx-auto leading-relaxed px-4"
+            className="max-w-2xl mx-auto leading-relaxed px-4 text-sm sm:text-base md:text-base lg:text-lg"
             style={{
               color: '#FFF',
-              fontSize:
-                window.innerWidth < 640 ? '14px' : window.innerWidth < 1024 ? '16px' : '18px',
               fontFamily: '"Space Grotesk"',
               fontStyle: 'normal',
               fontWeight: '400',
@@ -84,8 +78,8 @@ const RevenuePage = () => {
       </div>
 
       {/* Main content container */}
-      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-8">
-        {/* Desktop Layout - Hidden on mobile */}
+      <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        {/* Desktop Layout - Hidden on mobile and tablet */}
         <div className="hidden lg:block">
           <div className="grid grid-cols-3 gap-[150px] items-start">
             {/* Left column */}
@@ -529,10 +523,10 @@ const RevenuePage = () => {
           </div>
         </div>
 
-        {/* Mobile Layout - Hidden on desktop */}
+        {/* Mobile and Tablet Layout - Shown on screens smaller than lg */}
         <div className="block lg:hidden">
-          {/* Center - Main Image for Mobile - Fixed: removed negative margin */}
-          <div className="flex justify-center items-center mb-6">
+          {/* Center - Main Image for Mobile and Tablet */}
+          <div className="flex justify-center items-center mb-6 sm:mb-8 md:mb-10">
             <div className="relative">
               {/* SVG Background Shade - Responsive */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -587,10 +581,10 @@ const RevenuePage = () => {
                 </svg>
               </div>
 
-              {/* Mobile Rough grainy surface mist effect - multiple layers like ServicesPage */}
+              {/* Mobile and Tablet Rough grainy surface mist effect - multiple layers */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div
-                  className="w-[20rem] h-[18rem] sm:w-[24rem] sm:h-[21rem] md:w-[28rem] md:h-[25rem]"
+                  className="w-[20rem] h-[18rem] sm:w-[24rem] sm:h-[21rem] md:w-[30rem] md:h-[26rem]"
                   style={{
                     background: 'linear-gradient(96.56deg, #DAE339 -10.21%, #00B935 105.8%)',
                     maskImage:
@@ -599,7 +593,7 @@ const RevenuePage = () => {
                       'radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 100%)',
                   }}
                 >
-                  {/* Mobile primary rough grainy surface mist layer */}
+                  {/* Primary rough grainy surface mist layer */}
                   <div
                     className="absolute inset-0"
                     style={{
@@ -612,7 +606,7 @@ const RevenuePage = () => {
                     }}
                   />
 
-                  {/* Mobile additional rough texture overlay */}
+                  {/* Additional rough texture overlay */}
                   <div
                     className="absolute inset-0"
                     style={{
@@ -625,7 +619,7 @@ const RevenuePage = () => {
                     }}
                   />
 
-                  {/* Mobile enhanced mist effect */}
+                  {/* Enhanced mist effect */}
                   <div
                     className="absolute inset-0"
                     style={{
@@ -639,7 +633,7 @@ const RevenuePage = () => {
                     }}
                   />
 
-                  {/* Mobile bottom rough surface mist */}
+                  {/* Bottom rough surface mist */}
                   <div
                     className="absolute"
                     style={{
@@ -662,8 +656,8 @@ const RevenuePage = () => {
                 </div>
               </div>
 
-              {/* Main logo container - Mobile responsive */}
-              <div className="relative w-[24rem] h-[20rem] sm:w-[28rem] sm:h-[24rem] md:w-[32rem] md:h-[28rem] flex items-center justify-center z-10">
+              {/* Main logo container - Responsive for mobile and tablet */}
+              <div className="relative w-[24rem] h-[20rem] sm:w-[28rem] sm:h-[24rem] md:w-[34rem] md:h-[30rem] flex items-center justify-center z-10">
                 <img
                   src={require('../assets/Images/revenueMain.png')}
                   alt="Revenue Sharing Logo"
@@ -673,12 +667,12 @@ const RevenuePage = () => {
             </div>
           </div>
 
-          {/* Mobile Content - Column Layout - Fixed: adjusted spacing */}
-          <div className="space-y-6 md:space-y-8">
+          {/* Mobile and Tablet Content - Column Layout */}
+          <div className="space-y-6 sm:space-y-7 md:space-y-8">
             {/* Transaction Tax Allocation */}
-            <div className="text-left px-4">
+            <div className="text-left px-4 sm:px-6 md:px-8">
               <h3
-                className="mb-3 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -690,7 +684,7 @@ const RevenuePage = () => {
                 Transaction Tax Allocation
               </h3>
               <p
-                className="text-sm sm:text-base md:text-lg max-w-md"
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -705,9 +699,9 @@ const RevenuePage = () => {
             </div>
 
             {/* Incubation Revenue Sharing */}
-            <div className="text-left px-4">
+            <div className="text-left px-4 sm:px-6 md:px-8">
               <h3
-                className="mb-3 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -719,7 +713,7 @@ const RevenuePage = () => {
                 Incubation Revenue Sharing
               </h3>
               <p
-                className="text-sm sm:text-base md:text-lg max-w-md"
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
                 style={{
                   color: '#FFF',
                   fontFamily: '"Space Grotesk"',
@@ -735,9 +729,9 @@ const RevenuePage = () => {
             </div>
 
             {/* Inclusive Staking */}
-            <div className="text-left px-4">
+            <div className="text-left px-4 sm:px-6 md:px-8">
               <h3
-                className="mb-3 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -749,7 +743,7 @@ const RevenuePage = () => {
                 Inclusive Staking
               </h3>
               <p
-                className="text-sm sm:text-base md:text-lg max-w-md"
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
                 style={{
                   color: '#FFF',
                   fontFamily: '"Space Grotesk"',
@@ -765,9 +759,9 @@ const RevenuePage = () => {
             </div>
 
             {/* Weekly Deposits */}
-            <div className="text-left px-4">
+            <div className="text-left px-4 sm:px-6 md:px-8">
               <h3
-                className="mb-3 text-xl sm:text-2xl"
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
                 style={{
                   color: '#FFF',
                   fontStyle: 'normal',
@@ -779,7 +773,7 @@ const RevenuePage = () => {
                 Weekly Deposits
               </h3>
               <p
-                className="text-sm sm:text-base md:text-lg max-w-md"
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
                 style={{
                   color: '#FFF',
                   fontFamily: '"Space Grotesk"',
@@ -796,18 +790,18 @@ const RevenuePage = () => {
         </div>
       </div>
 
-      {/* Our Partners Section - Fixed: adjusted top margin */}
-      <div className="w-full mt-12 lg:mt-16 mb-8 lg:mb-16">
-        <div className="text-center mb-8 lg:mb-16 px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-8">
+      {/* Our Partners Section */}
+      <div className="w-full mt-12 sm:mt-14 md:mt-16 lg:mt-16 mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-6 sm:mb-7 md:mb-8">
             Our Partners
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-7xl mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           {/* Sparkstarter Card */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -881,7 +875,7 @@ const RevenuePage = () => {
 
           {/* Assure DeFi Card */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -957,7 +951,7 @@ const RevenuePage = () => {
 
           {/* Coming Soon Card 1 */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -1025,14 +1019,14 @@ const RevenuePage = () => {
               }}
             />
 
-            <span className="relative z-10 text-gray-400 text-sm sm:text-lg lg:text-xl">
+            <span className="relative z-10 text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl">
               Coming Soon
             </span>
           </div>
 
           {/* Coming Soon Card 2 */}
           <div
-            className="relative rounded-2xl p-4 sm:p-6 lg:p-8 h-32 lg:h-40 flex items-center justify-center overflow-hidden"
+            className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden"
             style={{
               borderRadius: '16px',
               background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -1100,7 +1094,7 @@ const RevenuePage = () => {
               }}
             />
 
-            <span className="relative z-10 text-gray-400 text-sm sm:text-lg lg:text-xl">
+            <span className="relative z-10 text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl">
               Coming Soon
             </span>
           </div>
