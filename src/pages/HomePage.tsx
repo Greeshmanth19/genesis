@@ -324,16 +324,12 @@ const HomePage = () => {
           {/* CTA Button - Hidden on mobile, shown on desktop */}
           <div className="hidden lg:block relative">
             <button
-              className="relative text-white font-semibold px-8 py-3 overflow-hidden cursor-pointer"
+              className="relative text-white font-semibold px-8 py-3 overflow-hidden"
               style={{
                 borderRadius: '90px',
                 border: '1px solid #DAE339',
                 background:
                   'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-                boxShadow:
-                  '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
-                outline: 'none',
-                transition: 'none',
               }}
             >
               {/* Button Noise Overlay with downward flow effect */}
@@ -345,7 +341,6 @@ const HomePage = () => {
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'hard-light',
                   borderRadius: '90px',
-                  transform: 'translateY(2px)',
                 }}
               />
               <span className="relative z-10">Learn More</span>
@@ -366,7 +361,7 @@ const HomePage = () => {
                   'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage:
                   'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
-                animation: 'noiseFlow 8s linear infinite',
+                // animation: 'noiseFlow 8s linear infinite',
                 borderRadius: '0 0 50% 50%',
               }}
             />
