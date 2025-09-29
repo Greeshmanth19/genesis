@@ -439,7 +439,7 @@ const HomePage = () => {
       >
         <div className="relative">
           <button
-            className="relative text-white font-semibold py-3 transition-all duration-300 transform hover:scale-105 w-full overflow-hidden focus:outline-none focus-visible:outline-none"
+            className="relative text-white font-semibold py-3 w-full overflow-hidden"
             style={{
               borderRadius: '90px',
               border: '1px solid #DAE339',
@@ -459,7 +459,7 @@ const HomePage = () => {
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'hard-light',
                 borderRadius: '90px',
-                transform: 'translateY(1px)',
+                // transform: 'translateY(1px)',
               }}
             />
             <span className="relative z-10">Learn More</span>
@@ -480,7 +480,7 @@ const HomePage = () => {
                 'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage:
                 'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
-              animation: 'noiseFlow 8s linear infinite',
+              // animation: 'noiseFlow 8s linear infinite',
               borderRadius: '0 0 40% 40%',
             }}
           />
