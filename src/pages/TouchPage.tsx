@@ -618,13 +618,53 @@ const TouchPage: React.FC = () => {
                 <stop offset="51.06%" stopColor="#00B935" />
                 <stop offset="105.44%" stopColor="#DAE339" />
               </linearGradient>
+              <filter id="bottomContactShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="0"
+                  floodColor="rgba(103, 178, 51, 0.60)"
+                />
+                <feDropShadow dx="0" dy="0" stdDeviation="0" floodColor="rgba(0, 235, 0, 0.20)" />
+                <feDropShadow
+                  dx="0"
+                  dy="16"
+                  stdDeviation="15"
+                  floodColor="rgba(113, 173, 77, 0.40)"
+                />
+              </filter>
             </defs>
             <path
               d="M 520 90 L 5 90 L 95 12 L 95 12 C 100 8 110 0 125 0 L 520 0 Z"
               fill="url(#bottomContactGradient)"
+              stroke="#DAE339"
+              strokeWidth="1"
+              filter="url(#bottomContactShadow)"
+              style={{
+                boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+              }}
             />
 
             {/* Desktop Button Noise Overlay */}
+            <defs>
+              <clipPath id="desktopButtonClip">
+                <path d="M 520 90 L 5 90 L 95 12 L 95 12 C 100 8 110 0 125 0 L 520 0 Z" />
+              </clipPath>
+            </defs>
+            <g clipPath="url(#desktopButtonClip)">
+              <foreignObject x="0" y="0" width="520" height="90">
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '40px 40px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'hard-light',
+                  }}
+                />
+              </foreignObject>
+            </g>
           </svg>
 
           {/* Contact Us text - Desktop positioning */}
