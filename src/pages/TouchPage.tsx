@@ -622,8 +622,6 @@ const TouchPage: React.FC = () => {
             <path
               d="M 520 90 L 5 90 L 95 12 L 95 12 C 100 8 110 0 125 0 L 520 0 Z"
               fill="url(#bottomContactGradient)"
-              stroke="#DAE339"
-              strokeWidth="1"
               filter="url(#bottomContactShadow)"
             />
 
