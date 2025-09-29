@@ -191,12 +191,13 @@ const ServicesPage: React.FC = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative rounded-2xl p-5 flex overflow-hidden transform transition-all duration-700
+                className={`group relative rounded-2xl p-5 flex transform transition-all duration-700
                   ${isMobile ? 'min-h-[140px] items-center' : 'min-h-[280px] flex-col'}
                   ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
                   ${activeCard === index ? 'scale-105' : 'scale-100'}
                   hover:scale-105 hover:z-10`}
                 style={{
+                  overflow: 'hidden',
                   background:
                     activeCard === index
                       ? 'linear-gradient(192deg, #1A1A1A 9.1%, #252525 91.25%)'
