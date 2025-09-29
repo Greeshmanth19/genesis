@@ -324,7 +324,7 @@ const HomePage = () => {
           {/* CTA Button - Hidden on mobile, shown on desktop */}
           <div className="hidden lg:block relative">
             <button
-              className="relative text-white font-semibold px-8 py-3 transition-all duration-300 transform hover:scale-105 overflow-hidden focus:outline-none focus-visible:outline-none"
+              className="relative text-white font-semibold px-8 py-3 overflow-hidden cursor-pointer"
               style={{
                 borderRadius: '90px',
                 border: '1px solid #DAE339',
@@ -333,6 +333,7 @@ const HomePage = () => {
                 boxShadow:
                   '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
                 outline: 'none',
+                transition: 'none',
               }}
             >
               {/* Button Noise Overlay with downward flow effect */}
