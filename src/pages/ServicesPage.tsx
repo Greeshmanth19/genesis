@@ -114,7 +114,7 @@ const ServicesPage: React.FC = () => {
   return (
     <div className="min-h-0 lg:min-h-screen bg-black text-white overflow-hidden">
       {/* Hero Section */}
-      <div className="relative pt-20 pb-16 px-6 md:px-12 lg:px-24">
+      <div className="relative pt-8 pb-8 px-6 md:pt-16 md:pb-12 lg:pt-20 lg:pb-16 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between">
           <div>
             <div className="mb-4 text-sm font-medium" style={gradientTextStyle}>
