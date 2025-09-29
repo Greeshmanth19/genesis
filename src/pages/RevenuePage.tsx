@@ -35,10 +35,10 @@ const RevenuePage = () => {
   };
 
   return (
-    <div className="relative min-h-0 lg:min-h-screen flex flex-col items-center justify-start bg-black text-white overflow-hidden pt-0 md:pt-6 lg:pt-8">
-      {/* Header - No top margin on mobile */}
-      <div className="mt-[-10px]">
-        <div className="text-center mb-0 md:mb-2 lg:mb-4 px-4">
+    <div className="relative min-h-0 lg:min-h-screen flex flex-col items-center justify-start bg-black text-white overflow-hidden">
+      {/* Header - Fixed: removed mt-20 on mobile, only md:mt-0 for desktop reset */}
+      <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-16 px-4">
           <p
             className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base lg:text-lg"
             style={gradientTextStyle}
