@@ -387,9 +387,11 @@ const HomePage = () => {
                 style={{
                   zIndex: 2,
                   maskImage:
-                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
+                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%), linear-gradient(to left, transparent 0%, rgba(0,0,0,0.3) 5%, rgba(0,0,0,0.6) 10%, rgba(0,0,0,1) 20%)',
                   WebkitMaskImage:
-                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%)',
+                    'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.2) 90%, rgba(0,0,0,0) 100%), linear-gradient(to left, transparent 0%, rgba(0,0,0,0.3) 5%, rgba(0,0,0,0.6) 10%, rgba(0,0,0,1) 20%)',
+                  maskComposite: 'intersect',
+                  WebkitMaskComposite: 'source-in',
                 }}
               >
                 {/* Original bgMainShade.png */}
