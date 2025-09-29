@@ -527,9 +527,9 @@ const TouchPage: React.FC = () => {
 
       {/* Black Corner Section at Bottom Right with Contact Us Button - Now visible on all devices */}
       <div className="absolute -bottom-2 -right-1" style={{ zIndex: 10 }}>
-        {/* Desktop version */}
+        {/* Desktop/Large Desktop version */}
         <div
-          className="hidden md:block"
+          className="hidden lg:block"
           style={{ width: '550px', height: '110px', overflow: 'hidden' }}
         >
           {/* Outer SVG for black background shape */}
@@ -665,6 +665,143 @@ const TouchPage: React.FC = () => {
                 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
               // animation: 'noiseFlow 8s linear infinite',
               borderRadius: '0 0 50% 50%',
+            }}
+          />
+        </div>
+
+        {/* Tablet version - Smaller width to avoid overlap with footer text */}
+        <div
+          className="hidden md:block lg:hidden"
+          style={{ width: '350px', height: '90px', overflow: 'hidden' }}
+        >
+          {/* Outer SVG for black background shape - Tablet */}
+          <svg
+            width="350"
+            height="90"
+            viewBox="0 0 350 80"
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+            }}
+          >
+            <path d="M 350 80 L 0 80 L 60 12 L 60 12 C 65 8 75 0 90 0 L 350 0 Z" fill="#000000" />
+          </svg>
+
+          {/* Inner SVG for gradient shape with padding - Tablet */}
+          <svg
+            width="340"
+            height="85"
+            viewBox="0 0 340 75"
+            style={{
+              position: 'absolute',
+              bottom: '2px',
+              right: '3px',
+            }}
+          >
+            <defs>
+              <linearGradient
+                id="bottomContactGradientTablet"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+                gradientTransform="rotate(101)"
+              >
+                <stop offset="-3.32%" stopColor="#DAE339" />
+                <stop offset="51.06%" stopColor="#00B935" />
+                <stop offset="105.44%" stopColor="#DAE339" />
+              </linearGradient>
+              <filter id="bottomContactShadowTablet" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="0"
+                  floodColor="rgba(103, 178, 51, 0.60)"
+                />
+                <feDropShadow dx="0" dy="0" stdDeviation="0" floodColor="rgba(0, 235, 0, 0.20)" />
+                <feDropShadow
+                  dx="0"
+                  dy="12"
+                  stdDeviation="12"
+                  floodColor="rgba(113, 173, 77, 0.40)"
+                />
+              </filter>
+            </defs>
+            <path
+              d="M 340 75 L 5 75 L 55 10 L 55 10 C 60 6 70 0 85 0 L 340 0 Z"
+              fill="url(#bottomContactGradientTablet)"
+              stroke="#DAE339"
+              strokeWidth="1"
+              filter="url(#bottomContactShadowTablet)"
+              style={{
+                boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+              }}
+            />
+
+            {/* Tablet Button Noise Overlay */}
+            <defs>
+              <clipPath id="tabletButtonClip">
+                <path d="M 340 75 L 5 75 L 55 10 L 55 10 C 60 6 70 0 85 0 L 340 0 Z" />
+              </clipPath>
+            </defs>
+            <g clipPath="url(#tabletButtonClip)">
+              <foreignObject x="0" y="0" width="340" height="75">
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '38px 38px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'hard-light',
+                    transform: 'translateY(1px)',
+                  }}
+                />
+              </foreignObject>
+            </g>
+          </svg>
+
+          {/* Contact Us text - Tablet positioning */}
+          <button
+            onClick={() => handleSocialClick('Contact')}
+            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-105 focus:outline-none focus-visible:outline-none"
+            style={{
+              width: '100%',
+              height: '100%',
+              outline: 'none',
+            }}
+          >
+            <h3
+              className="relative z-10 text-3xl font-medium"
+              style={{
+                color: '#FFFFFF',
+                fontFamily: '"TT Firs Neue", sans-serif',
+                fontWeight: 500,
+                lineHeight: '90%',
+                letterSpacing: '-0.64px',
+                textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              Contact Us
+            </h3>
+          </button>
+
+          {/* Tablet Trailing noise effect below button */}
+          <div
+            className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+            style={{
+              width: '100%',
+              height: '50px',
+              background: `url("${pixelatedNoiseDataUrl}")`,
+              backgroundSize: '38px 38px',
+              backgroundRepeat: 'repeat',
+              mixBlendMode: 'multiply',
+              maskImage:
+                'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
+              borderRadius: '0 0 45% 45%',
             }}
           />
         </div>
