@@ -23,11 +23,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Layout>
-          <section id="home" className="min-h-screen">
+          <section id="home">
             <HomePage />
           </section>
 
-          <section id="services" className="min-h-screen">
+          <section id="services">
             <ServicesPage />
           </section>
 
