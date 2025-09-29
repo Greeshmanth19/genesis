@@ -111,7 +111,6 @@ const StatisticsPage = () => {
         }}
       >
         {/* Base gradient background matching HomePage genesisMain */}
-        {/* Base gradient background matching HomePage genesisMain */}
         <div
           className="absolute inset-0"
           style={{
@@ -133,7 +132,6 @@ const StatisticsPage = () => {
             backgroundRepeat: 'repeat',
             mixBlendMode: 'hard-light',
             filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
-            // animation: 'noiseFlow 8s linear infinite',
             maskImage:
               'radial-gradient(ellipse 80% 70% at 20% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 80%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
@@ -216,20 +214,20 @@ const StatisticsPage = () => {
 
       {/* Main Content Container - Compact layout */}
       <div
-        className="relative flex flex-col md:flex-row md:items-start md:justify-between px-4 md:px-8 lg:px-20"
+        className="relative flex flex-col lg:flex-row lg:items-start lg:justify-between px-4 md:px-8 lg:px-20"
         style={{
           zIndex: 8,
           paddingBottom: '40px',
         }}
       >
-        {/* Left Side - Statistics - Move to bottom on mobile */}
-        <div className="flex-1 max-w-md pt-8 md:pt-48 order-2 md:order-1">
-          {/* Stats - Row layout on mobile, column on desktop */}
-          <div className="flex flex-row md:flex-col space-x-6 md:space-x-0 md:space-y-10 justify-between md:justify-start">
+        {/* Left Side - Statistics - Move to bottom on mobile/tablet, left on desktop */}
+        <div className="flex-1 max-w-md pt-8 lg:pt-48 order-2 lg:order-1">
+          {/* Stats - Row layout on mobile/tablet, column on desktop */}
+          <div className="flex flex-row lg:flex-col space-x-4 md:space-x-6 lg:space-x-0 lg:space-y-8 xl:space-y-10 justify-between lg:justify-start">
             {/* Total Projects */}
-            <div className="flex-1 md:flex-none text-center md:text-left">
+            <div className="flex-1 lg:flex-none text-center lg:text-left">
               <div
-                className="font-medium mb-2 text-3xl md:text-7xl"
+                className="font-medium mb-2 text-3xl lg:text-7xl"
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
@@ -243,17 +241,16 @@ const StatisticsPage = () => {
               >
                 {projectsCount}
               </div>
-              <div className="text-[#000] font-medium text-xs md:text-base">
+              <div className="text-[#000] font-medium text-xs lg:text-base">
                 Total Projects
                 <br />
                 Incubated
               </div>
             </div>
-
             {/* Total Volume */}
-            <div className="flex-1 md:flex-none text-center md:text-left">
+            <div className="flex-1 lg:flex-none text-center lg:text-left">
               <div
-                className="font-medium mb-2 text-3xl md:text-7xl"
+                className="font-medium mb-2 text-3xl lg:text-7xl"
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
@@ -267,17 +264,16 @@ const StatisticsPage = () => {
               >
                 ${volumeCount.toFixed(1)} mil
               </div>
-              <div className="text-[#000] font-medium text-xs md:text-base">
+              <div className="text-[#000] font-medium text-xs lg:text-base">
                 Total Volume
                 <br />
                 Generated
               </div>
             </div>
-
             {/* Total Revenue */}
-            <div className="flex-1 md:flex-none text-center md:text-left">
+            <div className="flex-1 lg:flex-none text-center lg:text-left">
               <div
-                className="font-medium mb-2 text-3xl md:text-7xl"
+                className="font-medium mb-2 text-3xl lg:text-7xl"
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
@@ -291,7 +287,7 @@ const StatisticsPage = () => {
               >
                 ${revenueCount} k
               </div>
-              <div className="text-[#000] font-medium text-xs md:text-base">
+              <div className="text-[#000] font-medium text-xs lg:text-base">
                 Total Revenue
                 <br />
                 Generated
@@ -342,7 +338,6 @@ const StatisticsPage = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
                     borderRadius: '90px',
-                    // animation: 'noiseFlow 8s linear infinite',
                   }}
                 />
                 <span className="relative z-10">Learn More</span>
@@ -363,7 +358,6 @@ const StatisticsPage = () => {
                     'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage:
                     'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
-                  // animation: 'noiseFlow 8s linear infinite',
                   borderRadius: '0 0 50% 50%',
                 }}
               />
@@ -382,7 +376,7 @@ const StatisticsPage = () => {
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
-                  fontSize: 'clamp(16px, 2vw, 24px)', // Responsive font size
+                  fontSize: 'clamp(16px, 2vw, 24px)',
                 }}
               >
                 Project
@@ -396,7 +390,7 @@ const StatisticsPage = () => {
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
-                  fontSize: 'clamp(16px, 2vw, 24px)', // Responsive font size
+                  fontSize: 'clamp(16px, 2vw, 24px)',
                 }}
               >
                 Revenue
@@ -410,7 +404,7 @@ const StatisticsPage = () => {
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
-                  fontSize: 'clamp(16px, 2vw, 24px)', // Responsive font size
+                  fontSize: 'clamp(16px, 2vw, 24px)',
                 }}
               >
                 Volume
@@ -436,7 +430,7 @@ const StatisticsPage = () => {
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
-                      fontSize: 'clamp(12px, 1.5vw, 18px)', // Responsive font size
+                      fontSize: 'clamp(12px, 1.5vw, 18px)',
                     }}
                   >
                     {project.name}
@@ -451,7 +445,7 @@ const StatisticsPage = () => {
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
-                      fontSize: 'clamp(12px, 1.5vw, 18px)', // Responsive font size
+                      fontSize: 'clamp(12px, 1.5vw, 18px)',
                     }}
                   >
                     {project.revenue}
@@ -466,7 +460,7 @@ const StatisticsPage = () => {
                       fontWeight: 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
-                      fontSize: 'clamp(12px, 1.5vw, 18px)', // Responsive font size
+                      fontSize: 'clamp(12px, 1.5vw, 18px)',
                     }}
                   >
                     {project.volume}
@@ -504,7 +498,6 @@ const StatisticsPage = () => {
                   mixBlendMode: 'hard-light',
                   filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                   borderRadius: '90px',
-                  // animation: 'noiseFlow 8s linear infinite',
                 }}
               />
               <span className="relative z-10">Learn More</span>
@@ -556,7 +549,6 @@ const StatisticsPage = () => {
             backgroundRepeat: 'repeat',
             mixBlendMode: 'hard-light',
             filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
-            // animation: 'noiseFlow 8s linear infinite',
             maskImage:
               'radial-gradient(ellipse 40% 70% at 75% 65%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%)',
             WebkitMaskImage:
