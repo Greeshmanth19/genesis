@@ -79,7 +79,7 @@ const StatisticsPage = () => {
 
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative min-h-0 lg:min-h-screen overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #F9FEF1 0%, #E8F5E8 50%, #D8F3D8 100%)',
         borderRadius: '30px',
