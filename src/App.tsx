@@ -31,11 +31,11 @@ function App() {
             <ServicesPage />
           </section>
 
-          <section id="statistics" className="min-h-screen">
+          <section id="statistics">
             <StatisticsPage />
           </section>
 
-          <section id="revenue" className="min-h-screen">
+          <section id="revenue">
             <RevenuePage />
           </section>
 
