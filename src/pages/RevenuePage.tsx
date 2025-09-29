@@ -593,21 +593,274 @@ const RevenuePage = () => {
           </div>
         </div>
 
-        {/* Mobile and Tablet Layout remains similar but with animations */}
+        {/* Mobile and Tablet Layout - Shown on screens smaller than lg */}
         <div className="block lg:hidden">
-          {/* Mobile content with animations... keeping it simpler for brevity */}
-          <div
-            className={`flex justify-center items-center mb-6 sm:mb-8 md:mb-10 transition-all duration-700 ${
-              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-            }`}
-          >
-            {/* Mobile image and content sections remain the same structure but with added animation classes */}
-            {/* ... existing mobile content ... */}
+          {/* Center - Main Image for Mobile and Tablet */}
+          <div className="flex justify-center items-center mb-6 sm:mb-8 md:mb-10">
+            <div className="relative">
+              {/* SVG Background Shade - Responsive */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="500"
+                  height="350"
+                  viewBox="0 0 797 564"
+                  fill="none"
+                  className="w-full h-full opacity-60"
+                >
+                  <g filter="url(#filter0_f_33_444_mobile)">
+                    <path
+                      d="M200.626 293.929C208.152 230.577 302.682 189.727 411.763 202.687C520.843 215.647 603.169 277.51 595.642 340.862C588.115 404.214 495.115 312.945 386.034 299.985C276.954 287.025 193.099 357.281 200.626 293.929Z"
+                      fill="url(#paint0_linear_33_444_mobile)"
+                    />
+                  </g>
+                  <defs>
+                    <filter
+                      id="filter0_f_33_444_mobile"
+                      x="0.155792"
+                      y="0.287842"
+                      width="795.964"
+                      height="562.739"
+                      filterUnits="userSpaceOnUse"
+                      colorInterpolationFilters="sRGB"
+                    >
+                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="BackgroundImageFix"
+                        result="shape"
+                      />
+                      <feGaussianBlur
+                        stdDeviation="100"
+                        result="effect1_foregroundBlur_33_444_mobile"
+                      />
+                    </filter>
+                    <linearGradient
+                      id="paint0_linear_33_444_mobile"
+                      x1="576.335"
+                      y1="503.366"
+                      x2="132.366"
+                      y2="297.941"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#DCE35B" />
+                      <stop offset="1" stopColor="#45B649" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              {/* Mobile and Tablet Rough grainy surface mist effect - multiple layers */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div
+                  className="w-[20rem] h-[18rem] sm:w-[24rem] sm:h-[21rem] md:w-[30rem] md:h-[26rem]"
+                  style={{
+                    background: 'linear-gradient(96.56deg, #DAE339 -10.21%, #00B935 105.8%)',
+                    maskImage:
+                      'radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 100%)',
+                    WebkitMaskImage:
+                      'radial-gradient(ellipse 45% 55% at 50% 50%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 100%)',
+                  }}
+                >
+                  {/* Primary rough grainy surface mist layer */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '30px 30px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'multiply',
+                      opacity: 0.4,
+                      animation: 'noiseFlow 20s linear infinite',
+                    }}
+                  />
+
+                  {/* Additional rough texture overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '20px 20px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'overlay',
+                      opacity: 0.25,
+                      animation: 'noiseFlow 15s linear infinite reverse',
+                    }}
+                  />
+
+                  {/* Enhanced mist effect */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '90px 90px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'soft-light',
+                      opacity: 0.3,
+                      filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
+                      animation: 'noiseFlow 8s linear infinite',
+                    }}
+                  />
+
+                  {/* Bottom rough surface mist */}
+                  <div
+                    className="absolute"
+                    style={{
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '70%',
+                      background: `url("${pixelatedNoiseDataUrl}")`,
+                      backgroundSize: '25px 25px',
+                      backgroundRepeat: 'repeat',
+                      mixBlendMode: 'screen',
+                      opacity: 0.18,
+                      maskImage:
+                        'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                      WebkitMaskImage:
+                        'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
+                      animation: 'noiseFlow 12s linear infinite',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Main logo container - Responsive for mobile and tablet */}
+              <div className="relative w-[24rem] h-[20rem] sm:w-[28rem] sm:h-[24rem] md:w-[34rem] md:h-[30rem] flex items-center justify-center z-10">
+                <img
+                  src={require('../assets/Images/revenueMain.png')}
+                  alt="Revenue Sharing Logo"
+                  className="w-full h-full object-contain filter drop-shadow-2xl"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile and Tablet Content - Column Layout */}
+          <div className="space-y-6 sm:space-y-7 md:space-y-8">
+            {/* Transaction Tax Allocation */}
+            <div className="text-left px-4 sm:px-6 md:px-8">
+              <h3
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
+                style={{
+                  color: '#FFF',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '90%',
+                  letterSpacing: '-0.72px',
+                }}
+              >
+                Transaction Tax Allocation
+              </h3>
+              <p
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
+                style={{
+                  color: '#FFF',
+                  fontStyle: 'normal',
+                  fontWeight: '400',
+                  lineHeight: '120%',
+                  letterSpacing: '-0.54px',
+                }}
+              >
+                A 5% tax on buys/sells, with 20% (1% of total) flowing directly into the staking
+                pool.
+              </p>
+            </div>
+
+            {/* Incubation Revenue Sharing */}
+            <div className="text-left px-4 sm:px-6 md:px-8">
+              <h3
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
+                style={{
+                  color: '#FFF',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '90%',
+                  letterSpacing: '-0.72px',
+                }}
+              >
+                Incubation Revenue Sharing
+              </h3>
+              <p
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
+                style={{
+                  color: '#FFF',
+                  fontFamily: '"Space Grotesk"',
+                  fontStyle: 'normal',
+                  fontWeight: '400',
+                  lineHeight: '120%',
+                  letterSpacing: '-0.54px',
+                }}
+              >
+                70% of revenue from incubated projects is added to the staking pool, boosting
+                rewards.
+              </p>
+            </div>
+
+            {/* Inclusive Staking */}
+            <div className="text-left px-4 sm:px-6 md:px-8">
+              <h3
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
+                style={{
+                  color: '#FFF',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '90%',
+                  letterSpacing: '-0.72px',
+                }}
+              >
+                Inclusive Staking
+              </h3>
+              <p
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
+                style={{
+                  color: '#FFF',
+                  fontFamily: '"Space Grotesk"',
+                  fontStyle: 'normal',
+                  fontWeight: '400',
+                  lineHeight: '120%',
+                  letterSpacing: '-0.54px',
+                }}
+              >
+                No minimum stake required. Lock tokens for 30+ days and earn ETH rewards from day
+                one. The more you stake, the more you earn.
+              </p>
+            </div>
+
+            {/* Weekly Deposits */}
+            <div className="text-left px-4 sm:px-6 md:px-8">
+              <h3
+                className="mb-3 text-xl sm:text-2xl md:text-2xl"
+                style={{
+                  color: '#FFF',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: '90%',
+                  letterSpacing: '-0.72px',
+                }}
+              >
+                Weekly Deposits
+              </h3>
+              <p
+                className="text-sm sm:text-base md:text-lg max-w-md md:max-w-lg"
+                style={{
+                  color: '#FFF',
+                  fontFamily: '"Space Grotesk"',
+                  fontStyle: 'normal',
+                  fontWeight: '400',
+                  lineHeight: '120%',
+                  letterSpacing: '-0.54px',
+                }}
+              >
+                New funds are added every 7 days, ensuring consistent growth of the pool.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Our Partners Section with horizontal scroll */}
+      {/* Our Partners Section with staggered entrance */}
       <div
         className={`w-full mt-12 sm:mt-14 md:mt-16 lg:mt-16 mb-8 sm:mb-10 md:mb-12 lg:mb-16 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -620,105 +873,97 @@ const RevenuePage = () => {
           </h2>
         </div>
 
-        {/* Scrolling container with fade edges */}
-        <div className="relative max-w-7xl mx-auto">
-          {/* Left fade overlay */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 md:w-40 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-
-          {/* Right fade overlay */}
-          <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 md:w-40 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
-
-          {/* Scrolling content - duplicated for seamless loop */}
-          <div className="overflow-hidden">
-            <div className="flex animate-scroll-partners">
-              {/* First set of partners */}
-              {[
-                { name: 'Sparkstarter', image: require('../assets/Images/sparkstarter.png') },
-                { name: 'Assure DeFi', image: require('../assets/Images/assure.png') },
-                { name: 'Coming Soon', image: null },
-                { name: 'Coming Soon', image: null },
-              ].map((partner, index) => (
+        <div className="relative overflow-hidden max-w-7xl mx-auto">
+          <div className="flex animate-scroll-partners">
+            {/* First set of partners */}
+            {[
+              { name: 'Sparkstarter', image: require('../assets/Images/sparkstarter.png') },
+              { name: 'Assure DeFi', image: require('../assets/Images/assure.png') },
+              { name: 'Coming Soon', image: null },
+              { name: 'Coming Soon', image: null },
+            ].map((partner, index) => (
+              <div
+                key={`first-${index}`}
+                className={`relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden transition-all duration-500 hover:scale-105 flex-shrink-0 mx-2 sm:mx-3 md:mx-4 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                }`}
+                style={{
+                  borderRadius: '16px',
+                  background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  animationDelay: `${0.8 + index * 0.1}s`,
+                  width: '280px',
+                }}
+              >
+                {/* Animated noise layers for partner cards */}
                 <div
-                  key={`first-${index}`}
-                  className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden transition-all duration-500 hover:scale-105 flex-shrink-0 mx-2 sm:mx-3 md:mx-4"
+                  className="absolute inset-0 pointer-events-none animate-partner-noise"
                   style={{
-                    width: 'clamp(200px, 25vw, 300px)',
-                    borderRadius: '16px',
-                    background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '40px 40px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'multiply',
+                    opacity: 0.4,
+                    animationDelay: `${index * 0.5}s`,
                   }}
-                >
-                  {/* Animated noise layers for partner cards */}
-                  <div
-                    className="absolute inset-0 pointer-events-none animate-partner-noise"
-                    style={{
-                      background: `url("${pixelatedNoiseDataUrl}")`,
-                      backgroundSize: '40px 40px',
-                      backgroundRepeat: 'repeat',
-                      mixBlendMode: 'multiply',
-                      opacity: 0.4,
-                      animationDelay: `${index * 0.5}s`,
-                    }}
+                />
+
+                {partner.image ? (
+                  <img
+                    src={partner.image}
+                    alt={partner.name}
+                    className="relative z-10 max-w-full max-h-full object-contain"
                   />
-
-                  {partner.image ? (
-                    <img
-                      src={partner.image}
-                      alt={partner.name}
-                      className="relative z-10 max-w-full max-h-full object-contain"
-                    />
-                  ) : (
-                    <span className="relative z-10 text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl animate-pulse">
-                      Coming Soon
-                    </span>
-                  )}
-                </div>
-              ))}
-
-              {/* Duplicate set for seamless loop */}
-              {[
-                { name: 'Sparkstarter', image: require('../assets/Images/sparkstarter.png') },
-                { name: 'Assure DeFi', image: require('../assets/Images/assure.png') },
-                { name: 'Coming Soon', image: null },
-                { name: 'Coming Soon', image: null },
-              ].map((partner, index) => (
+                ) : (
+                  <span className="relative z-10 text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl animate-pulse">
+                    Coming Soon
+                  </span>
+                )}
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {[
+              { name: 'Sparkstarter', image: require('../assets/Images/sparkstarter.png') },
+              { name: 'Assure DeFi', image: require('../assets/Images/assure.png') },
+              { name: 'Coming Soon', image: null },
+              { name: 'Coming Soon', image: null },
+            ].map((partner, index) => (
+              <div
+                key={`second-${index}`}
+                className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden transition-all duration-500 hover:scale-105 flex-shrink-0 mx-2 sm:mx-3 md:mx-4"
+                style={{
+                  borderRadius: '16px',
+                  background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  width: '280px',
+                }}
+              >
+                {/* Animated noise layers for partner cards */}
                 <div
-                  key={`second-${index}`}
-                  className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden transition-all duration-500 hover:scale-105 flex-shrink-0 mx-2 sm:mx-3 md:mx-4"
+                  className="absolute inset-0 pointer-events-none animate-partner-noise"
                   style={{
-                    width: 'clamp(200px, 25vw, 300px)',
-                    borderRadius: '16px',
-                    background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: `url("${pixelatedNoiseDataUrl}")`,
+                    backgroundSize: '40px 40px',
+                    backgroundRepeat: 'repeat',
+                    mixBlendMode: 'multiply',
+                    opacity: 0.4,
+                    animationDelay: `${index * 0.5}s`,
                   }}
-                >
-                  {/* Animated noise layers for partner cards */}
-                  <div
-                    className="absolute inset-0 pointer-events-none animate-partner-noise"
-                    style={{
-                      background: `url("${pixelatedNoiseDataUrl}")`,
-                      backgroundSize: '40px 40px',
-                      backgroundRepeat: 'repeat',
-                      mixBlendMode: 'multiply',
-                      opacity: 0.4,
-                      animationDelay: `${index * 0.5}s`,
-                    }}
-                  />
+                />
 
-                  {partner.image ? (
-                    <img
-                      src={partner.image}
-                      alt={partner.name}
-                      className="relative z-10 max-w-full max-h-full object-contain"
-                    />
-                  ) : (
-                    <span className="relative z-10 text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl animate-pulse">
-                      Coming Soon
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
+                {partner.image ? (
+                  <img
+                    src={partner.image}
+                    alt={partner.name}
+                    className="relative z-10 max-w-full max-h-full object-contain"
+                  />
+                ) : (
+                  <span className="relative z-10 text-gray-400 text-sm sm:text-base md:text-lg lg:text-xl animate-pulse">
+                    Coming Soon
+                  </span>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -738,82 +983,6 @@ const RevenuePage = () => {
 
             .animate-gradient-slide {
               animation: gradient-slide 3s ease-in-out infinite;
-            }
-
-            @keyframes noiseFlow {
-              0% {
-                background-position: 0px 0px;
-              }
-              100% {
-                background-position: 0px 45px;
-              }
-            }
-
-            @keyframes scroll-partners {
-              0% {
-                transform: translateX(0);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
-            }
-
-            .animate-scroll-partners {
-              animation: scroll-partners 30s linear infinite;
-            }
-
-            .animate-scroll-partners:hover {
-              animation-play-state: paused;
-            }@keyframes noiseFlow {
-              0% {
-                background-position: 0px 0px;
-              }
-              100% {
-                background-position: 0px 45px;
-              }
-            }
-
-            @keyframes scroll-partners {
-              0% {
-                transform: translateX(-50%);
-              }
-              100% {
-                transform: translateX(0);
-              }
-            }
-
-            .animate-scroll-partners {
-              animation: scroll-partners 30s linear infinite;
-            }
-
-            .animate-scroll-partners:hover {
-              animation-play-state: paused;
-            }
-
-            @keyframes noiseFlow {
-              0% {
-                background-position: 0px 0px;
-              }
-              100% {
-                background-position: 0px 45px;
-              }
-            }
-
-            @keyframes scroll-partners {
-              0% {
-                transform: translateX(0);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
-            }
-
-            .animate-scroll-partners {
-              animation: scroll-partners 30s linear infinite;
-            }
-
-            .animate-scroll-partners:hover {
-              animation-play-state: paused;
             }
 
             @keyframes title-reveal {
@@ -870,6 +1039,32 @@ const RevenuePage = () => {
               75% {
                 transform: rotate(-2deg) scale(1.02);
               }
+            }
+
+            @keyframes noiseFlow {
+              0% {
+                background-position: 0px 0px;
+              }
+              100% {
+                background-position: 0px 45px;
+              }
+            }
+
+            @keyframes scroll-partners {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(-50%);
+              }
+            }
+
+            .animate-scroll-partners {
+              animation: scroll-partners 30s linear infinite;
+            }
+
+            .animate-scroll-partners:hover {
+              animation-play-state: paused;
             }
 
             .animate-logo-rotate {
