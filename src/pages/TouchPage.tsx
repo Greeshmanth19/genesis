@@ -34,37 +34,70 @@ const TouchPage: React.FC = () => {
         borderRadius: '30px',
       }}
     >
-      {/* CSS Animation for downward flowing noise effect and button focus removal */}
+      {/* Enhanced CSS for complete focus/animation removal */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
-          @keyframes noiseFlow {
-            0% {
-              background-position: 0px 0px;
-            }
-            100% {
-              background-position: 0px 40px;
-            }
-          }
-          
-          /* Remove all focus outlines for buttons */
-          button:focus {
-            outline: none !important;
-          }
-          
-          button:focus-visible {
-            outline: none !important;
-          }
-          
-          button:active {
-            outline: none !important;
-          }
-          
-          /* Ensure no border appears on click */
+          /* Remove ALL focus indicators and animations */
           button {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-focus-ring-color: transparent;
             outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-touch-callout: none !important;
+            -webkit-user-select: none !important;
+            user-select: none !important;
+            transition: none !important;
+            animation: none !important;
+          }
+          
+          button:focus,
+          button:focus-visible,
+          button:focus-within,
+          button:active,
+          button:hover {
+            outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            transform: none !important;
+            transition: none !important;
+            animation: none !important;
+          }
+          
+          button * {
+            outline: none !important;
+            border: none !important;
+            transition: none !important;
+            animation: none !important;
+          }
+          
+          /* Remove focus from all interactive elements */
+          a, button, input, select, textarea, [tabindex] {
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+          }
+          
+          /* Disable all animations on buttons */
+          button, button * {
+            animation: none !important;
+            transition: none !important;
+          }
+          
+          /* Ensure no hover effects create borders */
+          button:hover {
+            background: transparent !important;
+            transform: none !important;
+          }
+          
+          /* Remove any default button styling */
+          button {
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
           }
         `,
         }}
@@ -153,9 +186,10 @@ const TouchPage: React.FC = () => {
           {/* SparkStarter Icon */}
           <button
             onClick={() => handleSocialClick('SparkStarter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
+            className="flex items-center gap-4"
+            tabIndex={-1}
           >
-            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
               <img
                 src={require('../assets/Images/icon1.png')}
                 alt="SparkStarter"
@@ -163,7 +197,7 @@ const TouchPage: React.FC = () => {
               />
             </div>
             <span
-              className="text-black font-medium text-xl"
+              className="text-black font-medium text-xl pointer-events-none"
               style={{
                 fontFamily: '"Space Grotesk", sans-serif',
               }}
@@ -175,9 +209,10 @@ const TouchPage: React.FC = () => {
           {/* Unicrypt Icon */}
           <button
             onClick={() => handleSocialClick('Unicrypt')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
+            className="flex items-center gap-4"
+            tabIndex={-1}
           >
-            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
               <img
                 src={require('../assets/Images/icon2.png')}
                 alt="Unicrypt"
@@ -185,7 +220,7 @@ const TouchPage: React.FC = () => {
               />
             </div>
             <span
-              className="text-black font-medium text-xl"
+              className="text-black font-medium text-xl pointer-events-none"
               style={{
                 fontFamily: '"Space Grotesk", sans-serif',
               }}
@@ -197,9 +232,10 @@ const TouchPage: React.FC = () => {
           {/* Twitter/X Icon */}
           <button
             onClick={() => handleSocialClick('Twitter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
+            className="flex items-center gap-4"
+            tabIndex={-1}
           >
-            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
               <img
                 src={require('../assets/Images/icon3.png')}
                 alt="Twitter/X"
@@ -207,7 +243,7 @@ const TouchPage: React.FC = () => {
               />
             </div>
             <span
-              className="text-black font-medium text-xl"
+              className="text-black font-medium text-xl pointer-events-none"
               style={{
                 fontFamily: '"Space Grotesk", sans-serif',
               }}
@@ -219,9 +255,10 @@ const TouchPage: React.FC = () => {
           {/* Telegram Icon */}
           <button
             onClick={() => handleSocialClick('Telegram')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-4 focus:outline-none focus-visible:outline-none"
+            className="flex items-center gap-4"
+            tabIndex={-1}
           >
-            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
               <img
                 src={require('../assets/Images/icon4.png')}
                 alt="Telegram"
@@ -229,7 +266,7 @@ const TouchPage: React.FC = () => {
               />
             </div>
             <span
-              className="text-black font-medium text-xl"
+              className="text-black font-medium text-xl pointer-events-none"
               style={{
                 fontFamily: '"Space Grotesk", sans-serif',
               }}
@@ -249,9 +286,10 @@ const TouchPage: React.FC = () => {
             {/* SparkStarter Icon */}
             <button
               onClick={() => handleSocialClick('SparkStarter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-3"
+              tabIndex={-1}
             >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon1.png')}
                   alt="SparkStarter"
@@ -259,7 +297,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-lg"
+                className="text-black font-medium text-lg pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -271,9 +309,10 @@ const TouchPage: React.FC = () => {
             {/* Unicrypt Icon */}
             <button
               onClick={() => handleSocialClick('Unicrypt')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-3"
+              tabIndex={-1}
             >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon2.png')}
                   alt="Unicrypt"
@@ -281,7 +320,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-lg"
+                className="text-black font-medium text-lg pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -293,9 +332,10 @@ const TouchPage: React.FC = () => {
             {/* Twitter/X Icon */}
             <button
               onClick={() => handleSocialClick('Twitter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-3"
+              tabIndex={-1}
             >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon3.png')}
                   alt="Twitter/X"
@@ -303,7 +343,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-lg"
+                className="text-black font-medium text-lg pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -315,9 +355,10 @@ const TouchPage: React.FC = () => {
             {/* Telegram Icon */}
             <button
               onClick={() => handleSocialClick('Telegram')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-3"
+              tabIndex={-1}
             >
-              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon4.png')}
                   alt="Telegram"
@@ -325,7 +366,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-lg"
+                className="text-black font-medium text-lg pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -340,9 +381,10 @@ const TouchPage: React.FC = () => {
             {/* SparkStarter Icon */}
             <button
               onClick={() => handleSocialClick('SparkStarter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-2 justify-start"
+              tabIndex={-1}
             >
-              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon1.png')}
                   alt="SparkStarter"
@@ -350,7 +392,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-sm"
+                className="text-black font-medium text-sm pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -362,9 +404,10 @@ const TouchPage: React.FC = () => {
             {/* Unicrypt Icon */}
             <button
               onClick={() => handleSocialClick('Unicrypt')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2 focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-2 justify-end pr-2"
+              tabIndex={-1}
             >
-              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon2.png')}
                   alt="Unicrypt"
@@ -372,7 +415,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-sm"
+                className="text-black font-medium text-sm pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -384,9 +427,10 @@ const TouchPage: React.FC = () => {
             {/* Twitter/X Icon */}
             <button
               onClick={() => handleSocialClick('Twitter')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-start focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-2 justify-start"
+              tabIndex={-1}
             >
-              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon3.png')}
                   alt="Twitter/X"
@@ -394,7 +438,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-sm"
+                className="text-black font-medium text-sm pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -406,9 +450,10 @@ const TouchPage: React.FC = () => {
             {/* Telegram Icon */}
             <button
               onClick={() => handleSocialClick('Telegram')}
-              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-2 justify-end pr-2 focus:outline-none focus-visible:outline-none"
+              className="flex items-center gap-2 justify-end pr-2"
+              tabIndex={-1}
             >
-              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden pointer-events-none">
                 <img
                   src={require('../assets/Images/icon4.png')}
                   alt="Telegram"
@@ -416,7 +461,7 @@ const TouchPage: React.FC = () => {
                 />
               </div>
               <span
-                className="text-black font-medium text-sm"
+                className="text-black font-medium text-sm pointer-events-none"
                 style={{
                   fontFamily: '"Space Grotesk", sans-serif',
                 }}
@@ -600,7 +645,7 @@ const TouchPage: React.FC = () => {
               }}
             />
 
-            {/* Desktop Button Noise Overlay with downward flow effect */}
+            {/* Desktop Button Noise Overlay */}
             <defs>
               <clipPath id="desktopButtonClip">
                 <path d="M 520 90 L 5 90 L 95 12 L 95 12 C 100 8 110 0 125 0 L 520 0 Z" />
@@ -616,8 +661,6 @@ const TouchPage: React.FC = () => {
                     backgroundSize: '40px 40px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
-                    transform: 'translateY(2px)',
-                    // animation: 'noiseFlow 8s linear infinite',
                   }}
                 />
               </foreignObject>
@@ -627,15 +670,18 @@ const TouchPage: React.FC = () => {
           {/* Contact Us text - Desktop positioning */}
           <button
             onClick={() => handleSocialClick('Contact')}
-            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-105 focus:outline-none focus-visible:outline-none"
+            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer"
+            tabIndex={-1}
             style={{
               width: '100%',
               height: '100%',
               outline: 'none',
+              border: 'none',
+              background: 'transparent',
             }}
           >
             <h3
-              className="relative z-10 text-4xl font-medium"
+              className="relative z-10 text-4xl font-medium pointer-events-none"
               style={{
                 color: '#FFFFFF',
                 fontFamily: '"TT Firs Neue", sans-serif',
@@ -663,7 +709,6 @@ const TouchPage: React.FC = () => {
                 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
-              // animation: 'noiseFlow 8s linear infinite',
               borderRadius: '0 0 50% 50%',
             }}
           />
@@ -755,7 +800,6 @@ const TouchPage: React.FC = () => {
                     backgroundSize: '38px 38px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
-                    transform: 'translateY(1px)',
                   }}
                 />
               </foreignObject>
@@ -765,15 +809,18 @@ const TouchPage: React.FC = () => {
           {/* Contact Us text - Tablet positioning */}
           <button
             onClick={() => handleSocialClick('Contact')}
-            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer transition-all duration-300 transform hover:scale-105 focus:outline-none focus-visible:outline-none"
+            className="absolute inset-0 text-white flex flex-col items-center justify-center cursor-pointer"
+            tabIndex={-1}
             style={{
               width: '100%',
               height: '100%',
               outline: 'none',
+              border: 'none',
+              background: 'transparent',
             }}
           >
             <h3
-              className="relative z-10 text-3xl font-medium"
+              className="relative z-10 text-3xl font-medium pointer-events-none"
               style={{
                 color: '#FFFFFF',
                 fontFamily: '"TT Firs Neue", sans-serif',
@@ -809,7 +856,8 @@ const TouchPage: React.FC = () => {
         {/* Mobile version - Fixed with proper width and positioning */}
         <button
           onClick={() => handleSocialClick('Contact')}
-          className="block md:hidden cursor-pointer transition-all duration-300 transform hover:scale-105 relative focus:outline-none focus-visible:outline-none"
+          className="block md:hidden cursor-pointer relative"
+          tabIndex={-1}
           style={{
             width: 'calc(100vw + 20px)',
             height: '80px',
@@ -817,6 +865,8 @@ const TouchPage: React.FC = () => {
             borderRadius: '0 0 0 20px',
             marginRight: '-20px',
             outline: 'none',
+            border: 'none',
+            background: 'transparent',
           }}
         >
           {/* Outer SVG for black background shape - full width */}
@@ -888,7 +938,7 @@ const TouchPage: React.FC = () => {
               filter="url(#bottomContactShadowMobile)"
             />
 
-            {/* Mobile Button Noise Overlay with downward flow effect */}
+            {/* Mobile Button Noise Overlay */}
             <g clipPath="url(#mobileButtonClip)">
               <foreignObject x="0" y="0" width="410" height="70">
                 <div
@@ -899,8 +949,6 @@ const TouchPage: React.FC = () => {
                     backgroundSize: '35px 35px',
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
-                    transform: 'translateY(1px)',
-                    // animation: 'noiseFlow 8s linear infinite',
                   }}
                 />
               </foreignObject>
@@ -909,7 +957,7 @@ const TouchPage: React.FC = () => {
 
           {/* Contact Us text - Mobile positioning */}
           <div
-            className="absolute inset-0 text-white flex flex-col items-center justify-center"
+            className="absolute inset-0 text-white flex flex-col items-center justify-center pointer-events-none"
             style={{
               width: '100%',
               height: '100%',
@@ -945,7 +993,6 @@ const TouchPage: React.FC = () => {
                 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
               WebkitMaskImage:
                 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0) 100%)',
-              // animation: 'noiseFlow 8s linear infinite',
               borderRadius: '0 0 40% 40%',
             }}
           />
