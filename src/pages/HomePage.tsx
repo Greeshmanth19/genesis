@@ -23,8 +23,12 @@ const HomePage = () => {
 
   return (
     <div
-      className="relative min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-4 lg:pl-8 lg:pr-16 overflow-hidden"
-      style={{ borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px' }}
+      className="relative flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#F9FEF1] to-[#E8F5E8] px-4 lg:pl-8 lg:pr-16 overflow-hidden"
+      style={{
+        borderBottomLeftRadius: '30px',
+        borderBottomRightRadius: '30px',
+        minHeight: 'fit-content',
+      }}
     >
       {/* Full Background Mist Layer 1 - Base layer covering entire background */}
       <div
@@ -428,7 +432,7 @@ const HomePage = () => {
               <img
                 src={require('../assets/Images/genesisMain.png')}
                 alt="Genesis Logo"
-                className="relative object-contain w-80 h-80 lg:w-[810px] lg:h-[810px] max-w-none max-h-none"
+                className="relative object-contain w-[450px] h-[450px] lg:w-[810px] lg:h-[810px] max-w-none max-h-none"
                 style={{ zIndex: 10 }}
               />
             </div>
