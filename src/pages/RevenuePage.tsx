@@ -36,8 +36,8 @@ const RevenuePage = () => {
 
   return (
     <div className="relative min-h-0 lg:min-h-screen flex flex-col items-center justify-start bg-black text-white overflow-hidden">
-      {/* Header - Fixed: removed mt-20 on mobile, only md:mt-0 for desktop reset */}
-      <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
+      {/* Header - Fixed top spacing */}
+      <div className="mt-2 sm:mt-6 md:mt-0 lg:mt-12">
         <div className="text-center mb-6 sm:mb-8 lg:mb-16 px-4">
           <p
             className="max-w-2xl mx-auto leading-relaxed mb-2 text-sm sm:text-base lg:text-lg"
@@ -531,7 +531,7 @@ const RevenuePage = () => {
 
         {/* Mobile Layout - Hidden on desktop */}
         <div className="block lg:hidden">
-          {/* Center - Main Image for Mobile - Fixed: removed negative margin */}
+          {/* Center - Main Image for Mobile */}
           <div className="flex justify-center items-center mb-6">
             <div className="relative">
               {/* SVG Background Shade - Responsive */}
@@ -673,7 +673,7 @@ const RevenuePage = () => {
             </div>
           </div>
 
-          {/* Mobile Content - Column Layout - Fixed: adjusted spacing */}
+          {/* Mobile Content - Column Layout */}
           <div className="space-y-6 md:space-y-8">
             {/* Transaction Tax Allocation */}
             <div className="text-left px-4">
