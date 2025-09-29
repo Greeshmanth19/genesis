@@ -330,17 +330,21 @@ const HomePage = () => {
                 border: '1px solid #DAE339',
                 background:
                   'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                boxShadow:
+                  '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                outline: 'none',
               }}
             >
               {/* Button Noise Overlay with downward flow effect */}
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 pointer-events-none"
                 style={{
                   background: `url("${pixelatedNoiseDataUrl}")`,
                   backgroundSize: '40px 40px',
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'hard-light',
                   borderRadius: '90px',
+                  transform: 'translateY(2px)',
                 }}
               />
               <span className="relative z-10">Learn More</span>
@@ -361,7 +365,7 @@ const HomePage = () => {
                   'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage:
                   'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
-                // animation: 'noiseFlow 8s linear infinite',
+                animation: 'noiseFlow 8s linear infinite',
                 borderRadius: '0 0 50% 50%',
               }}
             />
@@ -437,53 +441,57 @@ const HomePage = () => {
         className="relative lg:hidden block order-3 w-full -mt-8 mb-4 px-4"
         style={{ zIndex: 10 }}
       >
-        <div className="relative">
-          <button
-            className="relative text-white font-semibold py-3 w-full overflow-hidden"
-            style={{
-              borderRadius: '90px',
-              border: '1px solid #DAE339',
-              background:
-                'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-              boxShadow:
-                '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
-              outline: 'none',
-            }}
-          >
-            {/* Mobile Button Noise Overlay with downward flow effect */}
-            <div
-              className="absolute inset-0"
+        {/* Mobile CTA Button - Full width on mobile - FIXED: Adjusted padding */}
+        <div
+          className="relative lg:hidden block order-3 w-full -mt-8 mb-4 px-4"
+          style={{ zIndex: 10 }}
+        >
+          <div className="relative">
+            <button
+              className="relative text-white font-semibold py-3 w-full overflow-hidden"
               style={{
+                borderRadius: '90px',
+                border: '1px solid #DAE339',
+                background:
+                  'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                boxShadow:
+                  '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                outline: 'none',
+              }}
+            >
+              {/* Mobile Button Noise Overlay with downward flow effect */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '35px 35px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'hard-light',
+                  borderRadius: '90px',
+                }}
+              />
+              <span className="relative z-10">Learn More</span>
+            </button>
+
+            {/* Mobile Trailing noise effect below button */}
+            <div
+              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+              style={{
+                width: '80%',
+                height: '50px',
                 background: `url("${pixelatedNoiseDataUrl}")`,
                 backgroundSize: '35px 35px',
                 backgroundRepeat: 'repeat',
-                mixBlendMode: 'hard-light',
-                borderRadius: '90px',
-                // transform: 'translateY(1px)',
+                mixBlendMode: 'multiply',
+                filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+                maskImage:
+                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage:
+                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
+                borderRadius: '0 0 40% 40%',
               }}
             />
-            <span className="relative z-10">Learn More</span>
-          </button>
-
-          {/* Mobile Trailing noise effect below button */}
-          <div
-            className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
-            style={{
-              width: '80%',
-              height: '50px',
-              background: `url("${pixelatedNoiseDataUrl}")`,
-              backgroundSize: '35px 35px',
-              backgroundRepeat: 'repeat',
-              mixBlendMode: 'multiply',
-              filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
-              maskImage:
-                'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
-              WebkitMaskImage:
-                'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
-              // animation: 'noiseFlow 8s linear infinite',
-              borderRadius: '0 0 40% 40%',
-            }}
-          />
+          </div>
         </div>
       </div>
 
