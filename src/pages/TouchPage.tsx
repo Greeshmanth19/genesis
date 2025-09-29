@@ -143,13 +143,13 @@ const TouchPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Social Media Icons - Desktop/Tablet: horizontal alignment, Mobile: below black section */}
+      {/* Social Media Icons - Desktop only at top right, Tablet/Mobile: below black section */}
       <div
-        className="absolute top-0 right-0 hidden md:flex items-center justify-end pr-4 md:pr-[100px]"
+        className="absolute top-0 right-0 hidden lg:flex items-center justify-end pr-[100px]"
         style={{ height: '100px', zIndex: 15 }}
       >
         {/* Desktop Layout - 4 icons in a row */}
-        <div className="hidden lg:flex items-center gap-16" style={{ width: '800px' }}>
+        <div className="flex items-center gap-16" style={{ width: '800px' }}>
           {/* SparkStarter Icon */}
           <button
             onClick={() => handleSocialClick('SparkStarter')}
