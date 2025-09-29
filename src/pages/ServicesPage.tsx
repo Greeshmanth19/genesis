@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SecureIcon } from '../assets/icons/SecureIcon';
-import { WhitelistIcon } from '../assets/icons/WhitelistIcon';
-import { NetworkIcon } from '../assets/icons/NetworkIcon';
-import { LiquidityIcon } from '../assets/icons/LiquidityIcon';
-import { KYCIcon } from '../assets/icons/KYCIcon';
-import { IndustryIcon } from '../assets/icons/IndustryIcon';
-import { GroupIcon } from '../assets/icons/GroupIcon';
-import VaultIcon from '../assets/icons/VaultIcon';
+import { Shield, UserCheck, Wifi, Droplet, FileCheck, Network, Users, Lock } from 'lucide-react';
 
 const ServicesPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,60 +7,17 @@ const ServicesPage: React.FC = () => {
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     // Auto-rotate through cards for ambient animation
     const interval = setInterval(() => {
-      setActiveCard(prev => {
+      setActiveCard((prev) => {
         if (prev === null || prev >= 7) return 0;
         return prev + 1;
       });
     }, 3000);
-    
+
     return () => clearInterval(interval);
   }, []);
-
-  const services = [
-    {
-      icon: <SecureIcon />,
-      title: 'Secure Launches',
-      description: 'Smart contract audits &\nstress testing.',
-    },
-    {
-      icon: <WhitelistIcon />,
-      title: 'Whitelist Access',
-      description: 'Early entry for premium\ncommunity members.',
-    },
-    {
-      icon: <NetworkIcon />,
-      title: 'KOL Network',
-      description: 'Visibility through\nprofessional influencers.',
-    },
-    {
-      icon: <LiquidityIcon />,
-      title: 'Liquidity Support',
-      description: 'Initial LP provision,\nrepayable post-launch.',
-    },
-    {
-      icon: <KYCIcon />,
-      title: 'KYC Services',
-      description: 'Compliance via Assure\nDeFi.',
-    },
-    {
-      icon: <IndustryIcon />,
-      title: 'Industry Connections',
-      description: 'Access to trusted\nblockchain partners.',
-    },
-    {
-      icon: <GroupIcon />,
-      title: 'Advisory + Community',
-      description: 'Active moderation +\nstrategy guidance.',
-    },
-    {
-      icon: <VaultIcon />,
-      title: 'Vault Accountability',
-      description: '30-day vault with community-\ncontrolled fund releases.',
-    },
-  ];
 
   // Create rough, grainy surface mist effect with visible texture
   const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
@@ -88,6 +38,49 @@ const ServicesPage: React.FC = () => {
       <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.9'/>
     </svg>
   `)}`;
+
+  const services = [
+    {
+      icon: <Shield className="w-6 h-6" />,
+      title: 'Secure Launches',
+      description: 'Smart contract audits &\nstress testing.',
+    },
+    {
+      icon: <UserCheck className="w-6 h-6" />,
+      title: 'Whitelist Access',
+      description: 'Early entry for premium\ncommunity members.',
+    },
+    {
+      icon: <Network className="w-6 h-6" />,
+      title: 'KOL Network',
+      description: 'Visibility through\nprofessional influencers.',
+    },
+    {
+      icon: <Droplet className="w-6 h-6" />,
+      title: 'Liquidity Support',
+      description: 'Initial LP provision,\nrepayable post-launch.',
+    },
+    {
+      icon: <FileCheck className="w-6 h-6" />,
+      title: 'KYC Services',
+      description: 'Compliance via Assure\nDeFi.',
+    },
+    {
+      icon: <Wifi className="w-6 h-6" />,
+      title: 'Industry Connections',
+      description: 'Access to trusted\nblockchain partners.',
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: 'Advisory + Community',
+      description: 'Active moderation +\nstrategy guidance.',
+    },
+    {
+      icon: <Lock className="w-6 h-6" />,
+      title: 'Vault Accountability',
+      description: '30-day vault with community-\ncontrolled fund releases.',
+    },
+  ];
 
   // Title styles as inline style object
   const titleStyle: React.CSSProperties = {
@@ -151,13 +144,15 @@ const ServicesPage: React.FC = () => {
       </div>
 
       {/* Hero Section with slide-in animation */}
-      <div className={`relative pt-8 pb-8 px-6 md:pt-16 md:pb-12 lg:pt-20 lg:pb-16 md:px-12 lg:px-24 transition-all duration-1000 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-      }`}>
+      <div
+        className={`relative pt-8 pb-8 px-6 md:pt-16 md:pb-12 lg:pt-20 lg:pb-16 md:px-12 lg:px-24 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+        }`}
+      >
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between">
           <div>
-            <div 
-              className="mb-4 text-sm font-medium animate-shimmer" 
+            <div
+              className="mb-4 text-sm font-medium animate-shimmer"
               style={{
                 ...gradientTextStyle,
                 backgroundSize: '200% 100%',
@@ -166,17 +161,21 @@ const ServicesPage: React.FC = () => {
             >
               Your Launchpad to Success in Blockchain & DeFi
             </div>
-            <h1 
-              className="animate-text-reveal"
-              style={isMobile ? mobileTitleStyle : titleStyle}
-            >
+            <h1 className="animate-text-reveal" style={isMobile ? mobileTitleStyle : titleStyle}>
               <span className="inline-block animate-slide-in-left">Our</span>{' '}
-              <span className="inline-block animate-slide-in-right" style={{ animationDelay: '0.2s' }}>Services</span>
+              <span
+                className="inline-block animate-slide-in-right"
+                style={{ animationDelay: '0.2s' }}
+              >
+                Services
+              </span>
             </h1>
           </div>
-          <p className={`text-gray-400 max-w-3xl text-base leading-relaxed mt-8 md:mt-8 transition-all duration-1000 delay-500 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-          }`}>
+          <p
+            className={`text-gray-400 max-w-3xl text-base leading-relaxed mt-8 md:mt-8 transition-all duration-1000 delay-500 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+            }`}
+          >
             Genesis Incubations, together with <br className="hidden md:block" /> SparkStarter.com,
             ensures secure, transparent, <br className="hidden md:block" /> and community-driven
             token launches — from <br className="hidden md:block" /> audits to marketing and funding
@@ -198,56 +197,20 @@ const ServicesPage: React.FC = () => {
                   ${activeCard === index ? 'scale-105' : 'scale-100'}
                   hover:scale-105 hover:z-10`}
                 style={{
-                  background: activeCard === index 
-                    ? 'linear-gradient(192deg, #1A1A1A 9.1%, #252525 91.25%)' 
-                    : 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
-                  border: activeCard === index 
-                    ? '1px solid rgba(218, 227, 57, 0.3)' 
-                    : '1px solid rgba(255, 255, 255, 0.05)',
+                  background:
+                    activeCard === index
+                      ? 'linear-gradient(192deg, #1A1A1A 9.1%, #252525 91.25%)'
+                      : 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  boxShadow:
+                    activeCard === index
+                      ? '0 0 0 1px rgba(218, 227, 57, 0.15), 0 0 30px rgba(218, 227, 57, 0.1)'
+                      : 'none',
                   animationDelay: `${index * 0.1}s`,
                   transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
                 onMouseEnter={() => setActiveCard(index)}
               >
-                {/* Animated pulse ring for active card */}
-                {activeCard === index && (
-                  <div className="absolute inset-0 animate-pulse-ring">
-                    <div 
-                      className="absolute inset-0 rounded-2xl"
-                      style={{
-                        border: '1px solid rgba(218, 227, 57, 0.5)',
-                        animation: 'pulse-expand 2s ease-out infinite',
-                      }}
-                    />
-                  </div>
-                )}
-
-                {/* Rough grainy surface mist - primary layer with animation */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: `url("${pixelatedNoiseDataUrl}")`,
-                    backgroundSize: '40px 40px',
-                    backgroundRepeat: 'repeat',
-                    mixBlendMode: 'multiply',
-                    opacity: 0.4,
-                    animation: activeCard === index ? 'noiseFlow 8s linear infinite' : 'none',
-                  }}
-                />
-
-                {/* Additional rough texture overlay with counter animation */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: `url("${pixelatedNoiseDataUrl}")`,
-                    backgroundSize: '25px 25px',
-                    backgroundRepeat: 'repeat',
-                    mixBlendMode: 'overlay',
-                    opacity: 0.25,
-                    animation: activeCard === index ? 'noiseFlowReverse 12s linear infinite' : 'none',
-                  }}
-                />
-
                 {/* Icon box with rotation animation */}
                 <div className={isMobile ? 'flex-shrink-0 mr-4' : 'absolute top-5 left-5'}>
                   <div className="relative">
@@ -256,11 +219,13 @@ const ServicesPage: React.FC = () => {
                         ${activeCard === index ? 'rotate-12 scale-110' : 'rotate-0 scale-100'}`}
                       style={{
                         backgroundColor: 'rgba(0, 0, 0, 0.50)',
-                        border: activeCard === index 
-                          ? '1px solid rgba(218, 227, 57, 0.5)' 
-                          : '1px solid #303030',
+                        border:
+                          activeCard === index
+                            ? '1px solid rgba(218, 227, 57, 0.5)'
+                            : '1px solid #303030',
                         backdropFilter: 'blur(10px)',
-                        animation: activeCard === index ? 'icon-float 3s ease-in-out infinite' : 'none',
+                        animation:
+                          activeCard === index ? 'icon-float 3s ease-in-out infinite' : 'none',
                       }}
                     >
                       {/* Animated greenish mesh effect for icon */}
@@ -285,9 +250,12 @@ const ServicesPage: React.FC = () => {
                           animationDuration: activeCard === index ? '4s' : '8s',
                         }}
                       />
-                      <div className={`relative z-10 transition-all duration-300 ${
-                        activeCard === index ? 'scale-125' : 'scale-100'
-                      }`}>
+                      <div
+                        className={`relative z-10 transition-all duration-300 ${
+                          activeCard === index ? 'scale-125' : 'scale-100'
+                        }`}
+                        style={{ color: activeCard === index ? '#DAE339' : '#ffffff' }}
+                      >
                         {service.icon}
                       </div>
                     </div>
@@ -311,7 +279,8 @@ const ServicesPage: React.FC = () => {
                         WebkitMaskImage:
                           'radial-gradient(ellipse 70% 100% at center top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.03) 70%, rgba(0,0,0,0.01) 85%, rgba(0,0,0,0) 100%)',
                         borderRadius: '50%',
-                        animation: activeCard === index ? 'drip-flow 2s ease-in-out infinite' : 'none',
+                        animation:
+                          activeCard === index ? 'drip-flow 2s ease-in-out infinite' : 'none',
                         transition: 'all 0.5s ease',
                       }}
                     />
@@ -320,14 +289,18 @@ const ServicesPage: React.FC = () => {
 
                 {/* Text content with typewriter effect for active card */}
                 <div className={isMobile ? 'flex-1 relative z-10' : 'mt-auto relative z-10'}>
-                  <h3 className={`text-lg font-semibold mb-1.5 transition-all duration-300 ${
-                    activeCard === index ? 'text-green-400' : 'text-white'
-                  }`}>
+                  <h3
+                    className={`text-lg font-semibold mb-1.5 transition-all duration-300 ${
+                      activeCard === index ? 'text-green-400' : 'text-white'
+                    }`}
+                  >
                     {service.title}
                   </h3>
-                  <p className={`text-gray-500 text-sm leading-relaxed whitespace-pre-line transition-all duration-300 ${
-                    activeCard === index ? 'text-gray-400' : 'text-gray-500'
-                  }`}>
+                  <p
+                    className={`text-gray-500 text-sm leading-relaxed whitespace-pre-line transition-all duration-300 ${
+                      activeCard === index ? 'text-gray-400' : 'text-gray-500'
+                    }`}
+                  >
                     {service.description}
                   </p>
                 </div>
@@ -349,7 +322,8 @@ const ServicesPage: React.FC = () => {
                       'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
                     WebkitMaskImage:
                       'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
-                    animation: activeCard === index ? 'wave-motion 3s ease-in-out infinite' : 'none',
+                    animation:
+                      activeCard === index ? 'wave-motion 3s ease-in-out infinite' : 'none',
                   }}
                 />
 
@@ -371,7 +345,8 @@ const ServicesPage: React.FC = () => {
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
                     WebkitMaskImage:
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    animation: activeCard === index ? 'corner-pulse 4s ease-in-out infinite' : 'none',
+                    animation:
+                      activeCard === index ? 'corner-pulse 4s ease-in-out infinite' : 'none',
                     transition: 'opacity 0.5s ease',
                   }}
                 />
@@ -393,7 +368,10 @@ const ServicesPage: React.FC = () => {
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
                     WebkitMaskImage:
                       'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    animation: activeCard === index ? 'corner-pulse 4s ease-in-out infinite reverse' : 'none',
+                    animation:
+                      activeCard === index
+                        ? 'corner-pulse 4s ease-in-out infinite reverse'
+                        : 'none',
                     transition: 'opacity 0.5s ease',
                   }}
                 />
@@ -415,10 +393,11 @@ const ServicesPage: React.FC = () => {
 
                 {/* Glow effect for active card */}
                 {activeCard === index && (
-                  <div 
+                  <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
-                      background: 'radial-gradient(circle at center, rgba(218, 227, 57, 0.1) 0%, transparent 70%)',
+                      background:
+                        'radial-gradient(circle at center, rgba(218, 227, 57, 0.1) 0%, transparent 70%)',
                       animation: 'glow-pulse 2s ease-in-out infinite',
                     }}
                   />
@@ -520,52 +499,6 @@ const ServicesPage: React.FC = () => {
             }
           }
 
-          @keyframes drip-flow {
-            0%, 100% {
-              transform: translateX(-50%) translateY(0);
-              opacity: 0.4;
-            }
-            50% {
-              transform: translateX(-50%) translateY(10px);
-              opacity: 0.2;
-            }
-          }
-
-          @keyframes wave-motion {
-            0%, 100% {
-              transform: translateY(0) scaleY(1);
-            }
-            50% {
-              transform: translateY(-5px) scaleY(1.1);
-            }
-          }
-
-          @keyframes corner-pulse {
-            0%, 100% {
-              transform: scale(1);
-              opacity: 0.3;
-            }
-            50% {
-              transform: scale(1.2);
-              opacity: 0.15;
-            }
-          }
-
-          @keyframes mist-swirl {
-            0%, 100% {
-              transform: rotate(0deg) scale(1);
-            }
-            25% {
-              transform: rotate(2deg) scale(1.05);
-            }
-            50% {
-              transform: rotate(-1deg) scale(1);
-            }
-            75% {
-              transform: rotate(1deg) scale(1.02);
-            }
-          }
-
           @keyframes glow-pulse {
             0%, 100% {
               opacity: 0.5;
@@ -575,16 +508,7 @@ const ServicesPage: React.FC = () => {
             }
           }
 
-          @keyframes pulse-expand {
-            0% {
-              transform: scale(1);
-              opacity: 1;
-            }
-            100% {
-              transform: scale(1.1);
-              opacity: 0;
-            }
-          }
+
 
           .animate-fade-in {
             animation: fadeIn 0.5s ease-out;
@@ -593,15 +517,6 @@ const ServicesPage: React.FC = () => {
           @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-          }
-
-          .animate-spin-slow {
-            animation: spin 8s linear infinite;
-          }
-
-          @keyframes spin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
           }
         `,
         }}

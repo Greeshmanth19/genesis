@@ -644,27 +644,6 @@ const TouchPage: React.FC = () => {
                 boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
               }}
             />
-
-            {/* Desktop Button Noise Overlay */}
-            <defs>
-              <clipPath id="desktopButtonClip">
-                <path d="M 520 90 L 5 90 L 95 12 L 95 12 C 100 8 110 0 125 0 L 520 0 Z" />
-              </clipPath>
-            </defs>
-            <g clipPath="url(#desktopButtonClip)">
-              <foreignObject x="0" y="0" width="520" height="90">
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    background: `url("${pixelatedNoiseDataUrl}")`,
-                    backgroundSize: '40px 40px',
-                    backgroundRepeat: 'repeat',
-                    mixBlendMode: 'hard-light',
-                  }}
-                />
-              </foreignObject>
-            </g>
           </svg>
 
           {/* Contact Us text - Desktop positioning */}

@@ -3,6 +3,47 @@ import React, { useState, useEffect } from 'react';
 const RevenuePage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activePoint, setActivePoint] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
 
   useEffect(() => {
     setIsVisible(true);
@@ -873,8 +914,22 @@ const RevenuePage = () => {
           </h2>
         </div>
 
-        <div className="relative overflow-hidden max-w-7xl mx-auto">
-          <div className="flex animate-scroll-partners">
+        <div
+          ref={scrollContainerRef}
+          className="relative overflow-x-auto max-w-7xl mx-auto scrollbar-hide cursor-grab active:cursor-grabbing"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleMouseUp}
+          style={{
+            scrollBehavior: isDragging ? 'auto' : 'smooth',
+            userSelect: 'none',
+          }}
+        >
+          <div className={`flex ${!isDragging ? 'animate-scroll-partners' : ''}`}>
             {/* First set of partners */}
             {[
               { name: 'Sparkstarter', image: require('../assets/Images/sparkstarter.png') },
@@ -884,14 +939,13 @@ const RevenuePage = () => {
             ].map((partner, index) => (
               <div
                 key={`first-${index}`}
-                className={`relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden transition-all duration-500 hover:scale-105 flex-shrink-0 mx-2 sm:mx-3 md:mx-4 ${
+                className={`relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden flex-shrink-0 mx-2 sm:mx-3 md:mx-4 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
                 }`}
                 style={{
                   borderRadius: '16px',
                   background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
                   border: '1px solid rgba(255, 255, 255, 0.05)',
-                  animationDelay: `${0.8 + index * 0.1}s`,
                   width: '280px',
                 }}
               >
@@ -904,7 +958,6 @@ const RevenuePage = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'multiply',
                     opacity: 0.4,
-                    animationDelay: `${index * 0.5}s`,
                   }}
                 />
 
@@ -930,7 +983,7 @@ const RevenuePage = () => {
             ].map((partner, index) => (
               <div
                 key={`second-${index}`}
-                className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden transition-all duration-500 hover:scale-105 flex-shrink-0 mx-2 sm:mx-3 md:mx-4"
+                className="relative rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 h-32 sm:h-36 md:h-38 lg:h-40 flex items-center justify-center overflow-hidden flex-shrink-0 mx-2 sm:mx-3 md:mx-4"
                 style={{
                   borderRadius: '16px',
                   background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
@@ -1178,6 +1231,15 @@ const RevenuePage = () => {
                 stroke-dashoffset: 0;
               }
             }
+
+            .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
             .animate-line-draw {
               animation: line-draw 1s ease-out forwards;
