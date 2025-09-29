@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 const StatisticsPage = () => {
   // Create the same seamless chunky, thick greenish pixelated mesh noise effect
@@ -21,9 +21,11 @@ const StatisticsPage = () => {
     </svg>
   `)}`;
 
-  // Mock intersection observer hook
+  // Animation states
   const [isVisible] = useState(true);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [pulseActive, setPulseActive] = useState(true);
 
   useEffect(() => {
     if (isVisible && !hasAnimated) {
@@ -31,14 +33,15 @@ const StatisticsPage = () => {
     }
   }, [isVisible, hasAnimated]);
 
-  // Animation counter hook
-  const useCountAnimation = (endValue: number, shouldAnimate: boolean) => {
+  // Animated counter with elastic easing
+  const useCountAnimation = (endValue: number, shouldAnimate: boolean, decimals: number = 0) => {
     const [count, setCount] = useState(0);
+    const [isComplete, setIsComplete] = useState(false);
 
     useEffect(() => {
       if (!shouldAnimate) return;
 
-      const duration = 2000;
+      const duration = 2500;
       const startTime = Date.now();
       const startValue = 0;
 
@@ -46,38 +49,46 @@ const StatisticsPage = () => {
         const now = Date.now();
         const progress = Math.min((now - startTime) / duration, 1);
 
-        // Easing function
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const currentCount = Math.floor(startValue + (endValue - startValue) * easeOutQuart);
+        // Elastic easing for bounce effect
+        const elasticOut = (t: number) => {
+          const p = 0.3;
+          return Math.pow(2, -10 * t) * Math.sin(((t - p / 4) * (2 * Math.PI)) / p) + 1;
+        };
+
+        const easeValue = progress < 0.5 ? progress * 2 : elasticOut(progress);
+
+        const currentCount = startValue + (endValue - startValue) * easeValue;
 
         setCount(currentCount);
 
         if (progress < 1) {
           requestAnimationFrame(updateCount);
+        } else {
+          setIsComplete(true);
         }
       };
 
       requestAnimationFrame(updateCount);
-    }, [endValue, shouldAnimate]);
+    }, [endValue, shouldAnimate, decimals]);
 
-    return count;
+    return { count, isComplete };
   };
 
-  const projectsCount = useCountAnimation(7, hasAnimated);
-  const volumeCount = useCountAnimation(4.2, hasAnimated);
-  const revenueCount = useCountAnimation(61, hasAnimated);
+  const projects = useCountAnimation(7, hasAnimated);
+  const volume = useCountAnimation(4.2, hasAnimated, 1);
+  const revenue = useCountAnimation(61, hasAnimated);
 
   const projectsData = [
-    { name: 'Nodez', revenue: '$17,735', volume: '$850K' },
-    { name: 'Beat', revenue: '$12,123', volume: '$1.1 Million' },
-    { name: 'Blocklance', revenue: '$2,020', volume: '$300K' },
-    { name: 'Orax', revenue: '$4,472', volume: '$92K' },
-    { name: 'AxisLink', revenue: '$3,500', volume: '$250K' },
-    { name: 'Zentium', revenue: '$12,697', volume: '$1.1 Million' },
-    { name: 'Rollback', revenue: '$8,663', volume: '$530K' },
+    { name: 'Nodez', revenue: '$17,735', volume: '$850K', trend: 'up' },
+    { name: 'Beat', revenue: '$12,123', volume: '$1.1 Million', trend: 'up' },
+    { name: 'Blocklance', revenue: '$2,020', volume: '$300K', trend: 'down' },
+    { name: 'Orax', revenue: '$4,472', volume: '$92K', trend: 'stable' },
+    { name: 'AxisLink', revenue: '$3,500', volume: '$250K', trend: 'up' },
+    { name: 'Zentium', revenue: '$12,697', volume: '$1.1 Million', trend: 'up' },
+    { name: 'Rollback', revenue: '$8,663', volume: '$530K', trend: 'stable' },
   ];
 
-  // Button style object to ensure consistency - REMOVED transitions
+  // Button style object
   const buttonStyle: React.CSSProperties = {
     borderRadius: '90px',
     border: '1px solid #DAE339',
@@ -90,7 +101,7 @@ const StatisticsPage = () => {
     appearance: 'none' as any,
     WebkitTapHighlightColor: 'transparent' as any,
     touchAction: 'manipulation' as any,
-    transition: 'none',
+    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease',
     transform: 'none',
   };
 
@@ -103,9 +114,30 @@ const StatisticsPage = () => {
         minHeight: 'fit-content',
       }}
     >
-      {/* Global Pixelated Mesh Noise Overlay */}
+      {/* Animated background particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-float-slow"
+            style={{
+              top: `${30 + i * 20}%`,
+              left: `${70 + i * 10}%`,
+              width: '150px',
+              height: '150px',
+              background: 'radial-gradient(circle, rgba(218, 227, 57, 0.08) 0%, transparent 70%)',
+              borderRadius: '50%',
+              filter: 'blur(60px)',
+              animationDelay: `${i * 3}s`,
+              animationDuration: `${20 + i * 5}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Global Pixelated Mesh Noise Overlay with animation */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none animate-noise-shift"
         style={{
           background: `url("${pixelatedNoiseDataUrl}")`,
           backgroundSize: '120px 120px',
@@ -116,9 +148,9 @@ const StatisticsPage = () => {
         }}
       />
 
-      {/* statShade replacement - Same chunky mesh effect as buttons with smooth edge fade */}
+      {/* Animated statShade with rotation */}
       <div
-        className="absolute top-0 left-0 hidden md:block pointer-events-none"
+        className="absolute top-0 left-0 hidden md:block pointer-events-none animate-float-rotate"
         style={{
           zIndex: 5,
           width: '820px',
@@ -127,7 +159,7 @@ const StatisticsPage = () => {
           top: '-100px',
         }}
       >
-        {/* Base gradient background matching HomePage genesisMain */}
+        {/* Base gradient background */}
         <div
           className="absolute inset-0"
           style={{
@@ -140,9 +172,9 @@ const StatisticsPage = () => {
           }}
         />
 
-        {/* Same chunky mesh overlay as buttons with smooth fade */}
+        {/* Animated mesh overlay */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 animate-mesh-flow"
           style={{
             background: `url("${pixelatedNoiseDataUrl}")`,
             backgroundSize: '40px 40px',
@@ -157,8 +189,13 @@ const StatisticsPage = () => {
         />
       </div>
 
-      {/* Black Corner Section with Slanted Edge and Rounded Bottom-Right - Fixed Responsive */}
-      <div className="absolute top-0 left-0" style={{ zIndex: 10 }}>
+      {/* Black Corner Section with animated entrance */}
+      <div
+        className={`absolute top-0 left-0 transition-all duration-1000 ${
+          hasAnimated ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        style={{ zIndex: 10 }}
+      >
         {/* Desktop version */}
         <div className="hidden md:block">
           <svg width="550" height="100" viewBox="0 0 550 100">
@@ -169,7 +206,7 @@ const StatisticsPage = () => {
           </svg>
         </div>
 
-        {/* Mobile version - FIXED to stick to left edge */}
+        {/* Mobile version */}
         <div className="block md:hidden" style={{ width: '100vw', position: 'relative', left: 0 }}>
           <svg
             width="100%"
@@ -185,9 +222,9 @@ const StatisticsPage = () => {
           </svg>
         </div>
 
-        {/* "Statistics" text - properly positioned for all screen sizes */}
+        {/* "Statistics" text with typewriter effect */}
         <div className="absolute top-0 left-0 w-full h-full flex items-center">
-          {/* Mobile positioning - FIXED to always stay at left */}
+          {/* Mobile positioning */}
           <div className="block md:hidden w-full h-full flex items-center">
             <div
               style={{
@@ -201,7 +238,7 @@ const StatisticsPage = () => {
               }}
             >
               <h2
-                className="text-white font-medium tracking-tight"
+                className={`text-white font-medium tracking-tight ${hasAnimated ? 'animate-typewriter' : 'opacity-0'}`}
                 style={{
                   fontFamily: '"TT Firs Neue", sans-serif',
                   fontWeight: 500,
@@ -216,7 +253,9 @@ const StatisticsPage = () => {
           {/* Desktop positioning */}
           <div className="hidden md:block pl-20 lg:pl-28">
             <h2
-              className="text-white text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight"
+              className={`text-white text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight ${
+                hasAnimated ? 'animate-typewriter' : 'opacity-0'
+              }`}
               style={{
                 fontFamily: '"TT Firs Neue", sans-serif',
                 fontWeight: 500,
@@ -229,7 +268,7 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* Main Content Container - Compact layout */}
+      {/* Main Content Container */}
       <div
         className="relative flex flex-col lg:flex-row lg:items-start lg:justify-between px-4 md:px-8 lg:px-20"
         style={{
@@ -237,14 +276,18 @@ const StatisticsPage = () => {
           paddingBottom: '40px',
         }}
       >
-        {/* Left Side - Statistics - Bottom on mobile/tablet, left on desktop */}
+        {/* Left Side - Statistics with continuous wave animation */}
         <div className="flex-1 max-w-md pt-8 md:pt-32 lg:pt-48 order-2 lg:order-1">
-          {/* Stats - Row layout on mobile/tablet, column on desktop */}
           <div className="flex flex-row lg:flex-col space-x-6 lg:space-x-0 lg:space-y-8 xl:space-y-10 justify-between lg:justify-start">
             {/* Total Projects */}
-            <div className="flex-1 lg:flex-none text-center lg:text-left">
+            <div
+              className={`flex-1 lg:flex-none text-center lg:text-left transition-all duration-700 animate-stat-wave ${
+                hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ animationDelay: '0.3s' }}
+            >
               <div
-                className="font-medium mb-2 text-3xl lg:text-7xl"
+                className={`font-medium mb-2 text-3xl lg:text-7xl ${projects.isComplete ? 'animate-number-bounce' : ''}`}
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
@@ -254,9 +297,12 @@ const StatisticsPage = () => {
                   fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-2.16px',
+                  animation: projects.isComplete
+                    ? 'gradient-shift 4s ease-in-out infinite'
+                    : 'none',
                 }}
               >
-                {projectsCount}
+                {Math.floor(projects.count)}
               </div>
               <div className="text-[#000] font-medium text-xs lg:text-base">
                 Total Projects
@@ -264,10 +310,16 @@ const StatisticsPage = () => {
                 Incubated
               </div>
             </div>
+
             {/* Total Volume */}
-            <div className="flex-1 lg:flex-none text-center lg:text-left">
+            <div
+              className={`flex-1 lg:flex-none text-center lg:text-left transition-all duration-700 animate-stat-wave ${
+                hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ animationDelay: '0.8s' }}
+            >
               <div
-                className="font-medium mb-2 text-3xl lg:text-7xl"
+                className={`font-medium mb-2 text-3xl lg:text-7xl ${volume.isComplete ? 'animate-number-bounce' : ''}`}
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
@@ -277,9 +329,12 @@ const StatisticsPage = () => {
                   fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-2.16px',
+                  animation: volume.isComplete
+                    ? 'gradient-shift 4s ease-in-out infinite 0.5s'
+                    : 'none',
                 }}
               >
-                ${volumeCount.toFixed(1)} mil
+                ${volume.count.toFixed(1)} mil
               </div>
               <div className="text-[#000] font-medium text-xs lg:text-base">
                 Total Volume
@@ -287,10 +342,16 @@ const StatisticsPage = () => {
                 Generated
               </div>
             </div>
+
             {/* Total Revenue */}
-            <div className="flex-1 lg:flex-none text-center lg:text-left">
+            <div
+              className={`flex-1 lg:flex-none text-center lg:text-left transition-all duration-700 animate-stat-wave ${
+                hasAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ animationDelay: '1.6s' }}
+            >
               <div
-                className="font-medium mb-2 text-3xl lg:text-7xl"
+                className={`font-medium mb-2 text-3xl lg:text-7xl ${revenue.isComplete ? 'animate-number-bounce' : ''}`}
                 style={{
                   background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
                   WebkitBackgroundClip: 'text',
@@ -300,9 +361,12 @@ const StatisticsPage = () => {
                   fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-2.16px',
+                  animation: revenue.isComplete
+                    ? 'gradient-shift 4s ease-in-out infinite 1s'
+                    : 'none',
                 }}
               >
-                ${revenueCount} k
+                ${Math.floor(revenue.count)} k
               </div>
               <div className="text-[#000] font-medium text-xs lg:text-base">
                 Total Revenue
@@ -313,13 +377,16 @@ const StatisticsPage = () => {
           </div>
         </div>
 
-        {/* Right Side - Projects Table - Compact spacing */}
+        {/* Right Side - Projects Table with animations */}
         <div className="flex-1 max-w-full md:max-w-2xl order-1 md:order-2 mt-24 md:mt-10 ml-0 md:ml-0">
-          {/* Header Section - FIXED: Different spacing for mobile and desktop */}
+          {/* Header Section */}
           <div
-            className="flex flex-col md:flex-row md:items-center md:justify-between mb-5 md:mb-[60px]"
+            className={`flex flex-col md:flex-row md:items-center md:justify-between mb-5 md:mb-[60px] transition-all duration-700 ${
+              hasAnimated ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+            }`}
             style={{
               marginTop: '10px',
+              animationDelay: '0.2s',
             }}
           >
             <h2
@@ -332,10 +399,10 @@ const StatisticsPage = () => {
               <br />& statistics
             </h2>
 
-            {/* Desktop Learn More Button with noise effect */}
+            {/* Desktop Learn More Button with hover effect */}
             <div className="hidden md:block relative">
               <button
-                className="button-reset relative text-white font-semibold px-6 md:px-8 py-3 text-sm md:text-base w-full md:w-auto overflow-hidden"
+                className="button-reset relative text-white font-semibold px-6 md:px-8 py-3 text-sm md:text-base w-full md:w-auto overflow-hidden hover:scale-105 active:scale-95"
                 style={buttonStyle}
                 tabIndex={-1}
               >
@@ -353,9 +420,9 @@ const StatisticsPage = () => {
                 <span className="relative z-10 pointer-events-none">Learn More</span>
               </button>
 
-              {/* Trailing noise effect below button - SMOOTH DISSOLVE */}
+              {/* Trailing noise effect with animation */}
               <div
-                className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+                className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none animate-drip"
                 style={{
                   width: '140%',
                   height: '80px',
@@ -375,85 +442,94 @@ const StatisticsPage = () => {
             </div>
           </div>
 
-          {/* Table Card - Stable positioning */}
+          {/* Table Card with hover effects */}
           <div className="backdrop-blur-sm rounded-2xl">
-            {/* Table Header - Adjusted grid layout with responsive sizing */}
+            {/* Table Header */}
             <div className="flex justify-between items-center mb-4 pb-4 px-2 md:px-0">
-              {/* Project column */}
               <div
-                className="flex-1 text-left font-medium"
+                className="flex-1 text-left font-medium animate-fade-in-up"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
                   fontSize: 'clamp(16px, 2vw, 24px)',
+                  animationDelay: '0.8s',
                 }}
               >
                 Project
               </div>
 
-              {/* Revenue column */}
               <div
-                className="flex-1 text-center font-medium"
+                className="flex-1 text-center font-medium animate-fade-in-up"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
                   fontSize: 'clamp(16px, 2vw, 24px)',
+                  animationDelay: '0.9s',
                 }}
               >
                 Revenue
               </div>
 
-              {/* Volume column - aligned with other headers */}
               <div
-                className="flex-1 text-right font-medium"
+                className="flex-1 text-right font-medium animate-fade-in-up"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                   lineHeight: '90%',
                   letterSpacing: '-0.72px',
                   fontSize: 'clamp(16px, 2vw, 24px)',
+                  animationDelay: '1s',
                 }}
               >
                 Volume
               </div>
             </div>
 
-            {/* Table Rows - Adjusted layout */}
+            {/* Table Rows with staggered animations and hover */}
             <div className="space-y-2">
               {projectsData.map((project, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center py-2 md:py-3 px-2 md:px-0 border-b border-[#CDCDCD]"
+                  className={`flex justify-between items-center py-2 md:py-3 px-2 md:px-0 border-b border-[#CDCDCD] transition-all duration-300 cursor-pointer
+                    ${hoveredProject === index ? 'bg-green-50 scale-105 shadow-lg' : ''}
+                  `}
                   style={{
-                    animation: hasAnimated ? `fadeInUp 0.5s ease-out ${index * 0.1}s both` : 'none',
+                    animation: hasAnimated
+                      ? `slideInRight 0.5s ease-out ${0.8 + index * 0.1}s both`
+                      : 'none',
+                    transform:
+                      hoveredProject === index ? 'translateX(10px) scale(1.02)' : 'translateX(0)',
                   }}
+                  onMouseEnter={() => setHoveredProject(index)}
+                  onMouseLeave={() => setHoveredProject(null)}
                 >
-                  {/* Project name */}
+                  {/* Project name without trend indicator */}
                   <div
                     className="flex-1 text-left"
                     style={{
-                      color: '#000',
+                      color: hoveredProject === index ? '#00B935' : '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                      fontWeight: 400,
+                      fontWeight: hoveredProject === index ? 500 : 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
                       fontSize: 'clamp(12px, 1.5vw, 18px)',
+                      transition: 'all 0.3s ease',
                     }}
                   >
                     {project.name}
                   </div>
 
-                  {/* Revenue - Center aligned */}
+                  {/* Revenue */}
                   <div
                     className="flex-1 text-center"
                     style={{
-                      color: '#000',
+                      color: hoveredProject === index ? '#DAE339' : '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                      fontWeight: 400,
+                      fontWeight: hoveredProject === index ? 600 : 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
                       fontSize: 'clamp(12px, 1.5vw, 18px)',
@@ -462,13 +538,13 @@ const StatisticsPage = () => {
                     {project.revenue}
                   </div>
 
-                  {/* Volume - positioned to the far right */}
+                  {/* Volume */}
                   <div
                     className="flex-1 text-right"
                     style={{
-                      color: '#000',
+                      color: hoveredProject === index ? '#00B935' : '#000',
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
-                      fontWeight: 400,
+                      fontWeight: hoveredProject === index ? 600 : 400,
                       lineHeight: '90%',
                       letterSpacing: '-0.54px',
                       fontSize: 'clamp(12px, 1.5vw, 18px)',
@@ -483,12 +559,12 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* Mobile Learn More Button with noise effect */}
+      {/* Mobile Learn More Button */}
       <div className="relative block md:hidden px-4 pb-4" style={{ zIndex: 10, marginTop: 'auto' }}>
         <div className="flex justify-center">
           <div className="relative">
             <button
-              className="button-reset relative text-white font-semibold px-8 py-3 text-sm w-full max-w-xs overflow-hidden"
+              className="button-reset relative text-white font-semibold px-8 py-3 text-sm w-full max-w-xs overflow-hidden active:scale-95"
               style={buttonStyle}
               tabIndex={-1}
             >
@@ -507,9 +583,9 @@ const StatisticsPage = () => {
               <span className="relative z-10 pointer-events-none">Learn More</span>
             </button>
 
-            {/* Mobile Trailing noise effect below button - SMOOTH DISSOLVE */}
+            {/* Mobile Trailing noise effect */}
             <div
-              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none animate-drip"
               style={{
                 width: '100%',
                 height: '70px',
@@ -531,9 +607,11 @@ const StatisticsPage = () => {
         </div>
       </div>
 
-      {/* statEndShade replacement - Same chunky mesh effect as buttons with smooth edge fade (smaller) */}
-      <div className="absolute bottom-0 right-0 hidden md:block pointer-events-none" style={{}}>
-        {/* Base gradient background similar to button */}
+      {/* Animated bottom right shade */}
+      <div
+        className="absolute bottom-0 right-0 hidden md:block pointer-events-none animate-pulse-slow"
+        style={{}}
+      >
         <div
           className="absolute inset-0"
           style={{
@@ -545,9 +623,8 @@ const StatisticsPage = () => {
           }}
         />
 
-        {/* Same chunky mesh overlay as buttons with smooth fade */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 animate-mesh-flow-reverse"
           style={{
             background: `url("${pixelatedNoiseDataUrl}")`,
             backgroundSize: '40px 40px',
@@ -562,7 +639,7 @@ const StatisticsPage = () => {
         />
       </div>
 
-      {/* CSS Animations - ENHANCED with complete focus removal */}
+      {/* CSS Animations */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -576,6 +653,209 @@ const StatisticsPage = () => {
               transform: translateY(0);
             }
           }
+
+          @keyframes slideInRight {
+            from {
+              opacity: 0;
+              transform: translateX(-30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+
+          @keyframes typewriter {
+            from {
+              width: 0;
+              opacity: 0;
+            }
+            to {
+              width: 100%;
+              opacity: 1;
+            }
+          }
+
+          .animate-typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typewriter 1s steps(10) forwards;
+          }
+
+          @keyframes number-bounce {
+            0%, 100% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.1);
+            }
+          }
+
+          .animate-number-bounce {
+            animation: number-bounce 0.5s ease-out;
+          }
+
+          @keyframes stat-wave {
+            0%, 100% {
+              transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            25% {
+              transform: translateY(-8px) translateX(3px) rotate(1deg);
+            }
+            50% {
+              transform: translateY(0) translateX(-2px) rotate(0deg);
+            }
+            75% {
+              transform: translateY(8px) translateX(2px) rotate(-1deg);
+            }
+          }
+
+          .animate-stat-wave {
+            animation: stat-wave 6s ease-in-out infinite;
+          }
+
+          @keyframes gradient-shift {
+            0%, 100% {
+              background-position: 0% 50%;
+              filter: hue-rotate(0deg);
+            }
+            25% {
+              background-position: 50% 50%;
+              filter: hue-rotate(5deg);
+            }
+            50% {
+              background-position: 100% 50%;
+              filter: hue-rotate(-5deg);
+            }
+            75% {
+              background-position: 50% 50%;
+              filter: hue-rotate(3deg);
+            }
+          }
+
+          @keyframes bounce-in {
+            0% {
+              transform: scale(0);
+              opacity: 0;
+            }
+            50% {
+              transform: scale(1.2);
+            }
+            100% {
+              transform: scale(1);
+              opacity: 1;
+            }
+          }
+
+          .animate-bounce-in {
+            animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          }
+
+          @keyframes float-slow {
+            0%, 100% {
+              transform: translate(0, 0) scale(1);
+              opacity: 0.08;
+            }
+            33% {
+              transform: translate(30px, -20px) scale(1.1);
+              opacity: 0.12;
+            }
+            66% {
+              transform: translate(-20px, 10px) scale(0.95);
+              opacity: 0.06;
+            }
+          }
+
+          .animate-float-slow {
+            animation: float-slow 25s ease-in-out infinite;
+          }
+
+          @keyframes float-rotate {
+            0%, 100% {
+              transform: rotate(15deg) translateY(0);
+            }
+            50% {
+              transform: rotate(18deg) translateY(-20px);
+            }
+          }
+
+          .animate-float-rotate {
+            animation: float-rotate 8s ease-in-out infinite;
+          }
+
+          @keyframes mesh-flow {
+            0% {
+              background-position: 0 0;
+            }
+            100% {
+              background-position: 40px 40px;
+            }
+          }
+
+          .animate-mesh-flow {
+            animation: mesh-flow 20s linear infinite;
+          }
+
+          @keyframes mesh-flow-reverse {
+            0% {
+              background-position: 40px 40px;
+            }
+            100% {
+              background-position: 0 0;
+            }
+          }
+
+          .animate-mesh-flow-reverse {
+            animation: mesh-flow-reverse 15s linear infinite;
+          }
+
+          @keyframes noise-shift {
+            0%, 100% {
+              transform: translateX(0);
+            }
+            50% {
+              transform: translateX(10px);
+            }
+          }
+
+          .animate-noise-shift {
+            animation: noise-shift 30s ease-in-out infinite;
+          }
+
+          @keyframes drip {
+            0%, 100% {
+              transform: translate(-50%, 0) scaleY(1);
+              opacity: 0.6;
+            }
+            50% {
+              transform: translate(-50%, 5px) scaleY(1.1);
+              opacity: 0.4;
+            }
+          }
+
+          .animate-drip {
+            animation: drip 3s ease-in-out infinite;
+          }
+
+          @keyframes pulse-slow {
+            0%, 100% {
+              opacity: 1;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.8;
+              transform: scale(1.05);
+            }
+          }
+
+          .animate-pulse-slow {
+            animation: pulse-slow 4s ease-in-out infinite;
+          }
+
+          .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+          }
           
           @keyframes noiseFlow {
             0% {
@@ -586,7 +866,7 @@ const StatisticsPage = () => {
             }
           }
           
-          /* Complete button reset for all states */
+          /* Button styles preserved */
           .button-reset {
             outline: none !important;
             border: 1px solid #DAE339 !important;
@@ -594,25 +874,17 @@ const StatisticsPage = () => {
             -webkit-tap-highlight-color: transparent !important;
             -webkit-focus-ring-color: transparent !important;
             -moz-outline-radius: 90px !important;
-            transition: none !important;
-            transform: none !important;
-            animation: none !important;
           }
           
           .button-reset:focus,
           .button-reset:active,
-          .button-reset:hover,
           .button-reset:focus-visible,
           .button-reset::-moz-focus-inner {
             outline: none !important;
             border: 1px solid #DAE339 !important;
             box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
-            transform: none !important;
-            transition: none !important;
-            animation: none !important;
           }
           
-          /* Remove ALL focus indicators and animations globally */
           button {
             -webkit-tap-highlight-color: transparent !important;
             -webkit-focus-ring-color: transparent !important;
@@ -622,69 +894,6 @@ const StatisticsPage = () => {
             -ms-user-select: none !important;
             user-select: none !important;
             touch-action: manipulation !important;
-            transition: none !important;
-            animation: none !important;
-          }
-          
-          button:focus,
-          button:focus-visible,
-          button:focus-within,
-          button:active {
-            outline: none !important;
-            transition: none !important;
-            transform: none !important;
-            animation: none !important;
-          }
-          
-          /* Remove hover animations */
-          button:hover {
-            transform: none !important;
-            transition: none !important;
-            animation: none !important;
-          }
-          
-          /* Prevent iOS zoom on double-tap */
-          button {
-            touch-action: manipulation;
-          }
-          
-          /* Remove Firefox's dotted outline */
-          button::-moz-focus-inner {
-            border: 0 !important;
-            padding: 0 !important;
-          }
-          
-          /* Prevent any outline on Safari */
-          button:focus {
-            outline-offset: -2px !important;
-          }
-          
-          /* Remove tap highlight on mobile browsers */
-          * {
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
-            -webkit-tap-highlight-color: transparent !important;
-          }
-          
-          /* Ensure no additional borders appear */
-          button:not(.button-reset) {
-            border: none !important;
-          }
-          
-          /* iPad specific fixes */
-          @supports (-webkit-touch-callout: none) {
-            button {
-              -webkit-tap-highlight-color: transparent !important;
-              outline: none !important;
-            }
-          }
-          
-          /* Disable text selection on buttons */
-          button * {
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            pointer-events: none;
           }
         `,
         }}

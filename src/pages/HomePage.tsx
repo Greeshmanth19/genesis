@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HomePage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   // Create seamless chunky, thick greenish pixelated mesh noise effect
   const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
     <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
@@ -28,13 +35,12 @@ const HomePage = () => {
     >
       {/* Full Background Mist Layer 1 - Base layer covering entire background */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none opacity-0"
         style={{
           background: `url("${pixelatedNoiseDataUrl}")`,
           backgroundSize: '150px 150px',
           mixBlendMode: 'multiply',
           filter: 'contrast(180%) brightness(150%)',
-          opacity: 0.3,
           maskImage: `linear-gradient(90deg,
             rgba(0,0,0,0) 0%,
             rgba(0,0,0,0.05) 20%,
@@ -52,6 +58,8 @@ const HomePage = () => {
             rgba(0,0,0,0.7) 80%,
             rgba(0,0,0,1) 100%)`,
           zIndex: 1,
+          animation: isVisible ? 'fadeInMist 2s ease-out forwards' : '',
+          animationDelay: '0.3s',
         }}
       />
 
@@ -163,13 +171,19 @@ const HomePage = () => {
         }}
       />
 
-      {/* Left Side - Content - FIXED: Removed flex-1 and max-w-lg, made it stick to left on desktop */}
+      {/* Left Side - Content with animations */}
       <div
-        className="relative flex flex-col justify-center mt-20 lg:mt-[200px] order-1 lg:order-1 w-full lg:w-auto"
+        className={`relative flex flex-col justify-center mt-20 lg:mt-[200px] order-1 lg:order-1 w-full lg:w-auto transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
         style={{ zIndex: 20 }}
       >
         <div className="text-left">
-          <div className="mb-2 lg:mb-6">
+          <div
+            className={`mb-2 lg:mb-6 transition-all duration-700 delay-100 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            }`}
+          >
             <p
               className="mb-1 lg:mb-2"
               style={{
@@ -186,11 +200,15 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Main Heading - Desktop zoom-responsive, Mobile normal */}
-          <div className="mb-2 lg:mb-6">
+          {/* Main Heading with staggered animation */}
+          <div
+            className={`mb-2 lg:mb-6 transition-all duration-700 delay-200 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            }`}
+          >
             <h1 className="leading-none">
               <span
-                className="block lg:hidden"
+                className="block lg:hidden animate-fadeInUp"
                 style={{
                   color: '#000',
                   fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
@@ -199,6 +217,7 @@ const HomePage = () => {
                   fontWeight: 500,
                   lineHeight: '90%',
                   letterSpacing: '-2.16px',
+                  animationDelay: '0.3s',
                 }}
               >
                 From Idea <br />
@@ -206,6 +225,7 @@ const HomePage = () => {
                 <span style={{ whiteSpace: 'nowrap' }}>
                   Token in{' '}
                   <span
+                    className="inline-block animate-pulse"
                     style={{
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                       fontSize: '35px',
@@ -224,10 +244,10 @@ const HomePage = () => {
                 </span>
               </span>
 
-              {/* Desktop version with zoom-responsive scaling */}
+              {/* Desktop version with staggered animations */}
               <div className="hidden lg:block">
                 <span
-                  className="block"
+                  className="block animate-fadeInUp"
                   style={{
                     color: '#000',
                     fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
@@ -236,12 +256,13 @@ const HomePage = () => {
                     fontWeight: 500,
                     lineHeight: '90%',
                     letterSpacing: '-2.16px',
+                    animationDelay: '0.3s',
                   }}
                 >
                   From Idea
                 </span>
                 <span
-                  className="block"
+                  className="block animate-fadeInUp"
                   style={{
                     color: '#000',
                     fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
@@ -250,12 +271,13 @@ const HomePage = () => {
                     fontWeight: 500,
                     lineHeight: '90%',
                     letterSpacing: '-2.16px',
+                    animationDelay: '0.5s',
                   }}
                 >
                   to Successful
                 </span>
                 <span
-                  className="block"
+                  className="block animate-fadeInUp"
                   style={{
                     color: '#000',
                     fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
@@ -265,10 +287,12 @@ const HomePage = () => {
                     lineHeight: '90%',
                     letterSpacing: '-2.16px',
                     whiteSpace: 'nowrap',
+                    animationDelay: '0.7s',
                   }}
                 >
                   Token in{' '}
                   <span
+                    className="inline-block animate-pulse"
                     style={{
                       fontFamily: '"TT Firs Neue Trl", "TT Firs Neue", sans-serif',
                       fontSize: '55px',
@@ -280,6 +304,7 @@ const HomePage = () => {
                       backgroundClip: 'text',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
+                      animationDelay: '1s',
                     }}
                   >
                     30 Days
@@ -289,8 +314,12 @@ const HomePage = () => {
             </h1>
           </div>
 
-          {/* Description */}
-          <div className="mb-2 lg:mb-8">
+          {/* Description with fade in */}
+          <div
+            className={`mb-2 lg:mb-8 transition-all duration-700 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}
+          >
             {/* Mobile Description */}
             <p
               className="block lg:hidden text-black leading-relaxed"
@@ -321,10 +350,14 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* CTA Button - Hidden on mobile, shown on desktop */}
-          <div className="hidden lg:block relative">
+          {/* CTA Button with hover animation */}
+          <div
+            className={`hidden lg:block relative transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}
+          >
             <button
-              className="relative text-white font-semibold px-8 py-3 overflow-hidden"
+              className="relative text-white font-semibold px-8 py-3 overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
               style={{
                 borderRadius: '90px',
                 border: '1px solid #DAE339',
@@ -373,17 +406,21 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Right Side - Image Section */}
+      {/* Right Side - Image Section with animations */}
       <div
-        className="relative flex-1 flex items-center justify-center lg:justify-end order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0"
+        className={`relative flex-1 flex items-center justify-center lg:justify-end order-2 lg:order-2 mt-2 lg:mt-0 mb-12 lg:mb-0 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        }`}
         style={{ zIndex: 5 }}
       >
         <div className="relative">
           <div className="relative">
             <div className="relative">
-              {/* Background Image Container with Noise Effect - No gradient background */}
+              {/* Background Image Container with Noise Effect */}
               <div
-                className="absolute flex items-center justify-center -top-10 -right-20 -bottom-10 -left-10 lg:-top-20 lg:-right-20 lg:-bottom-20 lg:-left-96"
+                className={`absolute flex items-center justify-center -top-10 -right-20 -bottom-10 -left-10 lg:-top-20 lg:-right-20 lg:-bottom-20 lg:-left-96 transition-all duration-1500 ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
                 style={{
                   zIndex: 2,
                   maskImage:
@@ -424,74 +461,71 @@ const HomePage = () => {
                 />
               </div>
 
-              {/* Genesis Main Image - Responsive size */}
+              {/* Genesis Main Image - Responsive size with floating animation */}
               <img
                 src={require('../assets/Images/genesisMain.png')}
                 alt="Genesis Logo"
-                className="relative object-contain w-[450px] h-[450px] lg:w-[810px] lg:h-[810px] max-w-none max-h-none"
+                className="relative object-contain w-[450px] h-[450px] lg:w-[810px] lg:h-[810px] max-w-none max-h-none animate-float"
                 style={{ zIndex: 10 }}
+                onLoad={() => setImageLoaded(true)}
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile CTA Button - Full width on mobile - FIXED: Adjusted padding */}
+      {/* Mobile CTA Button with animation */}
       <div
-        className="relative lg:hidden block order-3 w-full -mt-8 mb-4 px-4"
+        className={`relative lg:hidden block order-3 w-full -mt-8 mb-4 px-4 transition-all duration-700 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}
         style={{ zIndex: 10 }}
       >
-        {/* Mobile CTA Button - Full width on mobile - FIXED: Adjusted padding */}
-        <div
-          className="relative lg:hidden block order-3 w-full -mt-8 mb-4 px-4"
-          style={{ zIndex: 10 }}
-        >
-          <div className="relative">
-            <button
-              className="relative text-white font-semibold py-3 w-full overflow-hidden"
-              style={{
-                borderRadius: '90px',
-                border: '1px solid #DAE339',
-                background:
-                  'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-                boxShadow:
-                  '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
-                outline: 'none',
-              }}
-            >
-              {/* Mobile Button Noise Overlay with downward flow effect */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `url("${pixelatedNoiseDataUrl}")`,
-                  backgroundSize: '35px 35px',
-                  backgroundRepeat: 'repeat',
-                  mixBlendMode: 'hard-light',
-                  borderRadius: '90px',
-                }}
-              />
-              <span className="relative z-10">Learn More</span>
-            </button>
-
-            {/* Mobile Trailing noise effect below button */}
+        <div className="relative">
+          <button
+            className="relative text-white font-semibold py-3 w-full overflow-hidden transform transition-all duration-300 active:scale-95"
+            style={{
+              borderRadius: '90px',
+              border: '1px solid #DAE339',
+              background:
+                'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+              boxShadow:
+                '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+              outline: 'none',
+            }}
+          >
+            {/* Mobile Button Noise Overlay */}
             <div
-              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+              className="absolute inset-0"
               style={{
-                width: '80%',
-                height: '50px',
                 background: `url("${pixelatedNoiseDataUrl}")`,
                 backgroundSize: '35px 35px',
                 backgroundRepeat: 'repeat',
-                mixBlendMode: 'multiply',
-                filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
-                maskImage:
-                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage:
-                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
-                borderRadius: '0 0 40% 40%',
+                mixBlendMode: 'hard-light',
+                borderRadius: '90px',
               }}
             />
-          </div>
+            <span className="relative z-10">Learn More</span>
+          </button>
+
+          {/* Mobile Trailing noise effect */}
+          <div
+            className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
+            style={{
+              width: '80%',
+              height: '50px',
+              background: `url("${pixelatedNoiseDataUrl}")`,
+              backgroundSize: '35px 35px',
+              backgroundRepeat: 'repeat',
+              mixBlendMode: 'multiply',
+              filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
+              maskImage:
+                'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage:
+                'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
+              borderRadius: '0 0 40% 40%',
+            }}
+          />
         </div>
       </div>
 
@@ -499,6 +533,65 @@ const HomePage = () => {
       <style
         dangerouslySetInnerHTML={{
           __html: `
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes fadeInMist {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 0.3;
+            }
+          }
+
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0) rotate(0deg);
+            }
+            25% {
+              transform: translateY(-20px) rotate(1deg);
+            }
+            50% {
+              transform: translateY(0) rotate(0deg);
+            }
+            75% {
+              transform: translateY(-10px) rotate(-1deg);
+            }
+          }
+
+          @keyframes pulse {
+            0%, 100% {
+              opacity: 1;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.9;
+              transform: scale(1.05);
+            }
+          }
+
+          .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+          }
+
+          .animate-float {
+            animation: float 6s ease-in-out infinite;
+          }
+
+          .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+          }
+
           @keyframes noiseFlow {
             0% {
               background-position: 0px 0px;
@@ -546,6 +639,12 @@ const HomePage = () => {
             -webkit-tap-highlight-color: transparent;
             -webkit-focus-ring-color: transparent;
             outline: none !important;
+          }
+
+          /* Smooth transitions for all animated elements */
+          .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           }
         `,
         }}
