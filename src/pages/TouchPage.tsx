@@ -625,9 +625,6 @@ const TouchPage: React.FC = () => {
               stroke="#DAE339"
               strokeWidth="1"
               filter="url(#bottomContactShadow)"
-              style={{
-                boxShadow: '0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
-              }}
             />
 
             {/* Desktop Button Noise Overlay */}
