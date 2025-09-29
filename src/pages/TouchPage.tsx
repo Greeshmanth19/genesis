@@ -143,13 +143,13 @@ const TouchPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Social Media Icons - Desktop only at top right, Tablet/Mobile: below black section */}
+      {/* Social Media Icons - Desktop only at top right (xl screens and above) */}
       <div
-        className="absolute top-0 right-0 hidden lg:flex items-center justify-end pr-[100px]"
+        className="absolute top-0 right-0 hidden xl:flex items-center justify-end pr-[100px]"
         style={{ height: '100px', zIndex: 15 }}
       >
         {/* Desktop Layout - 4 icons in a row */}
-        <div className="flex items-center gap-16" style={{ width: '800px' }}>
+        <div className="flex items-center gap-8 lg:gap-12 xl:gap-16" style={{ maxWidth: '800px' }}>
           {/* SparkStarter Icon */}
           <button
             onClick={() => handleSocialClick('SparkStarter')}
@@ -230,100 +230,6 @@ const TouchPage: React.FC = () => {
             </div>
             <span
               className="text-black font-medium text-xl"
-              style={{
-                fontFamily: '"Space Grotesk", sans-serif',
-              }}
-            >
-              Telegram
-            </span>
-          </button>
-        </div>
-
-        {/* Tablet Layout - 2x2 grid */}
-        <div
-          className="hidden md:grid lg:hidden grid-cols-2 gap-x-12 gap-y-6"
-          style={{ width: '300px' }}
-        >
-          {/* SparkStarter Icon */}
-          <button
-            onClick={() => handleSocialClick('SparkStarter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
-          >
-            <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
-              <img
-                src={require('../assets/Images/icon1.png')}
-                alt="SparkStarter"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span
-              className="text-black font-medium text-lg"
-              style={{
-                fontFamily: '"Space Grotesk", sans-serif',
-              }}
-            >
-              SparkStarter
-            </span>
-          </button>
-
-          {/* Unicrypt Icon */}
-          <button
-            onClick={() => handleSocialClick('Unicrypt')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
-          >
-            <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
-              <img
-                src={require('../assets/Images/icon2.png')}
-                alt="Unicrypt"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span
-              className="text-black font-medium text-lg"
-              style={{
-                fontFamily: '"Space Grotesk", sans-serif',
-              }}
-            >
-              Unicrypt
-            </span>
-          </button>
-
-          {/* Twitter/X Icon */}
-          <button
-            onClick={() => handleSocialClick('Twitter')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
-          >
-            <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
-              <img
-                src={require('../assets/Images/icon3.png')}
-                alt="Twitter/X"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span
-              className="text-black font-medium text-lg"
-              style={{
-                fontFamily: '"Space Grotesk", sans-serif',
-              }}
-            >
-              Twitter/X
-            </span>
-          </button>
-
-          {/* Telegram Icon */}
-          <button
-            onClick={() => handleSocialClick('Telegram')}
-            className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
-          >
-            <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
-              <img
-                src={require('../assets/Images/icon4.png')}
-                alt="Telegram"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <span
-              className="text-black font-medium text-lg"
               style={{
                 fontFamily: '"Space Grotesk", sans-serif',
               }}
@@ -335,11 +241,102 @@ const TouchPage: React.FC = () => {
       </div>
 
       {/* Main Content Container - Responsive with proper spacing from black shape */}
-      <div className="flex flex-col px-4 md:px-8 lg:px-20 mt-16 md:mt-32">
-        {/* Social Media Icons - Mobile only - FULL WIDTH END TO END */}
-        <div className="w-full mb-6 md:hidden">
+      <div className="flex flex-col px-4 md:px-8 lg:px-20 mt-16 md:mt-24 lg:mt-28 xl:mt-32">
+        {/* Social Media Icons - Tablet and Mobile: below black shape */}
+        <div className="w-full mb-6 xl:hidden">
+          {/* Tablet/Large Tablet Layout - 2x2 grid */}
+          <div className="hidden md:grid grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-6 max-w-lg">
+            {/* SparkStarter Icon */}
+            <button
+              onClick={() => handleSocialClick('SparkStarter')}
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+                <img
+                  src={require('../assets/Images/icon1.png')}
+                  alt="SparkStarter"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span
+                className="text-black font-medium text-lg"
+                style={{
+                  fontFamily: '"Space Grotesk", sans-serif',
+                }}
+              >
+                SparkStarter
+              </span>
+            </button>
+
+            {/* Unicrypt Icon */}
+            <button
+              onClick={() => handleSocialClick('Unicrypt')}
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+                <img
+                  src={require('../assets/Images/icon2.png')}
+                  alt="Unicrypt"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span
+                className="text-black font-medium text-lg"
+                style={{
+                  fontFamily: '"Space Grotesk", sans-serif',
+                }}
+              >
+                Unicrypt
+              </span>
+            </button>
+
+            {/* Twitter/X Icon */}
+            <button
+              onClick={() => handleSocialClick('Twitter')}
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+                <img
+                  src={require('../assets/Images/icon3.png')}
+                  alt="Twitter/X"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span
+                className="text-black font-medium text-lg"
+                style={{
+                  fontFamily: '"Space Grotesk", sans-serif',
+                }}
+              >
+                Twitter/X
+              </span>
+            </button>
+
+            {/* Telegram Icon */}
+            <button
+              onClick={() => handleSocialClick('Telegram')}
+              className="transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center gap-3 focus:outline-none focus-visible:outline-none"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+                <img
+                  src={require('../assets/Images/icon4.png')}
+                  alt="Telegram"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span
+                className="text-black font-medium text-lg"
+                style={{
+                  fontFamily: '"Space Grotesk", sans-serif',
+                }}
+              >
+                Telegram
+              </span>
+            </button>
+          </div>
+
           {/* Mobile Layout - 2x2 grid stretching end to end */}
-          <div className="grid grid-cols-2 gap-y-3">
+          <div className="grid md:hidden grid-cols-2 gap-y-3">
             {/* SparkStarter Icon */}
             <button
               onClick={() => handleSocialClick('SparkStarter')}
@@ -431,7 +428,7 @@ const TouchPage: React.FC = () => {
         </div>
 
         {/* Main Description Text - Now left aligned with responsive font sizes and proper spacing */}
-        <div className="mb-8 md:mb-12 max-w-2xl ml-0">
+        <div className="mb-8 md:mb-12 max-w-2xl ml-0 xl:mt-0 mt-8">
           <p
             className="leading-relaxed text-lg md:text-2xl"
             style={{
