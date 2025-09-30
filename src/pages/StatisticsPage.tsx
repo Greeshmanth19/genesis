@@ -88,23 +88,6 @@ const StatisticsPage = () => {
     { name: 'Rollback', revenue: '$8,663', volume: '$530K', trend: 'stable' },
   ];
 
-  // Button style object
-  const buttonStyle: React.CSSProperties = {
-    borderRadius: '90px',
-    border: '1px solid #DAE339',
-    background: 'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
-    boxShadow:
-      '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
-    outline: 'none',
-    WebkitAppearance: 'none' as any,
-    MozAppearance: 'none' as any,
-    appearance: 'none' as any,
-    WebkitTapHighlightColor: 'transparent' as any,
-    touchAction: 'manipulation' as any,
-    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease',
-    transform: 'none',
-  };
-
   return (
     <div
       className="relative min-h-0 lg:min-h-screen overflow-hidden"
@@ -402,11 +385,18 @@ const StatisticsPage = () => {
             {/* Desktop Learn More Button with hover effect */}
             <div className="hidden md:block relative">
               <button
-                className="button-reset relative text-white font-semibold px-6 md:px-8 py-3 text-sm md:text-base w-full md:w-auto overflow-hidden hover:scale-105 active:scale-95"
-                style={buttonStyle}
-                tabIndex={-1}
+                className="relative text-white font-semibold px-8 py-3 overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
+                style={{
+                  borderRadius: '90px',
+                  border: '1px solid #DAE339',
+                  background:
+                    'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                  boxShadow:
+                    '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                  outline: 'none',
+                }}
               >
-                {/* Button Noise Overlay */}
+                {/* Button Noise Overlay with downward flow effect */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
@@ -415,28 +405,29 @@ const StatisticsPage = () => {
                     backgroundRepeat: 'repeat',
                     mixBlendMode: 'hard-light',
                     borderRadius: '90px',
+                    transform: 'translateY(2px)',
                   }}
                 />
-                <span className="relative z-10 pointer-events-none">Learn More</span>
+                <span className="relative z-10">Learn More</span>
               </button>
 
-              {/* Trailing noise effect with animation */}
+              {/* Trailing noise effect below button */}
               <div
-                className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none animate-drip"
+                className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
                 style={{
-                  width: '140%',
-                  height: '80px',
+                  width: '120%',
+                  height: '60px',
                   background: `url("${pixelatedNoiseDataUrl}")`,
                   backgroundSize: '40px 40px',
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'multiply',
-                  opacity: 0.6,
-                  filter: 'contrast(180%) brightness(110%) hue-rotate(10deg) blur(0.5px)',
+                  filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
                   maskImage:
-                    'radial-gradient(ellipse 100% 100% at 50% 0%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.45) 15%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 90%)',
+                    'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage:
-                    'radial-gradient(ellipse 100% 100% at 50% 0%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.45) 15%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.03) 75%, rgba(0,0,0,0) 90%)',
-                  borderRadius: '0 0 60% 60%',
+                    'radial-gradient(ellipse at center top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
+                  animation: 'noiseFlow 8s linear infinite',
+                  borderRadius: '0 0 50% 50%',
                 }}
               />
             </div>
@@ -564,9 +555,16 @@ const StatisticsPage = () => {
         <div className="flex justify-center">
           <div className="relative">
             <button
-              className="button-reset relative text-white font-semibold px-8 py-3 text-sm w-full max-w-xs overflow-hidden active:scale-95"
-              style={buttonStyle}
-              tabIndex={-1}
+              className="relative text-white font-semibold px-8 py-3 text-sm w-full max-w-xs overflow-hidden transform transition-all duration-300 active:scale-95"
+              style={{
+                borderRadius: '90px',
+                border: '1px solid #DAE339',
+                background:
+                  'linear-gradient(101deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
+                boxShadow:
+                  '0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset',
+                outline: 'none',
+              }}
             >
               {/* Mobile Button Noise Overlay */}
               <div
@@ -576,31 +574,28 @@ const StatisticsPage = () => {
                   backgroundSize: '35px 35px',
                   backgroundRepeat: 'repeat',
                   mixBlendMode: 'hard-light',
-                  filter: 'contrast(280%) brightness(140%) hue-rotate(10deg)',
                   borderRadius: '90px',
                 }}
               />
-              <span className="relative z-10 pointer-events-none">Learn More</span>
+              <span className="relative z-10">Learn More</span>
             </button>
 
             {/* Mobile Trailing noise effect */}
             <div
-              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none animate-drip"
+              className="absolute top-full left-1/2 transform -translate-x-1/2 pointer-events-none"
               style={{
-                width: '100%',
-                height: '70px',
+                width: '80%',
+                height: '50px',
                 background: `url("${pixelatedNoiseDataUrl}")`,
                 backgroundSize: '35px 35px',
                 backgroundRepeat: 'repeat',
                 mixBlendMode: 'multiply',
-                opacity: 0.5,
-                filter: 'contrast(160%) brightness(100%) hue-rotate(10deg) blur(0.3px)',
+                filter: 'contrast(250%) brightness(120%) hue-rotate(10deg)',
                 maskImage:
-                  'radial-gradient(ellipse 90% 90% at 50% 0%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.22) 35%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 65%, rgba(0,0,0,0.01) 80%, rgba(0,0,0,0) 95%)',
+                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage:
-                  'radial-gradient(ellipse 90% 90% at 50% 0%, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.22) 35%, rgba(0,0,0,0.12) 50%, rgba(0,0,0,0.05) 65%, rgba(0,0,0,0.01) 80%, rgba(0,0,0,0) 95%)',
-                animation: 'noiseFlow 8s linear infinite',
-                borderRadius: '0 0 50% 50%',
+                  'radial-gradient(ellipse at center top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%)',
+                borderRadius: '0 0 40% 40%',
               }}
             />
           </div>
@@ -822,21 +817,6 @@ const StatisticsPage = () => {
             animation: noise-shift 30s ease-in-out infinite;
           }
 
-          @keyframes drip {
-            0%, 100% {
-              transform: translate(-50%, 0) scaleY(1);
-              opacity: 0.6;
-            }
-            50% {
-              transform: translate(-50%, 5px) scaleY(1.1);
-              opacity: 0.4;
-            }
-          }
-
-          .animate-drip {
-            animation: drip 3s ease-in-out infinite;
-          }
-
           @keyframes pulse-slow {
             0%, 100% {
               opacity: 1;
@@ -866,34 +846,25 @@ const StatisticsPage = () => {
             }
           }
           
-          /* Button styles preserved */
-          .button-reset {
+          /* Remove all focus outlines for buttons */
+          button:focus {
             outline: none !important;
-            border: 1px solid #DAE339 !important;
-            box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-focus-ring-color: transparent !important;
-            -moz-outline-radius: 90px !important;
-          }
-          
-          .button-reset:focus,
-          .button-reset:active,
-          .button-reset:focus-visible,
-          .button-reset::-moz-focus-inner {
-            outline: none !important;
-            border: 1px solid #DAE339 !important;
             box-shadow: 0 16px 30px 4px rgba(113, 173, 77, 0.40), 0 0 0 2px rgba(0, 235, 0, 0.20), 0 0 0 2px rgba(103, 178, 51, 0.60), 0 0 9.931px 4.966px rgba(255, 255, 255, 0.64) inset !important;
           }
           
+          button:focus-visible {
+            outline: none !important;
+          }
+          
+          button:active {
+            outline: none !important;
+          }
+          
+          /* Ensure no border appears on click */
           button {
-            -webkit-tap-highlight-color: transparent !important;
-            -webkit-focus-ring-color: transparent !important;
-            -webkit-touch-callout: none !important;
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-            touch-action: manipulation !important;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+            outline: none !important;
           }
         `,
         }}

@@ -485,11 +485,17 @@ const TouchPage: React.FC = () => {
               letterSpacing: '-0.54px',
             }}
           >
-            We launch token projects with transparency,
-            <br />
-            security, and trusted support, turning bold
-            <br />
-            ideas into thriving businesses.
+            <span className="hidden md:inline">
+              We launch token projects with transparency,
+              <br />
+              security, and trusted support, turning bold
+              <br />
+              ideas into thriving businesses.
+            </span>
+            <span className="md:hidden">
+              We launch token projects with transparency, security, and trusted support, turning
+              bold ideas into thriving businesses.
+            </span>
           </p>
         </div>
 

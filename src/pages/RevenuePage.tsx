@@ -903,7 +903,7 @@ const RevenuePage = () => {
 
       {/* Tokenomics Section */}
       <div
-        className={`w-full mt-12 sm:mt-14 md:mt-16 lg:mt-20 mb-12 sm:mb-14 md:mb-16 lg:mb-20 transition-all duration-700 ${
+        className={`w-full mt-8 sm:mt-6 md:mt-16 lg:mt-10 mb-12 sm:mb-14 md:mb-16 lg:mb-20 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
         style={{ animationDelay: '0.8s' }}
