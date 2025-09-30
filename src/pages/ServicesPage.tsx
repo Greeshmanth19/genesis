@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, UserCheck, Wifi, Droplet, FileCheck, Network, Users, Lock } from 'lucide-react';
 
-const ServicesPage: React.FC = () => {
+const ServicesPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
@@ -18,26 +18,6 @@ const ServicesPage: React.FC = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  // Create rough, grainy surface mist effect with visible texture
-  const pixelatedNoiseDataUrl = `data:image/svg+xml,${encodeURIComponent(`
-    <svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
-      <filter id='noiseFilter'>
-        <feTurbulence 
-          type='turbulence' 
-          baseFrequency='0.9' 
-          numOctaves='4' 
-          stitchTiles='stitch'
-          seed='2'/>
-        <feColorMatrix type="matrix" values="
-          0.2 0.8 0.2 0 0.15
-          0.3 0.9 0.3 0 0.15
-          0.1 0.6 0.1 0 0.15
-          0   0   0   1 0"/>
-      </filter>
-      <rect width='100%' height='100%' filter='url(#noiseFilter)' opacity='0.9'/>
-    </svg>
-  `)}`;
 
   const services = [
     {
@@ -83,7 +63,7 @@ const ServicesPage: React.FC = () => {
   ];
 
   // Title styles as inline style object
-  const titleStyle: React.CSSProperties = {
+  const titleStyle = {
     color: '#FFF',
     fontFamily: '"TT Firs Neue Trl", "Inter", sans-serif',
     fontSize: '72px',
@@ -94,7 +74,7 @@ const ServicesPage: React.FC = () => {
   };
 
   // Mobile title style
-  const mobileTitleStyle: React.CSSProperties = {
+  const mobileTitleStyle = {
     ...titleStyle,
     fontSize: '48px',
     letterSpacing: '-1.44px',
@@ -112,7 +92,7 @@ const ServicesPage: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const gradientTextStyle: React.CSSProperties = {
+  const gradientTextStyle = {
     background: 'linear-gradient(100.72deg, #DAE339 -3.32%, #00B935 51.06%, #DAE339 105.44%)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
@@ -122,26 +102,7 @@ const ServicesPage: React.FC = () => {
 
   return (
     <div className="min-h-0 lg:min-h-screen bg-black text-white overflow-hidden">
-      {/* Animated background particles */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute animate-float-particle"
-            style={{
-              top: `${20 + i * 15}%`,
-              left: `${10 + i * 20}%`,
-              width: '100px',
-              height: '100px',
-              background: 'radial-gradient(circle, rgba(218, 227, 57, 0.1) 0%, transparent 70%)',
-              borderRadius: '50%',
-              filter: 'blur(40px)',
-              animationDelay: `${i * 2}s`,
-              animationDuration: `${15 + i * 3}s`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Removed animated background particles */}
 
       {/* Hero Section with slide-in animation */}
       <div
@@ -229,30 +190,8 @@ const ServicesPage: React.FC = () => {
                           activeCard === index ? 'icon-float 3s ease-in-out infinite' : 'none',
                       }}
                     >
-                      {/* Animated greenish mesh effect for icon */}
                       <div
-                        className="absolute animate-spin-slow"
-                        style={{
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          width: '52px',
-                          height: '52px',
-                          background: `url("${pixelatedNoiseDataUrl}")`,
-                          backgroundSize: '18px 18px',
-                          backgroundRepeat: 'repeat',
-                          mixBlendMode: 'screen',
-                          borderRadius: '50%',
-                          opacity: activeCard === index ? 0.5 : 0.3,
-                          maskImage:
-                            'radial-gradient(circle at center, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0.01) 90%, rgba(0,0,0,0) 100%)',
-                          WebkitMaskImage:
-                            'radial-gradient(circle at center, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0.01) 90%, rgba(0,0,0,0) 100%)',
-                          animationDuration: activeCard === index ? '4s' : '8s',
-                        }}
-                      />
-                      <div
-                        className={`relative z-10 transition-all duration-300 ${
+                        className={`transition-all duration-300 ${
                           activeCard === index ? 'scale-125' : 'scale-100'
                         }`}
                         style={{ color: activeCard === index ? '#DAE339' : '#ffffff' }}
@@ -260,35 +199,10 @@ const ServicesPage: React.FC = () => {
                         {service.icon}
                       </div>
                     </div>
-
-                    {/* Animated downward flow effect */}
-                    <div
-                      className="absolute pointer-events-none"
-                      style={{
-                        top: '100%',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: '36px',
-                        height: activeCard === index ? '48px' : '32px',
-                        background: `url("${pixelatedNoiseDataUrl}")`,
-                        backgroundSize: '14px 14px',
-                        backgroundRepeat: 'repeat',
-                        mixBlendMode: 'screen',
-                        opacity: activeCard === index ? 0.4 : 0.25,
-                        maskImage:
-                          'radial-gradient(ellipse 70% 100% at center top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.03) 70%, rgba(0,0,0,0.01) 85%, rgba(0,0,0,0) 100%)',
-                        WebkitMaskImage:
-                          'radial-gradient(ellipse 70% 100% at center top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.03) 70%, rgba(0,0,0,0.01) 85%, rgba(0,0,0,0) 100%)',
-                        borderRadius: '50%',
-                        animation:
-                          activeCard === index ? 'drip-flow 2s ease-in-out infinite' : 'none',
-                        transition: 'all 0.5s ease',
-                      }}
-                    />
                   </div>
                 </div>
 
-                {/* Text content with typewriter effect for active card */}
+                {/* Text content */}
                 <div className={isMobile ? 'flex-1 relative z-10' : 'mt-auto relative z-10'}>
                   <h3
                     className={`text-lg font-semibold mb-1.5 transition-all duration-300 ${
@@ -305,104 +219,6 @@ const ServicesPage: React.FC = () => {
                     {service.description}
                   </p>
                 </div>
-
-                {/* Bottom rough surface mist with wave animation */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '70%',
-                    background: `url("${pixelatedNoiseDataUrl}")`,
-                    backgroundSize: '30px 30px',
-                    backgroundRepeat: 'repeat',
-                    mixBlendMode: 'screen',
-                    opacity: activeCard === index ? 0.25 : 0.18,
-                    maskImage:
-                      'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
-                    WebkitMaskImage:
-                      'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 80%)',
-                    animation:
-                      activeCard === index ? 'wave-motion 3s ease-in-out infinite' : 'none',
-                  }}
-                />
-
-                {/* Animated corner accumulations */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    bottom: '-5px',
-                    left: '-5px',
-                    width: '100px',
-                    height: '100px',
-                    background: `url("${pixelatedNoiseDataUrl}")`,
-                    backgroundSize: '20px 20px',
-                    backgroundRepeat: 'repeat',
-                    mixBlendMode: 'overlay',
-                    opacity: activeCard === index ? 0.3 : 0.2,
-                    borderRadius: '30%',
-                    maskImage:
-                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    WebkitMaskImage:
-                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    animation:
-                      activeCard === index ? 'corner-pulse 4s ease-in-out infinite' : 'none',
-                    transition: 'opacity 0.5s ease',
-                  }}
-                />
-
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    bottom: '-5px',
-                    right: '-5px',
-                    width: '100px',
-                    height: '100px',
-                    background: `url("${pixelatedNoiseDataUrl}")`,
-                    backgroundSize: '20px 20px',
-                    backgroundRepeat: 'repeat',
-                    mixBlendMode: 'overlay',
-                    opacity: activeCard === index ? 0.3 : 0.2,
-                    borderRadius: '30%',
-                    maskImage:
-                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    WebkitMaskImage:
-                      'radial-gradient(circle at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 90%)',
-                    animation:
-                      activeCard === index
-                        ? 'corner-pulse 4s ease-in-out infinite reverse'
-                        : 'none',
-                    transition: 'opacity 0.5s ease',
-                  }}
-                />
-
-                {/* Enhanced mist effect for active card */}
-                {activeCard === index && (
-                  <div
-                    className="absolute inset-0 pointer-events-none animate-fade-in"
-                    style={{
-                      background: `url("${pixelatedNoiseDataUrl}")`,
-                      backgroundSize: '120px 120px',
-                      backgroundRepeat: 'repeat',
-                      mixBlendMode: 'soft-light',
-                      filter: 'contrast(280%) brightness(60%) hue-rotate(5deg) blur(1px)',
-                      animation: 'mist-swirl 6s ease-in-out infinite',
-                    }}
-                  />
-                )}
-
-                {/* Glow effect for active card */}
-                {activeCard === index && (
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background:
-                        'radial-gradient(circle at center, rgba(218, 227, 57, 0.1) 0%, transparent 70%)',
-                      animation: 'glow-pulse 2s ease-in-out infinite',
-                    }}
-                  />
-                )}
               </div>
             ))}
           </div>
@@ -410,118 +226,62 @@ const ServicesPage: React.FC = () => {
       </div>
 
       {/* CSS Animations */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-          @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-          }
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
 
-          @keyframes slide-in-left {
-            from {
-              opacity: 0;
-              transform: translateX(-50px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-
-          @keyframes slide-in-right {
-            from {
-              opacity: 0;
-              transform: translateX(50px);
-            }
-            to {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-
-          .animate-slide-in-left {
-            animation: slide-in-left 0.8s ease-out forwards;
+        @keyframes slide-in-left {
+          from {
             opacity: 0;
+            transform: translateX(-50px);
           }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
 
-          .animate-slide-in-right {
-            animation: slide-in-right 0.8s ease-out forwards;
+        @keyframes slide-in-right {
+          from {
             opacity: 0;
+            transform: translateX(50px);
           }
-
-          @keyframes float-particle {
-            0%, 100% {
-              transform: translate(0, 0) scale(1);
-              opacity: 0.1;
-            }
-            25% {
-              transform: translate(50px, -30px) scale(1.2);
-              opacity: 0.2;
-            }
-            50% {
-              transform: translate(-30px, 20px) scale(0.8);
-              opacity: 0.15;
-            }
-            75% {
-              transform: translate(20px, -50px) scale(1.1);
-              opacity: 0.1;
-            }
+          to {
+            opacity: 1;
+            transform: translateX(0);
           }
+        }
 
-          .animate-float-particle {
-            animation: float-particle 20s ease-in-out infinite;
+        .animate-slide-in-left {
+          animation: slide-in-left 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-slide-in-right {
+          animation: slide-in-right 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        @keyframes icon-float {
+          0%, 100% {
+            transform: translateY(0) rotate(12deg);
           }
-
-          @keyframes noiseFlow {
-            0% {
-              background-position: 0px 0px;
-            }
-            100% {
-              background-position: 0px 40px;
-            }
+          50% {
+            transform: translateY(-5px) rotate(12deg);
           }
+        }
 
-          @keyframes noiseFlowReverse {
-            0% {
-              background-position: 0px 40px;
-            }
-            100% {
-              background-position: 0px 0px;
-            }
-          }
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-out;
+        }
 
-          @keyframes icon-float {
-            0%, 100% {
-              transform: translateY(0) rotate(12deg);
-            }
-            50% {
-              transform: translateY(-5px) rotate(12deg);
-            }
-          }
-
-          @keyframes glow-pulse {
-            0%, 100% {
-              opacity: 0.5;
-            }
-            50% {
-              opacity: 0.8;
-            }
-          }
-
-
-
-          .animate-fade-in {
-            animation: fadeIn 0.5s ease-out;
-          }
-
-          @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-          }
-        `,
-        }}
-      />
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 };

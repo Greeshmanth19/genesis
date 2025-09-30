@@ -901,12 +901,314 @@ const RevenuePage = () => {
         </div>
       </div>
 
+      {/* Tokenomics Section */}
+      <div
+        className={`w-full mt-12 sm:mt-14 md:mt-16 lg:mt-20 mb-12 sm:mb-14 md:mb-16 lg:mb-20 transition-all duration-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+        style={{ animationDelay: '0.8s' }}
+      >
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white">
+            Tokenomics
+          </h2>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          {/* First Row - 3 Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-4 sm:mb-5 md:mb-6">
+            {/* Card 1 */}
+            <div
+              className="relative rounded-2xl px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#DAE339] cursor-pointer group"
+              style={{
+                borderRadius: '16px',
+                background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none animate-partner-noise"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  opacity: 0.4,
+                }}
+              />
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-[120px]">
+                <span
+                  className="text-2xl sm:text-3xl md:text-4xl font-medium text-left transition-colors duration-300"
+                  style={{
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  1 billion
+                </span>
+                <p
+                  className="text-sm sm:text-base text-white text-left mt-auto pt-4 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ opacity: 0.8 }}
+                >
+                  Total Supply of $GXN
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div
+              className="relative rounded-2xl px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#DAE339] cursor-pointer group"
+              style={{
+                borderRadius: '16px',
+                background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none animate-partner-noise"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  opacity: 0.4,
+                }}
+              />
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-[120px]">
+                <span
+                  className="text-2xl sm:text-3xl md:text-4xl font-medium text-left transition-colors duration-300"
+                  style={{
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  3OO million
+                </span>
+                <p
+                  className="text-sm sm:text-base text-white text-left mt-auto pt-4 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ opacity: 0.8 }}
+                >
+                  To Vault - 30% supply
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div
+              className="relative rounded-2xl px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#DAE339] cursor-pointer group"
+              style={{
+                borderRadius: '16px',
+                background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none animate-partner-noise"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  opacity: 0.4,
+                }}
+              />
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-[120px]">
+                <span
+                  className="text-2xl sm:text-3xl md:text-4xl font-medium text-left transition-colors duration-300"
+                  style={{
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  5/5
+                </span>
+                <p
+                  className="text-sm sm:text-base text-white text-left mt-auto pt-4 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ opacity: 0.8 }}
+                >
+                  Taxes on Buys and Sells
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Second Row - 4 Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+            {/* Card 4 */}
+            <div
+              className="relative rounded-2xl px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#DAE339] cursor-pointer group"
+              style={{
+                borderRadius: '16px',
+                background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none animate-partner-noise"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  opacity: 0.4,
+                }}
+              />
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-[120px]">
+                <span
+                  className="text-2xl sm:text-3xl md:text-4xl font-medium text-left transition-colors duration-300"
+                  style={{
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  20%
+                </span>
+                <p
+                  className="text-sm sm:text-base text-white text-left mt-auto pt-4 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ opacity: 0.8 }}
+                >
+                  Taxes to Rev Share Staking Pool
+                </p>
+              </div>
+            </div>
+
+            {/* Card 5 */}
+            <div
+              className="relative rounded-2xl px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#DAE339] cursor-pointer group"
+              style={{
+                borderRadius: '16px',
+                background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none animate-partner-noise"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  opacity: 0.4,
+                }}
+              />
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-[120px]">
+                <span
+                  className="text-2xl sm:text-3xl md:text-4xl font-medium text-left transition-colors duration-300"
+                  style={{
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  20%
+                </span>
+                <p
+                  className="text-sm sm:text-base text-white text-left mt-auto pt-4 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ opacity: 0.8 }}
+                >
+                  Taxes to Incubator for the 1st Month
+                </p>
+              </div>
+            </div>
+
+            {/* Card 6 */}
+            <div
+              className="relative rounded-2xl px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#DAE339] cursor-pointer group"
+              style={{
+                borderRadius: '16px',
+                background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none animate-partner-noise"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  opacity: 0.4,
+                }}
+              />
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-[120px]">
+                <span
+                  className="text-2xl sm:text-3xl md:text-4xl font-medium text-left transition-colors duration-300"
+                  style={{
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  60%
+                </span>
+                <p
+                  className="text-sm sm:text-base text-white text-left mt-auto pt-4 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ opacity: 0.8 }}
+                >
+                  To Marketing and Growth
+                </p>
+              </div>
+            </div>
+
+            {/* Card 7 */}
+            <div
+              className="relative rounded-2xl px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#DAE339] cursor-pointer group"
+              style={{
+                borderRadius: '16px',
+                background: 'linear-gradient(192deg, #0F0F0F 9.1%, #171717 91.25%)',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none animate-partner-noise"
+                style={{
+                  background: `url("${pixelatedNoiseDataUrl}")`,
+                  backgroundSize: '40px 40px',
+                  backgroundRepeat: 'repeat',
+                  mixBlendMode: 'multiply',
+                  opacity: 0.4,
+                }}
+              />
+              <div className="relative z-10 flex flex-col justify-between h-full min-h-[120px]">
+                <span
+                  className="text-2xl sm:text-3xl md:text-4xl font-medium text-left transition-colors duration-300"
+                  style={{
+                    background: 'linear-gradient(106deg, #DAE339 -4.38%, #00B935 37.94%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  1 year
+                </span>
+                <p
+                  className="text-sm sm:text-base text-white text-left mt-auto pt-4 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ opacity: 0.8 }}
+                >
+                  Liquidity Locked
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Our Partners Section with staggered entrance */}
       <div
         className={`w-full mt-12 sm:mt-14 md:mt-16 lg:mt-16 mb-8 sm:mb-10 md:mb-12 lg:mb-16 transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
-        style={{ animationDelay: '0.8s' }}
+        style={{ animationDelay: '0.9s' }}
       >
         <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-6 sm:mb-7 md:mb-8">
